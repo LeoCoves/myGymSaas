@@ -21,9 +21,10 @@ namespace ApiFithub.Models
         public string PhoneNumber { get; set; }
 
         [ForeignKey("Gym")]
-        public string IdGym { get; set; }
+        public int IdGym { get; set; }
         public Gym Gym { get; set; }
 
         public ICollection<ClassEnrollment> ClassEnrollments { get; set; }
+        public ICollection<ClientGymCustomPaymentPlan> ClientGymCustomPaymentPlans { get; set; }
     }
 }

@@ -2,5 +2,5 @@
 
 public class ApplicationUser : IdentityUser
 {
-    public string FullName { get; set; }
+    //Lo que se quiera extender
 }

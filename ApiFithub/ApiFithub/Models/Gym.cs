@@ -4,10 +4,13 @@ using System.Security.Claims;
 
 namespace ApiFithub.Models
 {
-    public class Gym: ApplicationUser
+    public class Gym
     {
         [Key]
-        public int IdGym { get; set; }
+        public int IdGym { get; set; }  // Clave primaria de tipo int
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name is a required field")]
+        public string Name { get; set; }
 
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Description is a required field")]

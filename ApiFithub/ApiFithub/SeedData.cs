@@ -12,7 +12,12 @@ namespace ApiFithub
             {
                 if (!await roleManager.RoleExistsAsync(roleName))
                 {
-                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                    var roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+                    if (!roleResult.Succeeded)
+                    {
+                        // Puedes manejar el caso en el que la creación del rol falle
+                        throw new Exception($"Error al crear el rol {roleName}");
+                    }
                 }
             }
 
@@ -26,14 +31,20 @@ namespace ApiFithub
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    EmailConfirmed = true
+                    EmailConfirmed = true // El email está confirmado por defecto
                 };
 
                 var result = await userManager.CreateAsync(newAdmin, "Admin123");
 
                 if (result.Succeeded)
                 {
+                    // Asignar al rol de Administrador
                     await userManager.AddToRoleAsync(newAdmin, "Administrador");
+                }
+                else
+                {
+                    // Manejo de errores si la creación falla
+                    throw new Exception("Error al crear el usuario administrador.");
                 }
             }
         }

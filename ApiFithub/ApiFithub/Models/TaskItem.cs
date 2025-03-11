@@ -9,7 +9,7 @@ namespace ApiFithub.Models
         public int IdTask { get; set; }
 
         [ForeignKey("Gym")]
-        public string IdGym { get; set; }
+        public int IdGym { get; set; }
         public Gym Gym { get; set; }
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Description is a required field")]
