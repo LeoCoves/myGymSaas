@@ -36,9 +36,6 @@ namespace ApiFithub.Models
         public string Features { get; set; } // JSON con las características
         public string Type { get; set; }
 
-        [ForeignKey("Admin")]
-        public int AdminId { get; set; }
-        public Admin Admin { get; set; }
 
         // Relación con los gimnasios que contratan este plan
         public ICollection<GymPaymentPlan> GymPaymentPlans { get; set; }

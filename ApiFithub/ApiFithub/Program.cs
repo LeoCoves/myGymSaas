@@ -50,6 +50,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Inicialización de datos (SeedData)
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    // Llamamos al método de inicialización de datos
+    await SeedData.InitializeAsync(services, userManager, roleManager);
+}
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -57,12 +68,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
-    await SeedData.SeedRolesAndAdmin(roleManager, userManager);
-}

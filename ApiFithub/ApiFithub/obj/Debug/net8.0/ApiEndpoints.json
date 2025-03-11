@@ -1,5 +1,585 @@
 [
   {
+    "ContainingType": "ApiFithub.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ApiFithub.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ApiFithub.Models.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymController",
+    "Method": "GetGyms",
+    "RelativePath": "api/Gym",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.Gym, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymController",
+    "Method": "CreateGym",
+    "RelativePath": "api/Gym",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdGym",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Numberphone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.NormalizedUserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.NormalizedEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.EmailConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PasswordHash",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.SecurityStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.ConcurrencyStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PhoneNumberConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.TwoFactorEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.LockoutEnd",
+        "Type": "System.Nullable\u00601[[System.DateTimeOffset, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.LockoutEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.AccessFailedCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "GymPaymentPlans",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.GymPaymentPlan, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Suppliers",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.Supplier, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Classes",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.Class, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tasks",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.TaskItem, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.Gym",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymController",
+    "Method": "GetGym",
+    "RelativePath": "api/Gym/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.Gym",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymController",
+    "Method": "UpdateGym",
+    "RelativePath": "api/Gym/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "IdGym",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Numberphone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.NormalizedUserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.NormalizedEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.EmailConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PasswordHash",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.SecurityStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.ConcurrencyStamp",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.PhoneNumberConfirmed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.TwoFactorEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.LockoutEnd",
+        "Type": "System.Nullable\u00601[[System.DateTimeOffset, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.LockoutEnabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.AccessFailedCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "GymPaymentPlans",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.GymPaymentPlan, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Suppliers",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.Supplier, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Classes",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.Class, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tasks",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.TaskItem, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymController",
+    "Method": "DeleteGym",
+    "RelativePath": "api/Gym/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.PaymentPlanController",
+    "Method": "GetPlanes",
+    "RelativePath": "api/planes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.PaymentPlan, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.PaymentPlanController",
+    "Method": "CreatePlan",
+    "RelativePath": "api/planes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdPaymentPlan",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "PriceCadena",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BasicFeatures",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Features",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GymPaymentPlans",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.GymPaymentPlan, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.PaymentPlan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.PaymentPlanController",
+    "Method": "GetPlan",
+    "RelativePath": "api/planes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.PaymentPlan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.PaymentPlanController",
+    "Method": "UpdatePlan",
+    "RelativePath": "api/planes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "IdPaymentPlan",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "PriceCadena",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BasicFeatures",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Features",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GymPaymentPlans",
+        "Type": "System.Collections.Generic.ICollection\u00601[[ApiFithub.Models.GymPaymentPlan, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.PaymentPlanController",
+    "Method": "DeletePlan",
+    "RelativePath": "api/planes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ApiFithub.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

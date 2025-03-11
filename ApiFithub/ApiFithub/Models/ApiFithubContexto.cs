@@ -13,7 +13,7 @@ namespace ApiFithub.Models
 
         // Entidades que vamos a usar
         public DbSet<Gym> Gyms { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+
         public DbSet<PaymentPlan> PaymentPlans { get; set; }
         public DbSet<GymPaymentPlan> GymPaymentPlans { get; set; }
         public DbSet<GymCustomPaymentPlan> GymCustomPaymentPlans { get; set; }
@@ -32,16 +32,16 @@ namespace ApiFithub.Models
 
             // Relación entre Admin y MessageAdminGym
             modelBuilder.Entity<MessageAdminGym>()
-                .HasOne(m => m.Admin)
+                .HasOne(m => m.Sender)
                 .WithMany()  // Un administrador puede tener múltiples mensajes
-                .HasForeignKey(m => m.IdAdmin)
+                .HasForeignKey(m => m.SenderId)
                 .OnDelete(DeleteBehavior.NoAction);  // Evita cascada de eliminación
 
             // Relación entre Gym y MessageAdminGym
             modelBuilder.Entity<MessageAdminGym>()
-                .HasOne(m => m.Gym)
+                .HasOne(m => m.Receiver)
                 .WithMany()  // Un gimnasio puede recibir múltiples mensajes
-                .HasForeignKey(m => m.IdGym)
+                .HasForeignKey(m => m.ReceiverId)
                 .OnDelete(DeleteBehavior.NoAction);  // Evita cascada de eliminación
 
             // Relación entre Gym y GymPaymentPlans
@@ -78,6 +78,13 @@ namespace ApiFithub.Models
                 .WithMany() // Muchos ClientGymCustomPaymentPlan pueden estar asociados a un GymCustomPaymentPlan
                 .HasForeignKey(cgcp => cgcp.GymCustomPaymentPlanId)
                 .OnDelete(DeleteBehavior.Restrict); // Evita la eliminación en cascada
+
+            // Configurar la relación entre User y Gym
+            modelBuilder.Entity<Gym>()
+                .HasOne(g => g.User)
+                .WithMany()
+                .HasForeignKey(g => g.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -4,47 +4,39 @@ namespace ApiFithub
 {
     public class SeedData
     {
-        public static async Task SeedRolesAndAdmin(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public static async Task InitializeAsync(IServiceProvider serviceProvider, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            // Crear los roles si no existen
-            string[] roleNames = { "Administrador", "Gym" };
+            var roleNames = new[] { "Admin", "Gym" }; // Roles que queremos crear
+
+            // Crear roles si no existen
             foreach (var roleName in roleNames)
             {
-                if (!await roleManager.RoleExistsAsync(roleName))
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
                 {
-                    var roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
-                    if (!roleResult.Succeeded)
-                    {
-                        // Puedes manejar el caso en el que la creación del rol falle
-                        throw new Exception($"Error al crear el rol {roleName}");
-                    }
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
 
-            // Crear el usuario administrador si no existe
-            string adminEmail = "admin@empresa.com";
+            // Crear un único administrador si no existe
+            var adminEmail = "admin@fithub.com";  // Cambia este correo si lo necesitas
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
             if (adminUser == null)
             {
-                var newAdmin = new ApplicationUser
+                adminUser = new ApplicationUser
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    EmailConfirmed = true // El email está confirmado por defecto
+                    // Puedes agregar más propiedades si es necesario
                 };
 
-                var result = await userManager.CreateAsync(newAdmin, "Admin123");
+                var result = await userManager.CreateAsync(adminUser, "AdminPassword123!");  // Cambia la contraseña si lo necesitas
 
                 if (result.Succeeded)
                 {
-                    // Asignar al rol de Administrador
-                    await userManager.AddToRoleAsync(newAdmin, "Administrador");
-                }
-                else
-                {
-                    // Manejo de errores si la creación falla
-                    throw new Exception("Error al crear el usuario administrador.");
+                    // Asignar el rol "Admin" al usuario administrador
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
                 }
             }
         }

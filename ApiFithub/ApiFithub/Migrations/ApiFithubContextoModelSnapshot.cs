@@ -22,64 +22,6 @@ namespace ApiFithub.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ApiFithub.Models.Admin", b =>
-                {
-                    b.Property<int>("IdAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAdmin"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdAdmin");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("ApiFithub.Models.Class", b =>
                 {
                     b.Property<int>("IdClass")
@@ -219,9 +161,6 @@ namespace ApiFithub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -238,9 +177,13 @@ namespace ApiFithub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdGym");
 
-                    b.HasIndex("AdminId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Gyms");
                 });
@@ -324,27 +267,32 @@ namespace ApiFithub.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMessage"));
 
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateSend")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("IdAdmin")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdGym")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("ReceiverId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("IdMessage");
 
-                    b.HasIndex("IdAdmin");
+                    b.HasIndex("ReceiverId");
 
-                    b.HasIndex("IdGym");
+                    b.HasIndex("SenderId");
 
                     b.ToTable("MessageAdminGyms");
                 });
@@ -356,9 +304,6 @@ namespace ApiFithub.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPaymentPlan"));
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("BasicFeatures")
                         .HasColumnType("bit");
@@ -388,8 +333,6 @@ namespace ApiFithub.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdPaymentPlan");
-
-                    b.HasIndex("AdminId");
 
                     b.ToTable("PaymentPlans");
                 });
@@ -723,13 +666,13 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Gym", b =>
                 {
-                    b.HasOne("ApiFithub.Models.Admin", "Admin")
-                        .WithMany("Gyms")
-                        .HasForeignKey("AdminId")
+                    b.HasOne("ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Admin");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.GymCustomPaymentPlan", b =>
@@ -764,32 +707,21 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.MessageAdminGym", b =>
                 {
-                    b.HasOne("ApiFithub.Models.Admin", "Admin")
+                    b.HasOne("ApplicationUser", "Receiver")
                         .WithMany()
-                        .HasForeignKey("IdAdmin")
+                        .HasForeignKey("ReceiverId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("ApiFithub.Models.Gym", "Gym")
+                    b.HasOne("ApplicationUser", "Sender")
                         .WithMany()
-                        .HasForeignKey("IdGym")
+                        .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Admin");
+                    b.Navigation("Receiver");
 
-                    b.Navigation("Gym");
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.PaymentPlan", b =>
-                {
-                    b.HasOne("ApiFithub.Models.Admin", "Admin")
-                        .WithMany("PaymentPlans")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Admin");
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.Supplier", b =>
@@ -863,13 +795,6 @@ namespace ApiFithub.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.Admin", b =>
-                {
-                    b.Navigation("Gyms");
-
-                    b.Navigation("PaymentPlans");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.Class", b =>

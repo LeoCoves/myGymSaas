@@ -12,33 +12,6 @@ namespace ApiFithub.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Admins",
-                columns: table => new
-                {
-                    IdAdmin = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admins", x => x.IdAdmin);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -78,30 +51,6 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gyms",
-                columns: table => new
-                {
-                    IdGym = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Numberphone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Gyms", x => x.IdGym);
-                    table.ForeignKey(
-                        name: "FK_Gyms_Admins_AdminId",
-                        column: x => x.AdminId,
-                        principalTable: "Admins",
-                        principalColumn: "IdAdmin",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PaymentPlans",
                 columns: table => new
                 {
@@ -113,18 +62,11 @@ namespace ApiFithub.Migrations
                     PriceCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BasicFeatures = table.Column<bool>(type: "bit", nullable: false),
                     Features = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminId = table.Column<int>(type: "int", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PaymentPlans", x => x.IdPaymentPlan);
-                    table.ForeignKey(
-                        name: "FK_PaymentPlans_Admins_AdminId",
-                        column: x => x.AdminId,
-                        principalTable: "Admins",
-                        principalColumn: "IdAdmin",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,6 +176,58 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Gyms",
+                columns: table => new
+                {
+                    IdGym = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Numberphone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gyms", x => x.IdGym);
+                    table.ForeignKey(
+                        name: "FK_Gyms_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MessageAdminGyms",
+                columns: table => new
+                {
+                    IdMessage = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ReceiverId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DateSend = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SentAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MessageAdminGyms", x => x.IdMessage);
+                    table.ForeignKey(
+                        name: "FK_MessageAdminGyms_AspNetUsers_ReceiverId",
+                        column: x => x.ReceiverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MessageAdminGyms_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Classes",
                 columns: table => new
                 {
@@ -306,30 +300,30 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MessageAdminGyms",
+                name: "GymPaymentPlans",
                 columns: table => new
                 {
-                    IdMessage = table.Column<int>(type: "int", nullable: false)
+                    IdGymPaymentPlan = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdAdmin = table.Column<int>(type: "int", nullable: false),
                     IdGym = table.Column<int>(type: "int", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateSend = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRead = table.Column<bool>(type: "bit", nullable: false)
+                    IdPaymentPlan = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MessageAdminGyms", x => x.IdMessage);
+                    table.PrimaryKey("PK_GymPaymentPlans", x => x.IdGymPaymentPlan);
                     table.ForeignKey(
-                        name: "FK_MessageAdminGyms_Admins_IdAdmin",
-                        column: x => x.IdAdmin,
-                        principalTable: "Admins",
-                        principalColumn: "IdAdmin");
-                    table.ForeignKey(
-                        name: "FK_MessageAdminGyms_Gyms_IdGym",
+                        name: "FK_GymPaymentPlans_Gyms_IdGym",
                         column: x => x.IdGym,
                         principalTable: "Gyms",
-                        principalColumn: "IdGym");
+                        principalColumn: "IdGym",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GymPaymentPlans_PaymentPlans_IdPaymentPlan",
+                        column: x => x.IdPaymentPlan,
+                        principalTable: "PaymentPlans",
+                        principalColumn: "IdPaymentPlan");
                 });
 
             migrationBuilder.CreateTable(
@@ -375,33 +369,6 @@ namespace ApiFithub.Migrations
                         principalTable: "Gyms",
                         principalColumn: "IdGym",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GymPaymentPlans",
-                columns: table => new
-                {
-                    IdGymPaymentPlan = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdGym = table.Column<int>(type: "int", nullable: false),
-                    IdPaymentPlan = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GymPaymentPlans", x => x.IdGymPaymentPlan);
-                    table.ForeignKey(
-                        name: "FK_GymPaymentPlans_Gyms_IdGym",
-                        column: x => x.IdGym,
-                        principalTable: "Gyms",
-                        principalColumn: "IdGym",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GymPaymentPlans_PaymentPlans_IdPaymentPlan",
-                        column: x => x.IdPaymentPlan,
-                        principalTable: "PaymentPlans",
-                        principalColumn: "IdPaymentPlan");
                 });
 
             migrationBuilder.CreateTable(
@@ -565,24 +532,19 @@ namespace ApiFithub.Migrations
                 column: "IdPaymentPlan");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gyms_AdminId",
+                name: "IX_Gyms_UserId",
                 table: "Gyms",
-                column: "AdminId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageAdminGyms_IdAdmin",
+                name: "IX_MessageAdminGyms_ReceiverId",
                 table: "MessageAdminGyms",
-                column: "IdAdmin");
+                column: "ReceiverId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageAdminGyms_IdGym",
+                name: "IX_MessageAdminGyms_SenderId",
                 table: "MessageAdminGyms",
-                column: "IdGym");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PaymentPlans_AdminId",
-                table: "PaymentPlans",
-                column: "AdminId");
+                column: "SenderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Suppliers_IdGym",
@@ -635,9 +597,6 @@ namespace ApiFithub.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Classes");
 
             migrationBuilder.DropTable(
@@ -653,7 +612,7 @@ namespace ApiFithub.Migrations
                 name: "Gyms");
 
             migrationBuilder.DropTable(
-                name: "Admins");
+                name: "AspNetUsers");
         }
     }
 }

@@ -25,9 +25,8 @@ namespace ApiFithub.Models
         [Required(ErrorMessage = "Number phone is a required field")]
         public string Numberphone { get; set; }
 
-        [ForeignKey("Admin")]
-        public int AdminId { get; set; }
-        public Admin Admin { get; set; }
+        public string UserId { get; set; }  // Relacionar con AspNetUser
+        public ApplicationUser User { get; set; }
 
         public ICollection<GymPaymentPlan> GymPaymentPlans { get; set; }
         public ICollection<Supplier> Suppliers { get; set; }
