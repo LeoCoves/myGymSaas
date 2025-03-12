@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiFithub.Controllers
 {
-    [Route("api/planes")]
+    [Route("api/plans")]
     public class PaymentPlanController : Controller
     {
         private readonly ApiFithubContexto _context;
@@ -43,7 +43,6 @@ namespace ApiFithub.Controllers
 
         // PUT: api/planes/{id} (Actualizar un plan)
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePlan(int id, PaymentPlan planUpdate)
         {
             if (planUpdate == null || id != planUpdate.IdPaymentPlan)
@@ -72,7 +71,6 @@ namespace ApiFithub.Controllers
 
         // DELETE: api/planes/{id} (Eliminar un plan)
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePlan(int id)
         {
             var plan = await _context.PaymentPlans.FindAsync(id);
