@@ -8,7 +8,8 @@ const Header = () => {
 
   return (
     <header className="headerPage">
-      <nav className='navPage'>
+      <nav className='nav-header'>
+        <h1 className='text-amber'>Fithub</h1>
         <ul className='menu'>
           {!user ? (
             <>

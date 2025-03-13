@@ -19,17 +19,6 @@ import {useAuth} from './contexts/AuthContext.jsx'
 
 function App() {
   const { gymName } = useAuth();
-  // const [count, setCount] = useState(0)
-
-  // function handleClick() {
-  //   const API_URL = 'https://localhost:7216/api/planes';
-
-  //       fetch(API_URL)
-  //         .then(res => res.json())
-  //         .then(data => {
-  //           console.log(data);
-  //         })
-  // }
 
   return (
     <>
@@ -46,6 +35,7 @@ function App() {
             />
             
           </Routes> 
+          
     </>
   )
 }

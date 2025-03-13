@@ -12,12 +12,16 @@ html {
   letter-spacing: 1.1px;
 }
 
+.nav-header{
+  display: flex;
+  justify-content: space-between;
+}
+
 .menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 720px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   list-style: none;
 }
 

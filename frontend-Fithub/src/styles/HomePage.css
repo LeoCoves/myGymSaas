@@ -1,0 +1,63 @@
+
+.tit-secondary{
+    color: #d4c32b;
+    margin-bottom: 2em;
+}
+
+.subtit{
+    margin-bottom: 2em;;
+}
+
+.info{
+    margin-top: 8em;
+    margin-bottom: 4em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.functions{
+    display: flex;
+    justify-content: space-between;
+
+    .title{
+        font-size: x-large;
+        font-weight: bolder;
+    }
+
+    .list{
+        list-style: none;
+    }
+}
+
+.info-card{
+    margin-top: 3em;
+
+    .tit{
+        margin-bottom: 3em;
+    }
+}
+
+.card{
+    border: 1pt solid black;
+    box-shadow: 12px;
+    border-radius: 15px;
+}
+
+.card.plan{
+    width: 400px;
+    height: 30em;
+}
+
+.GroupCardInfo{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: space-between;
+}
+
+.payment-plan{
+    margin-top: 5em;
+    display: flex;
+    gap: 4em;
+    justify-content: space-between;
+}

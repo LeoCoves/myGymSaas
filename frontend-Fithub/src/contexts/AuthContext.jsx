@@ -1,21 +1,30 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(()=>{
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
-  }); // Guardar la información del usuario
+  }); 
   
   const [gymName, setGymName] = useState(()=>{
     const storedGymName = localStorage.getItem('gymName');
     return storedGymName ? JSON.parse(storedGymName) : null;
-  }); // Guardar el nombre del gimnasio
+  }); 
 
   
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const storedUser = localStorage.getItem('user');
+    const storedGymName = localStorage.getItem('gymName');
+
+    if(storedUser) setUser(JSON.parse(storedUser));
+    if(storedGymName) setGymName(JSON.parse(storedGymName));
+  }, []);
 
   // Función para iniciar sesión
   const login = async (email, password) => {
@@ -30,9 +39,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     const data = await response.json();
-    setUser({ email }); // Puedes agregar más información de usuario si es necesario
+    console.log(data);
+
+    setUser(data.userName); // Puedes agregar más información de usuario si es necesario
     setGymName(data.GymName); // Guardar el nombre del gimnasio
+    
+    localStorage.setItem('user', JSON.stringify(data.userName));
+    localStorage.setItem('gymName', JSON.stringify(data.gymName))
     localStorage.setItem('token', data.Token); // Guardar el token en el localStorage
+    
     navigate(`/dashboard`); // Redirigir al dashboard o donde sea necesario
   };
 
@@ -40,6 +55,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setGymName('');
+
+    localStorage.removeItem('user');
+    localStorage.removeItem('gymName');
     localStorage.removeItem('token');
     navigate('/');
   };
