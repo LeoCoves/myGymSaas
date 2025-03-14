@@ -1,15 +1,20 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import '../styles/Navbar.css';
+import { useLocation } from 'react-router-dom';
 
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const location = useLocation();
 
   return (
     <header className="headerPage">
       <nav className='nav-header'>
-        <h1 className='text-amber'>Fithub</h1>
+        {
+          location.pathname === "/" &&
+          <h1 className='text-amber'>Fithub</h1>
+        }
         <ul className='menu'>
           {!user ? (
             <>

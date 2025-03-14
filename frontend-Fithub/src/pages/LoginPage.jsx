@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 function LoginPage() {
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await login(email, password);
-      navigate('/dashboard'); // Redirigir a la página de dashboard después del login
     } catch (err) {
       console.error(err)
     }
