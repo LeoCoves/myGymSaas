@@ -17,27 +17,15 @@ namespace ApiFithub.Models
         [DisplayFormat(DataFormatString = "{0:n2}")]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
-        [Display(Name = "Precio")]
-        [RegularExpression(@"^[-0123456789]+[0-9.,]*$",
-        ErrorMessage = "El valor introducido debe ser de tipo monetario.")]
-        [Required(ErrorMessage = "El precio es un campo requerido")]
-        public string PriceCadena
-        {
-            get
-            {
-                return Convert.ToString(Price).Replace(",", ".");
-            }
-            set
-            {
-                Price = Convert.ToDecimal(value.Replace(".", ","));
-            }
-        }
-        public bool BasicFeatures { get; set; }
-        public string Features { get; set; } // JSON con las características
-        public string Type { get; set; }
+        
+        public bool IsBasic { get; set; }
+        public List<string> Features { get; set; }
+        public string Currancy { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
 
-        // Relación con los gimnasios que contratan este plan
-        public ICollection<GymPaymentPlan> GymPaymentPlans { get; set; }
+        // Relación con los clientes (Uno a Muchos)
+        public ICollection<Gym> Gyms { get; set; } = new List<Gym>();
     }
 }

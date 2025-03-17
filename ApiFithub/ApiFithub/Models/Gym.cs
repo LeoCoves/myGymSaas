@@ -24,11 +24,14 @@ namespace ApiFithub.Models
         [Display(Name = "NumberPhone")]
         [Required(ErrorMessage = "Number phone is a required field")]
         public string Numberphone { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public string UserId { get; set; }  // Relacionar con AspNetUser
         public ApplicationUser User { get; set; }
 
-        public ICollection<GymPaymentPlan> GymPaymentPlans { get; set; }
+        // Relación con el plan de pago (opcional)
+        public int? IdPaymentPlan { get; set; }
+        public PaymentPlan? PaymentPlan { get; set; } // Navegación
         public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<Class> Classes { get; set; }
         public ICollection<TaskItem> Tasks { get; set; }

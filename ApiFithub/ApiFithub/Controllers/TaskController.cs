@@ -1,10 +1,11 @@
 ﻿using ApiFithub.Models;
+using ApiFithub.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiFithub.Controllers
 {
-    [Route("/api/tasks")]
+    [Route("api/[controller]")]
     public class TaskController : Controller
     {
         private readonly ApiFithubContexto _context;
@@ -14,12 +15,23 @@ namespace ApiFithub.Controllers
             _context = context;
         }
 
-        // GET: api/tasks
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
+        // GET: api/gym/{gymId}/tasks (Obtener tareas de un gimnasio específico)
+        [HttpGet("/{gymId}/tasks")]
+        public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasksByGym(int gymId)
         {
-            return await _context.TaskItems.ToListAsync();
+            // Obtener los proveedores del gimnasio especificado
+            var tasks = await _context.TaskItems
+                .Where(s => s.IdGym == gymId)
+                .ToListAsync();
+
+            if (tasks == null || tasks.Count == 0)
+            {
+                return NotFound("No se encontraron proveedores para este gimnasio.");
+            }
+
+            return Ok(tasks);
         }
+
 
         // GET: api/tasks/{id}
         [HttpGet("{id}")]
@@ -33,18 +45,41 @@ namespace ApiFithub.Controllers
         // POST: api/task (Crear una nueva tarea)
         [HttpPost]
         //[Authorize(Roles = "Admin")] // Solo administradores pueden crear planes
-        public async Task<ActionResult<TaskItem>> CreateTask(TaskItem task)
+        public async Task<ActionResult<TaskItem>> CreateTask(TaskItemDto taskDto)
         {
-            _context.TaskItems.Add(task);
+            if (taskDto == null)
+            {
+                return BadRequest("Datos inválidos.");
+            }
+
+            // Verificar si el gimnasio existe
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == taskDto.IdGym);
+            if (!gymExists)
+            {
+                return NotFound("El gimnasio especificado no existe.");
+            }
+
+            var newTask = new TaskItem
+            {
+                IdGym = taskDto.IdGym, 
+                Description = taskDto.Description,
+                StartDate = taskDto.StartDate,
+                EndDate = taskDto.EndDate,
+                LevelImportant = taskDto.LevelImportant
+            };
+
+            // Guardar en la base de datos
+            _context.TaskItems.Add(newTask);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetTask), new { id = task.IdTask }, task);
+
+            return CreatedAtAction(nameof(GetTask), new { id = newTask.IdTask }, newTask);
         }
 
         // PUT: api/task/{id} (Actualizar una tarea)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(int id, TaskItem taskUpdate)
+        public async Task<IActionResult> UpdateTask(int id, TaskItemDto taskDto)
         {
-            if (taskUpdate == null || id != taskUpdate.IdTask)
+            if (taskDto == null || id != taskDto.IdTask)
             {
                 return BadRequest("Datos inválidos");
             }
@@ -52,14 +87,15 @@ namespace ApiFithub.Controllers
             var existingTask = await _context.TaskItems.FindAsync(id);
             if (existingTask == null)
             {
-                return NotFound();
+                return NotFound("Tarea no encontrada");
             }
 
-            
-            existingTask.Description = taskUpdate.Description;
-            existingTask.StartDate = taskUpdate.StartDate;
-            existingTask.EndDate = taskUpdate.EndDate;
-            existingTask.LevelImportant = taskUpdate.LevelImportant;
+
+            existingTask.Description = taskDto.Description;
+            existingTask.StartDate = taskDto.StartDate;
+            existingTask.EndDate = taskDto.EndDate;
+            existingTask.LevelImportant = taskDto.LevelImportant;
+
 
             _context.TaskItems.Update(existingTask);
             await _context.SaveChangesAsync();

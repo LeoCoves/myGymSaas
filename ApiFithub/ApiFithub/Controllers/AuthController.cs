@@ -1,6 +1,7 @@
 ﻿using ApiFithub.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -101,20 +102,56 @@ namespace ApiFithub.Controllers
                 return Unauthorized("Usuario o contraseña incorrectos.");
             }
 
+            // Obtener el rol del usuario
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault(); // Asumimos que tiene un solo rol
+
+            string gymName = null; // Inicializamos en null
+
+            // Si el usuario es un "Gym", buscamos el gimnasio en la base de datos
+            if (role == "Gym")
+            {
+                var gym = await _context.Gyms
+                    .Where(g => g.UserId == user.Id) // Buscar por UserId en lugar de Email
+                    .FirstOrDefaultAsync();
+
+                if (gym == null)
+                {
+                    return NotFound("Gimnasio no encontrado para este usuario");
+                }
+
+                gymName = gym.Name; // Guardamos el nombre del gimnasio
+            }
+
             var token = GenerateJwtToken(user);
-            return Ok(new { token });
+
+            return Ok(new
+            {
+                Token = token,
+                UserName = user.UserName,
+                Role = role,  // Devolver el rol
+                GymName = gymName // Si es admin, será null
+            });
         }
 
         // Generar JWT
         private string GenerateJwtToken(ApplicationUser user)
         {
+            var userRoles = _userManager.GetRolesAsync(user).Result; // Obtener los roles del usuario
+
             var claims = new List<Claim>
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.Name, user.UserName),
-            new Claim(ClaimTypes.Email, user.Email),
-        };
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+            };
+
+            // Agregar el rol al token
+            foreach (var role in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
 var connectionString = builder.Configuration.GetConnectionString("ApiFithub");
 builder.Services.AddDbContext<ApiFithubContexto>(options =>
     options.UseSqlServer(connectionString));

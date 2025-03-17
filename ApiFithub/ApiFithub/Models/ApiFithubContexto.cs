@@ -44,19 +44,6 @@ namespace ApiFithub.Models
                 .HasForeignKey(m => m.ReceiverId)
                 .OnDelete(DeleteBehavior.NoAction);  // Evita cascada de eliminación
 
-            // Relación entre Gym y GymPaymentPlans
-            modelBuilder.Entity<GymPaymentPlan>()
-                .HasOne(gp => gp.Gym)
-                .WithMany(g => g.GymPaymentPlans)
-                .HasForeignKey(gp => gp.IdGym)
-                .OnDelete(DeleteBehavior.Cascade);  // Solo cascada en esta relación
-
-            // Relación entre PaymentPlan y GymPaymentPlans
-            modelBuilder.Entity<GymPaymentPlan>()
-                .HasOne(gp => gp.PaymentPlan)
-                .WithMany(p => p.GymPaymentPlans)
-                .HasForeignKey(gp => gp.IdPaymentPlan)
-                .OnDelete(DeleteBehavior.NoAction);  // Elimina la cascada en esta relación
 
             // Relación entre Client y ClassEnrollment
             modelBuilder.Entity<ClassEnrollment>()

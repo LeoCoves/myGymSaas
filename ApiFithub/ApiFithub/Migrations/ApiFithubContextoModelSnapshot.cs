@@ -91,8 +91,17 @@ namespace ApiFithub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GymCustomPaymentPlanIdGymCustomPaymentPlan")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdGym")
                         .HasColumnType("int");
+
+                    b.Property<int?>("IdGymCustomPaymentPlan")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -107,6 +116,8 @@ namespace ApiFithub.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdClient");
+
+                    b.HasIndex("GymCustomPaymentPlanIdGymCustomPaymentPlan");
 
                     b.HasIndex("IdGym");
 
@@ -124,13 +135,7 @@ namespace ApiFithub.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientIdClient")
-                        .HasColumnType("int");
-
                     b.Property<int>("GymCustomPaymentPlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GymCustomPaymentPlanIdGymCustomPaymentPlan")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SubscriptionDate")
@@ -140,11 +145,7 @@ namespace ApiFithub.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("ClientIdClient");
-
                     b.HasIndex("GymCustomPaymentPlanId");
-
-                    b.HasIndex("GymCustomPaymentPlanIdGymCustomPaymentPlan");
 
                     b.ToTable("ClientGymCustomPaymentPlans");
                 });
@@ -169,6 +170,12 @@ namespace ApiFithub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("IdPaymentPlan")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -177,11 +184,16 @@ namespace ApiFithub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PaymentPlanIdPaymentPlan")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdGym");
+
+                    b.HasIndex("PaymentPlanIdPaymentPlan");
 
                     b.HasIndex("UserId");
 
@@ -196,12 +208,20 @@ namespace ApiFithub.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdGymCustomPaymentPlan"));
 
+                    b.Property<string>("Currancy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Features")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GymId")
                         .HasColumnType("int");
@@ -216,11 +236,7 @@ namespace ApiFithub.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("PriceCadena")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdGymCustomPaymentPlan");
@@ -305,16 +321,23 @@ namespace ApiFithub.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPaymentPlan"));
 
-                    b.Property<bool>("BasicFeatures")
-                        .HasColumnType("bit");
+                    b.Property<string>("Currancy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Features")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsBasic")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -324,13 +347,8 @@ namespace ApiFithub.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("PriceCadena")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("IdPaymentPlan");
 
@@ -628,6 +646,10 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Client", b =>
                 {
+                    b.HasOne("ApiFithub.Models.GymCustomPaymentPlan", "GymCustomPaymentPlan")
+                        .WithMany("Clients")
+                        .HasForeignKey("GymCustomPaymentPlanIdGymCustomPaymentPlan");
+
                     b.HasOne("ApiFithub.Models.Gym", "Gym")
                         .WithMany()
                         .HasForeignKey("IdGym")
@@ -635,6 +657,8 @@ namespace ApiFithub.Migrations
                         .IsRequired();
 
                     b.Navigation("Gym");
+
+                    b.Navigation("GymCustomPaymentPlan");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.ClientGymCustomPaymentPlan", b =>
@@ -645,19 +669,11 @@ namespace ApiFithub.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ApiFithub.Models.Client", null)
-                        .WithMany("ClientGymCustomPaymentPlans")
-                        .HasForeignKey("ClientIdClient");
-
                     b.HasOne("ApiFithub.Models.GymCustomPaymentPlan", "GymCustomPaymentPlan")
                         .WithMany()
                         .HasForeignKey("GymCustomPaymentPlanId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("ApiFithub.Models.GymCustomPaymentPlan", null)
-                        .WithMany("ClientGymCustomPaymentPlans")
-                        .HasForeignKey("GymCustomPaymentPlanIdGymCustomPaymentPlan");
 
                     b.Navigation("Client");
 
@@ -666,11 +682,17 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Gym", b =>
                 {
+                    b.HasOne("ApiFithub.Models.PaymentPlan", "PaymentPlan")
+                        .WithMany("Gyms")
+                        .HasForeignKey("PaymentPlanIdPaymentPlan");
+
                     b.HasOne("ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PaymentPlan");
 
                     b.Navigation("User");
                 });
@@ -689,15 +711,15 @@ namespace ApiFithub.Migrations
             modelBuilder.Entity("ApiFithub.Models.GymPaymentPlan", b =>
                 {
                     b.HasOne("ApiFithub.Models.Gym", "Gym")
-                        .WithMany("GymPaymentPlans")
+                        .WithMany()
                         .HasForeignKey("IdGym")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiFithub.Models.PaymentPlan", "PaymentPlan")
-                        .WithMany("GymPaymentPlans")
+                        .WithMany()
                         .HasForeignKey("IdPaymentPlan")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Gym");
@@ -805,15 +827,11 @@ namespace ApiFithub.Migrations
             modelBuilder.Entity("ApiFithub.Models.Client", b =>
                 {
                     b.Navigation("ClassEnrollments");
-
-                    b.Navigation("ClientGymCustomPaymentPlans");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.Gym", b =>
                 {
                     b.Navigation("Classes");
-
-                    b.Navigation("GymPaymentPlans");
 
                     b.Navigation("Suppliers");
 
@@ -822,12 +840,12 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.GymCustomPaymentPlan", b =>
                 {
-                    b.Navigation("ClientGymCustomPaymentPlans");
+                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.PaymentPlan", b =>
                 {
-                    b.Navigation("GymPaymentPlans");
+                    b.Navigation("Gyms");
                 });
 #pragma warning restore 612, 618
         }

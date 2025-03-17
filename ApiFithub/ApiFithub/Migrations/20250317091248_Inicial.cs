@@ -59,10 +59,11 @@ namespace ApiFithub.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PriceCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BasicFeatures = table.Column<bool>(type: "bit", nullable: false),
+                    IsBasic = table.Column<bool>(type: "bit", nullable: false),
                     Features = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Currancy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -176,30 +177,6 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gyms",
-                columns: table => new
-                {
-                    IdGym = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Numberphone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Gyms", x => x.IdGym);
-                    table.ForeignKey(
-                        name: "FK_Gyms_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MessageAdminGyms",
                 columns: table => new
                 {
@@ -228,6 +205,38 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Gyms",
+                columns: table => new
+                {
+                    IdGym = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Numberphone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdPaymentPlan = table.Column<int>(type: "int", nullable: true),
+                    PaymentPlanIdPaymentPlan = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gyms", x => x.IdGym);
+                    table.ForeignKey(
+                        name: "FK_Gyms_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Gyms_PaymentPlans_PaymentPlanIdPaymentPlan",
+                        column: x => x.PaymentPlanIdPaymentPlan,
+                        principalTable: "PaymentPlans",
+                        principalColumn: "IdPaymentPlan");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Classes",
                 columns: table => new
                 {
@@ -251,29 +260,6 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    IdClient = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdGym = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.IdClient);
-                    table.ForeignKey(
-                        name: "FK_Clients_Gyms_IdGym",
-                        column: x => x.IdGym,
-                        principalTable: "Gyms",
-                        principalColumn: "IdGym",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GymCustomPaymentPlans",
                 columns: table => new
                 {
@@ -283,10 +269,11 @@ namespace ApiFithub.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PriceCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsBasic = table.Column<bool>(type: "bit", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Features = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Currancy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -323,7 +310,8 @@ namespace ApiFithub.Migrations
                         name: "FK_GymPaymentPlans_PaymentPlans_IdPaymentPlan",
                         column: x => x.IdPaymentPlan,
                         principalTable: "PaymentPlans",
-                        principalColumn: "IdPaymentPlan");
+                        principalColumn: "IdPaymentPlan",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -372,6 +360,37 @@ namespace ApiFithub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    IdClient = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IdGym = table.Column<int>(type: "int", nullable: false),
+                    IdGymCustomPaymentPlan = table.Column<int>(type: "int", nullable: true),
+                    GymCustomPaymentPlanIdGymCustomPaymentPlan = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.IdClient);
+                    table.ForeignKey(
+                        name: "FK_Clients_GymCustomPaymentPlans_GymCustomPaymentPlanIdGymCustomPaymentPlan",
+                        column: x => x.GymCustomPaymentPlanIdGymCustomPaymentPlan,
+                        principalTable: "GymCustomPaymentPlans",
+                        principalColumn: "IdGymCustomPaymentPlan");
+                    table.ForeignKey(
+                        name: "FK_Clients_Gyms_IdGym",
+                        column: x => x.IdGym,
+                        principalTable: "Gyms",
+                        principalColumn: "IdGym",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClassEnrollments",
                 columns: table => new
                 {
@@ -406,9 +425,7 @@ namespace ApiFithub.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     GymCustomPaymentPlanId = table.Column<int>(type: "int", nullable: false),
-                    SubscriptionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClientIdClient = table.Column<int>(type: "int", nullable: true),
-                    GymCustomPaymentPlanIdGymCustomPaymentPlan = table.Column<int>(type: "int", nullable: true)
+                    SubscriptionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -420,21 +437,11 @@ namespace ApiFithub.Migrations
                         principalColumn: "IdClient",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ClientGymCustomPaymentPlans_Clients_ClientIdClient",
-                        column: x => x.ClientIdClient,
-                        principalTable: "Clients",
-                        principalColumn: "IdClient");
-                    table.ForeignKey(
                         name: "FK_ClientGymCustomPaymentPlans_GymCustomPaymentPlans_GymCustomPaymentPlanId",
                         column: x => x.GymCustomPaymentPlanId,
                         principalTable: "GymCustomPaymentPlans",
                         principalColumn: "IdGymCustomPaymentPlan",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ClientGymCustomPaymentPlans_GymCustomPaymentPlans_GymCustomPaymentPlanIdGymCustomPaymentPlan",
-                        column: x => x.GymCustomPaymentPlanIdGymCustomPaymentPlan,
-                        principalTable: "GymCustomPaymentPlans",
-                        principalColumn: "IdGymCustomPaymentPlan");
                 });
 
             migrationBuilder.CreateIndex(
@@ -497,18 +504,13 @@ namespace ApiFithub.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientGymCustomPaymentPlans_ClientIdClient",
-                table: "ClientGymCustomPaymentPlans",
-                column: "ClientIdClient");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClientGymCustomPaymentPlans_GymCustomPaymentPlanId",
                 table: "ClientGymCustomPaymentPlans",
                 column: "GymCustomPaymentPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientGymCustomPaymentPlans_GymCustomPaymentPlanIdGymCustomPaymentPlan",
-                table: "ClientGymCustomPaymentPlans",
+                name: "IX_Clients_GymCustomPaymentPlanIdGymCustomPaymentPlan",
+                table: "Clients",
                 column: "GymCustomPaymentPlanIdGymCustomPaymentPlan");
 
             migrationBuilder.CreateIndex(
@@ -530,6 +532,11 @@ namespace ApiFithub.Migrations
                 name: "IX_GymPaymentPlans_IdPaymentPlan",
                 table: "GymPaymentPlans",
                 column: "IdPaymentPlan");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gyms_PaymentPlanIdPaymentPlan",
+                table: "Gyms",
+                column: "PaymentPlanIdPaymentPlan");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gyms_UserId",
@@ -606,13 +613,13 @@ namespace ApiFithub.Migrations
                 name: "GymCustomPaymentPlans");
 
             migrationBuilder.DropTable(
-                name: "PaymentPlans");
-
-            migrationBuilder.DropTable(
                 name: "Gyms");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "PaymentPlans");
         }
     }
 }

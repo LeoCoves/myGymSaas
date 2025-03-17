@@ -19,12 +19,16 @@ namespace ApiFithub.Models
         [Display(Name = "PhoneNumber")]
         [Required(ErrorMessage = "Phone Number is a required field")]
         public string PhoneNumber { get; set; }
+        public bool IsActive { get; set; } = true;
 
         [ForeignKey("Gym")]
         public int IdGym { get; set; }
         public Gym Gym { get; set; }
 
         public ICollection<ClassEnrollment> ClassEnrollments { get; set; }
-        public ICollection<ClientGymCustomPaymentPlan> ClientGymCustomPaymentPlans { get; set; }
+        // Relación con el plan de pago (opcional)
+        public int? IdGymCustomPaymentPlan { get; set; }
+        public GymCustomPaymentPlan? GymCustomPaymentPlan { get; set; } // Navegación
     }
 }
+

@@ -58,10 +58,9 @@ namespace ApiFithub.Controllers
 
             existingPlan.Name = planUpdate.Name;
             existingPlan.Description = planUpdate.Description;
-            existingPlan.PriceCadena = planUpdate.PriceCadena;
-            existingPlan.BasicFeatures = planUpdate.BasicFeatures;
+            existingPlan.Price = planUpdate.Price;
             existingPlan.Features = planUpdate.Features;
-            existingPlan.Type = planUpdate.Type;
+            existingPlan.Currancy = planUpdate.Currancy;
 
             _context.PaymentPlans.Update(existingPlan);
             await _context.SaveChangesAsync();
