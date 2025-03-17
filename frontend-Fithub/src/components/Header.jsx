@@ -24,7 +24,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <li><button onClick={logout}>Logout</button></li>
+              <li><button className='' onClick={logout}>Logout</button></li>
             </>
           )}
         </ul>

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { PlanCard } from "./PlanCard";
 import "../styles/HomePage.css"
-import { getPaymentPlans } from "../api/paymentPlans.js";
+import { getPaymentPlans } from "../services/paymentPlans.js";
 
 export const PaymentPlan = () => {
 

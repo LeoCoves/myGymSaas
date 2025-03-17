@@ -1,95 +1,85 @@
+import { useAuth } from '../contexts/AuthContext.jsx';
+import '../styles/Navbar.css';
 import { Link } from 'react-router-dom';
-import '../styles/Sidebar.css'
+import { Menu, X } from "lucide-react";
 
 const Sidebar = () => {
-  return (
-      <div id="nav-bar">
-        <input id="nav-toggle" type="checkbox" />
-        <div id="nav-header">
-          <a
-            id="nav-title"
-            href="https://codepen.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FITHUB
-          </a>
-          <label htmlFor="nav-toggle">
-            <span id="nav-toggle-burger"></span>
-          </label>
-          <hr />
-        </div>
-        <div id="nav-content">
-          <div className="nav-button">
-            <i className="fas fa-palette"></i>
-            <span>Home</span>
-          </div>
-          <div className="nav-button">
-            <i className="fas fa-images"></i>
-            <span>Today</span>
-          </div>
-          <div className="nav-button">
-            <i className="fas fa-thumbtack"></i>
-            <span>Clients</span>
-          </div>
-          <hr />
-          <div className="nav-button">
-            <i className="fas fa-heart"></i>
-            <span>Classes</span>
-          </div>
-          <div className="nav-button">
-            <i className="fas fa-chart-line"></i>
-            <span>Tasks</span>
-          </div>
-          <div className="nav-button">
-            <i className="fas fa-fire"></i>
-            <span>Suppliers</span>
-          </div>
-          <div className="nav-button">
-            <i className="fas fa-magic"></i>
-            <span>Payment Plans</span>
-          </div>
-          <hr />
-          <div className="nav-button">
-            <i className="fas fa-gem"></i>
-            <span>About</span>
-          </div>
-          <div id="nav-content-highlight"></div>
-        </div>
-        <input id="nav-footer-toggle" type="checkbox" />
-        <div id="nav-footer">
-          <div id="nav-footer-heading">
-            <div id="nav-footer-avatar">
-              <img
-                src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"
-                alt="Avatar"
-              />
-            </div>
-            <div id="nav-footer-titlebox">
-              <a
-                id="nav-footer-title"
-                href="https://codepen.io/uahnbu/pens/public"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                uahnbu
-              </a>
-              <span id="nav-footer-subtitle">Admin</span>
-            </div>
-            <label htmlFor="nav-footer-toggle">
-              <i className="fas fa-caret-up"></i>
-            </label>
-          </div>
-          <div id="nav-footer-content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-        </div>
-      </div>
+  const { role } = useAuth();
 
-  );
+if(role === "Admin"){
+  return(
+    <div className="fixed min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+    <div className="fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r">
+      <div className="flex items-center justify-center h-14 border-b">
+        <div>FitHub</div>
+      </div>
+      <div className="overflow-y-auto overflow-x-hidden flex-grow">
+        <ul className="flex flex-col py-4 space-y-1">
+          <li className="px-5">
+            <div className="flex flex-row items-center h-8">
+              <div className="text-sm font-light tracking-wide text-gray-500">Menu</div>
+            </div>
+          </li>
+          <li>
+            <Link to="/admin-dashboard/gyms" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Gyms</span>
+              <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-indigo-500 bg-indigo-50 rounded-full">New</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin-dashboard/plans" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Plans</span>
+            </Link>
+          </li>
+          <li>
+            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Messages</span>
+              <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  )
+} else {
+  return(
+    <div className="fixed min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+    <div className="fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r">
+      <div className="flex items-center justify-center h-14 border-b">
+        <div>FitHub</div>
+      </div>
+      <div className="overflow-y-auto overflow-x-hidden flex-grow">
+        <ul className="flex flex-col py-4 space-y-1">
+          <li className="px-5">
+            <div className="flex flex-row items-center h-8">
+              <div className="text-sm font-light tracking-wide text-gray-500">Menu</div>
+            </div>
+          </li>
+          <li>
+            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Inbox</span>
+              <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-indigo-500 bg-indigo-50 rounded-full">New</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Messages</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Notifications</span>
+              <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  )
+}
+
 };
 
 export default Sidebar;

@@ -9,7 +9,6 @@ import Footer from '../components/Footer.jsx';
 function HomePage(){
     return (
         <div>
-
             <h1 class="text-sky">Software adaptado para</h1>
             <h1 className="text-amber-500">
                 <WordRotator />

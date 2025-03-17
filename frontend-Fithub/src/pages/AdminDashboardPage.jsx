@@ -1,17 +1,18 @@
 // pages/DashboardPage.js
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import {useAuth} from '../contexts/AuthContext.jsx'
 
 function AdminDashboardPage() {
-  const { user } = useAuth();
 
   return (
-    <div>
+    <>
       <Sidebar />
-      <h1>Bienvenidooooooooooooooo, {user?.email}</h1>
-      <p>Estás en el portal de admin: </p>
-    </div>
+      <section className='relative m-0'>
+        {/* Aquí se renderiza el contenido de las rutas anidadas */}
+        <Outlet />
+      </section>
+    </>
   );
 }
 

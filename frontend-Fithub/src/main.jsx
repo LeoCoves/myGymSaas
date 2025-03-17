@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <App className="bg-light" />
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
