@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Navigate } from 'react-router-dom';
 import './App.css'
 
 import { Routes, Route } from 'react-router-dom';
@@ -15,8 +15,11 @@ import GymDetailPage from './pages/Gyms/Detail.jsx';
 import GymEditPage from './pages/Gyms/Edit.jsx';
 
 import PaymentPlansPage from './pages/PaymentPlan/Index.jsx';
-import CreatePaymentPlan from './pages/PaymentPlan/Create.jsx'
-import EditPaymentPlan from './pages/PaymentPlan/Edit.jsx'
+import PaymentPlanDetail from './pages/PaymentPlan/Detail.jsx';
+import CreatePaymentPlan from './pages/PaymentPlan/Create.jsx';
+import EditPaymentPlan from './pages/PaymentPlan/Edit.jsx';
+
+import ChatApp from './pages/ChatPage.jsx';
 
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
@@ -31,51 +34,44 @@ import Dashboard from './components/Dashboard.jsx';
 
 
 function App() {
-  // const { gymName } = useAuth();
 
   return (
-    < >
-          <Header/>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route 
-              path="/admin-dashboard" 
-              element={<ProtectedRoute 
-              requiredRole="Admin">
-                <AdminDashboardPage />
-                </ProtectedRoute>} 
-            >
-              {/* Rutas anidadas dentro del AdminDashboard */}
-              <Route path="gyms" element={<GymPage />}/>
-              <Route path="gym/:id" element={<GymDetailPage/>} />
-              <Route path="gym/:id/edit" element={<GymEditPage/>}/>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-              <Route path="plans" element={<PaymentPlansPage />} >
-              
-              <Route path="plans/create" element={<CreatePaymentPlan/>}/>
-              <Route path="plans/:id/edit" element={<EditPaymentPlan/>}/>
-                
-            </Route>
-            </Route>
-            <Route
-              path={`/dashboard`}
-              element={<ProtectedRoute
-                requiredRole="Gym">
-                <DashboardPage />
-              </ProtectedRoute>} // Aquí pasas la página
-            >
-               {/* Rutas anidadas dentro del Dashboard */}
-               <Route path="home" element={<Dashboard />} />
-              {/* <Route path="messages" element={<Messages />} />
-              <Route path="notifications" element={<Notifications />} /> */}
-            </Route>
-            
-          </Routes> 
+        {/* Rutas protegidas para Admin */}
+        <Route path="/admin-dashboard" element={<ProtectedRoute requiredRole="Admin"><AdminDashboardPage /></ProtectedRoute>}>
           
+          {/* Rutas para gimnasios */}
+          <Route path="gyms" element={<GymPage />} />
+          <Route path="gym/:id" element={<GymDetailPage />} />
+          <Route path="gym/:id/edit" element={<GymEditPage />} />
+
+          {/* Rutas para planes de pago */}
+          <Route path="plans" element={<PaymentPlansPage />} />
+          <Route path="plan/:id" element={<PaymentPlanDetail />} />
+          <Route path="plans/create" element={<CreatePaymentPlan />} />
+          <Route path="plan/:id/edit" element={<EditPaymentPlan />} />
+
+          {/*Rutas para el chat */}
+          <Route path="chat" element={<ChatApp />} />
+        </Route>
+
+        {/* Rutas protegidas para Gym */}
+        <Route path="/dashboard" element={<ProtectedRoute requiredRole="Gym"><DashboardPage /></ProtectedRoute>}>
+          <Route path="home" element={<Dashboard />} />
+        </Route>
+
+        {/* Ruta por defecto si no encuentra ninguna */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
-  )
+  );
+
 }
 
 export default App

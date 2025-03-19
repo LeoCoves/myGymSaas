@@ -6,27 +6,33 @@ const EditGym = () => {
     const { id } = useParams(); // Obtiene el ID desde la URL
     const navigate = useNavigate();
 
-    const [gymData, setGymData] = useState(null);
+    const [gymData, setGymData] = useState({
+        name: "",
+        description: "",
+        address: "",
+        email: "",
+        numberPhone: "",
+        isActive: false,
+        idPaymentPlan: ""
+    });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Cargar datos del gimnasio al montar el componente
     useEffect(() => {
         const loadGymData = async () => {
             try {
-                const data = await getGymById(id); // Obtiene datos de la API
-                setGymData(data); // Guarda en el estado
+                const data = await getGymById(id);
+                if (!data) throw new Error("No se encontró el gimnasio");
+                setGymData(data);
             } catch (error) {
-                setError("Error al obtener el gimnasio");
+                setError(error.message || "Error al obtener el gimnasio");
             } finally {
                 setLoading(false);
             }
         };
-
         loadGymData();
     }, [id]);
 
-    // Manejar cambios en el formulario
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setGymData((prevState) => ({
@@ -35,144 +41,62 @@ const EditGym = () => {
         }));
     };
 
-    // Enviar actualización a la API
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError(null);
+
         try {
-            await updateGym(id, gymData); // Llama a la API externa
+            await updateGym(id, gymData);
             alert("Gimnasio actualizado con éxito");
-            navigate("/gyms"); // Redirige a la lista de gimnasios
+            navigate("/admin-dashboard/gyms");
         } catch (error) {
-            error = "Error actualizando el gimnasio";
-            console.error(error);
+            setError("Error actualizando el gimnasio");
+        } finally {
+            setLoading(false);
         }
     };
 
     if (loading) return <p>Cargando...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (error) return <p className="text-red-500">{error}</p>;
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Editar Gimnasio</h1>
-
-            <div className="space-y-6">
-                {/* Nombre */}
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        value={gymData.name} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="Introduce el nombre del gimnasio"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input type="text" name="name" value={gymData.name} onChange={handleChange} required className="input-field" placeholder="Nombre del gimnasio" />
                 </div>
-
-                {/* Descripción */}
                 <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Descripción</label>
-                    <textarea 
-                        id="description" 
-                        name="description" 
-                        value={gymData.description} 
-                        onChange={handleChange} 
-                        required 
-                        rows="4"
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="Añade una descripción breve del gimnasio"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">Descripción</label>
+                    <textarea name="description" value={gymData.description} onChange={handleChange} required className="input-field" placeholder="Descripción" rows="4" />
                 </div>
-
-                {/* Dirección */}
                 <div>
-                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Dirección</label>
-                    <input 
-                        type="text" 
-                        id="address" 
-                        name="address" 
-                        value={gymData.address} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="Introduce la dirección del gimnasio"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">Dirección</label>
+                    <input type="text" name="address" value={gymData.address} onChange={handleChange} required className="input-field" placeholder="Dirección" />
                 </div>
-
-                {/* Email */}
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        value={gymData.email} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="ejemplo@gimnasio.com"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" value={gymData.email} onChange={handleChange} required className="input-field" placeholder="Correo electrónico" />
                 </div>
-
-                {/* Teléfono */}
                 <div>
-                    <label htmlFor="numberPhone" className="block text-sm font-medium text-gray-700">Teléfono</label>
-                    <input 
-                        type="text" 
-                        id="numberPhone" 
-                        name="numberPhone" 
-                        value={gymData.numberPhone} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="Introduce el número de teléfono"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">Teléfono</label>
+                    <input type="text" name="numberPhone" value={gymData.numberPhone} onChange={handleChange} required className="input-field" placeholder="Teléfono" />
                 </div>
-
-                {/* Estado */}
                 <div className="flex items-center space-x-3">
-                    <label htmlFor="isActive" className="text-sm font-medium text-gray-700">Activo</label>
-                    <input 
-                        type="checkbox" 
-                        id="isActive" 
-                        name="isActive" 
-                        checked={gymData.isActive} 
-                        onChange={handleChange} 
-                        className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
+                    <label className="text-sm font-medium text-gray-700">Activo</label>
+                    <input type="checkbox" name="isActive" checked={gymData.isActive} onChange={handleChange} className="h-5 w-5" />
                 </div>
-
-                {/* Plan de Pago */}
                 <div>
-                    <label htmlFor="idPaymentPlan" className="block text-sm font-medium text-gray-700">Plan de Pago (ID)</label>
-                    <input 
-                        type="number" 
-                        id="idPaymentPlan" 
-                        name="idPaymentPlan" 
-                        value={gymData.idPaymentPlan} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
-                        placeholder="Introduce el ID del plan de pago"
-                    />
+                    <label className="block text-sm font-medium text-gray-700">ID Plan de Pago</label>
+                    <input type="number" name="idPaymentPlan" value={gymData.idPaymentPlan} onChange={handleChange} required className="input-field" placeholder="ID del plan" />
                 </div>
-
-                {/* Botón de Enviar */}
                 <div className="flex justify-center gap-2">
-                    <button 
-                        type="submit" 
-                        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        Guardar Cambios
-                    </button>
-                    <button onClick={() => navigate("/admin-dashboard/gyms")}>Cancelar</button>
+                    <button type="submit" className="btn-primary">Guardar Cambios</button>
+                    <button type="button" onClick={() => navigate("/admin-dashboard/gyms")} className="btn-secondary">Cancelar</button>
                 </div>
-            </div>
-        </form>
-            
+            </form>
         </div>
     );
 };

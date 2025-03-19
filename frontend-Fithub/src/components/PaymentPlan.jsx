@@ -45,8 +45,9 @@ export const PaymentPlan = () => {
                             title={plan.name}
                             description={plan.description}
                             price={plan.price}
+                            isBasic={plan.isBasic}
                             info={plan.features}
-                            currency={plan.type}
+                            period={plan.period}
                         />
                         )
                     })

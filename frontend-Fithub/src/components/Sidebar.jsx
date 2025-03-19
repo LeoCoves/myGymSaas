@@ -32,10 +32,11 @@ if(role === "Admin"){
             </Link>
           </li>
           <li>
-            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
-              <span className="ml-2 text-sm tracking-wide truncate">Messages</span>
+            <Link to="/admin-dashboard/chat" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Chat</span>
               <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
-            </a>
+            </Link>
+            
           </li>
         </ul>
       </div>

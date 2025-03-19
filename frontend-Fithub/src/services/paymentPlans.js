@@ -26,8 +26,14 @@ export const getPlanById = async (id) => {
     }
 };
 
-// Crear un nuevo gimnasio
 export const createPlan = async (planData) => {
+    console.log(planData);
+    console.log(planData.Features)
+
+    // Asegúrate de que "features" sea un arreglo no vacío
+    if (!planData.Features || planData.Features.length === 0) {
+        throw new Error('El plan debe tener al menos una característica.');
+    }
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -42,34 +48,51 @@ export const createPlan = async (planData) => {
     }
 };
 
-// Actualizar un gimnasio existente
 export const updatePlan = async (id, planData) => {
+    console.log("Cuerpo de la solicitud:", JSON.stringify(planData))
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(planData),
         });
-        if (!response.ok) throw new Error(response.statusText);
-        return await response.json();
+
+        const responseText = await response.text(); // Obtener la respuesta como texto
+
+        if (!response.ok) {
+            console.error(`Error en la API (${response.status}):`, responseText);
+            throw new Error(`Error ${response.status}: ${responseText}`);
+        }
+
+        return JSON.parse(responseText); // Convertir la respuesta a JSON solo si fue exitosa
     } catch (error) {
         console.error(`Error actualizando el plan ${id}:`, error);
         throw error;
     }
 };
 
-// "Eliminar" un plan
+
 export const deletePlan = async (id) => {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(id),
+            body: JSON.stringify({ id }),  // Envía un objeto con el id
         });
+
         if (!response.ok) throw new Error(response.statusText);
+
+        // Si la respuesta es 204, no intentes leer el cuerpo
+        if (response.status === 204) {
+            return { success: true };  // Indica que la eliminación fue exitosa
+        }
+
+        // Si la respuesta no es 204, intenta analizar la respuesta como JSON
         return await response.json();
+
     } catch (error) {
         console.error(`Error eliminando el plan ${id}:`, error);
         throw error;
     }
 };
+

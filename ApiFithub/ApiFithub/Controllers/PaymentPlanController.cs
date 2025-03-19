@@ -34,8 +34,19 @@ namespace ApiFithub.Controllers
         // POST: api/planes (Crear un nuevo plan)
         [HttpPost]
         //[Authorize(Roles = "Admin")] // Solo administradores pueden crear planes
-        public async Task<ActionResult<PaymentPlan>> CreatePlan(PaymentPlan plan)
+        public async Task<ActionResult<PaymentPlan>> CreatePlan([FromBody] PaymentPlan plan)
         {
+            if (plan == null)
+            {
+                return BadRequest("El plan no puede ser nulo");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
             _context.PaymentPlans.Add(plan);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetPlan), new { id = plan.IdPaymentPlan }, plan);
@@ -43,8 +54,10 @@ namespace ApiFithub.Controllers
 
         // PUT: api/planes/{id} (Actualizar un plan)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePlan(int id, PaymentPlan planUpdate)
+        public async Task<IActionResult> UpdatePlan(int id, [FromBody] PaymentPlan planUpdate)
         {
+            Console.WriteLine($"ID en la URL: {id}");
+            Console.WriteLine($"ID en el cuerpo: {planUpdate?.IdPaymentPlan}");
             if (planUpdate == null || id != planUpdate.IdPaymentPlan)
             {
                 return BadRequest("Datos inválidos");
@@ -56,11 +69,15 @@ namespace ApiFithub.Controllers
                 return NotFound();
             }
 
+            
             existingPlan.Name = planUpdate.Name;
             existingPlan.Description = planUpdate.Description;
             existingPlan.Price = planUpdate.Price;
+            existingPlan.IsBasic = planUpdate.IsBasic;
             existingPlan.Features = planUpdate.Features;
-            existingPlan.Currancy = planUpdate.Currancy;
+            existingPlan.Period = planUpdate.Period;
+            existingPlan.StartDate = planUpdate.StartDate;
+            existingPlan.EndDate = planUpdate.EndDate;
 
             _context.PaymentPlans.Update(existingPlan);
             await _context.SaveChangesAsync();

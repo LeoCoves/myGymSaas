@@ -19,8 +19,8 @@ namespace ApiFithub.Models
         public decimal Price { get; set; }
         
         public bool IsBasic { get; set; }
-        public List<string> Features { get; set; }
-        public string Currancy { get; set; }
+        public List<string> Features { get; set; } = new List<string>();
+        public string Period { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 

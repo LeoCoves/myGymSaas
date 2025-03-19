@@ -7,60 +7,126 @@ const EditPaymentPlan = () => {
     const navigate = useNavigate();
     
     const [planData, setPlanData] = useState({
-        name: "",
-        price: "",
-        description: "",
-        isBasic: false,
-        features: [""], // Es un array, inicializamos con un valor vacío
-        currency: "Mensual",
-        startDate: "",
-        endDate: "",
+        Name: '',
+        Description: '',
+        Price: 0,
+        IsBasic: true,
+        Features: [],  // Asegurarse de que Features siempre sea un array
+        Period: 'Mensual',
+        StartDate: '',
+        EndDate: '',
+        Gyms: []
     });
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [newFeature, setNewFeature] = useState("");
 
-    // Cargar los detalles del plan de pago
     useEffect(() => {
         const fetchPlanData = async () => {
             try {
-                const data = await getPlanById(id); // Obtener los detalles del plan
-                setPlanData(data);
+                console.log("ID obtenido de useParams:", id);
+
+                const data = await getPlanById(id);
+                if (!data) {
+                    throw new Error("No se encontraron datos para este plan.");
+                }
+    
+                console.log("Datos obtenidos del servidor:", data);
+    
+                setPlanData({
+                    idPaymentPlan: id,
+                    Name: data.name || '',  // 🔹 Convertimos name -> Name
+                    Description: data.description || '',
+                    Price: data.price || 0,
+                    IsBasic: data.isBasic ?? true, 
+                    Features: data.features || [],
+                    Period: data.period || 'Mensual',
+                    StartDate: data.startDate || null,
+                    EndDate: data.endDate || null,
+                    Gyms: data.gyms || []
+                });
+    
             } catch (error) {
+                console.error("Error obteniendo el plan:", error);
                 setError(error.message);
             } finally {
                 setLoading(false);
             }
         };
-
+    
         fetchPlanData();
     }, [id]);
+    
+    
+    
 
-    // Manejar cambios en los campos del formulario
-    const handleChange = (e) => {
+     // Manejar cambios en el formulario
+     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setPlanData({
             ...planData,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: type === "checkbox" ? checked : value
         });
     };
 
-    // Manejar el envío del formulario
+    const handleFeatureChange = (e) => {
+        setNewFeature(e.target.value);  // Actualiza el estado de la nueva característica
+    };
+
+    const handleAddFeature = () => {
+        if (newFeature.trim() !== "") {
+            setPlanData({
+                ...planData,
+                Features: [...planData.Features, newFeature.trim()]  // Agrega la nueva característica al array
+            });
+            setNewFeature("");  // Limpiar el campo después de agregar la característica
+        }
+    };
+
+    const handleRemoveFeature = (feature) => {
+        setPlanData({
+            ...planData,
+            Features: planData.Features.filter((f) => f !== feature)
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError("");
-
+    
+        const dataToSend = {
+            IdPaymentPlan: planData.IdPaymentPlan || id,  // Aseguramos que tenga el ID correcto
+            Name: planData.Name,
+            Description: planData.Description,
+            Price: parseFloat(planData.Price),
+            IsBasic: planData.IsBasic,
+            Features: planData.Features,
+            Period: planData.Period,
+            StartDate: planData.StartDate,
+            EndDate: planData.EndDate
+        };
+    
+        console.log("Datos enviados:", dataToSend); // Verifica si el ID aparece correctamente
+    
         try {
-            const updatedPlan = await updatePlan(id, planData); // Llamada a la API para actualizar el plan
-            alert("Plan actualizado con éxito.");
-            navigate("/admin-dashboard/plans"); // Redirigir al listado de planes de pago
+            const response = await updatePlan(id, dataToSend);
+    
+            if (!response || response.error) {
+                throw new Error(response?.error || "Error al editar el plan de pago.");
+            }
+    
+            alert("Plan editado con éxito.");
+            navigate("/admin-dashboard/plans");
         } catch (error) {
+            console.error("Error editando el plan:", error);
             setError(error.message);
         } finally {
             setLoading(false);
         }
     };
+    
 
     if (loading) return <div>Cargando...</div>;
     if (error) return <div className="text-red-500">{error}</div>;
@@ -74,12 +140,12 @@ const EditPaymentPlan = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Nombre del Plan */}
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre del Plan</label>
+                    <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Nombre del Plan</label>
                     <input 
                         type="text" 
-                        id="name" 
-                        name="name" 
-                        value={planData.name} 
+                        id="Name" 
+                        name="Name" 
+                        value={planData.Name} 
                         onChange={handleChange} 
                         required 
                         className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -89,11 +155,11 @@ const EditPaymentPlan = () => {
 
                 {/* Descripción */}
                 <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Descripción</label>
-                    <textarea 
-                        id="description" 
-                        name="description" 
-                        value={planData.description} 
+                    <label htmlFor="Description" className="block text-sm font-medium text-gray-700">Descripción</label>
+                    <input
+                        id="Description" 
+                        name="Description" 
+                        value={planData.Description} 
                         onChange={handleChange} 
                         required 
                         rows="4" 
@@ -104,12 +170,12 @@ const EditPaymentPlan = () => {
 
                 {/* Precio */}
                 <div>
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">Precio</label>
+                    <label htmlFor="Price" className="block text-sm font-medium text-gray-700">Precio</label>
                     <input 
                         type="number" 
-                        id="price" 
-                        name="price" 
-                        value={planData.price} 
+                        id="Price" 
+                        name="Price" 
+                        value={planData.Price} 
                         onChange={handleChange} 
                         required 
                         className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -118,43 +184,64 @@ const EditPaymentPlan = () => {
                 </div>
 
 
+
                 {/* Tipo de Plan (isBasic) */}
                 <div>
-                    <label htmlFor="isBasic" className="block text-sm font-medium text-gray-700">Es Plan Básico</label>
+                    <label htmlFor="IsBasic" className="block text-sm font-medium text-gray-700">Es Plan Básico</label>
                     <input 
                         type="checkbox" 
-                        id="isBasic" 
-                        name="isBasic" 
-                        checked={planData.isBasic} 
+                        id="IsBasic" 
+                        name="IsBasic" 
+                        checked={planData.IsBasic} 
                         onChange={handleChange} 
                         className="mt-1"
                     />
                 </div>
 
-                {/* Características */}
+
+                {/* Features */}
                 <div>
-                    <label htmlFor="features" className="block text-sm font-medium text-gray-700">Características</label>
-                    <textarea 
-                        id="features" 
-                        name="features" 
-                        value={planData.features.join(", ")} 
-                        onChange={(e) => {
-                            const newFeatures = e.target.value.split(",").map(feature => feature.trim());
-                            setPlanData({ ...planData, features: newFeatures });
-                        }} 
-                        rows="3"
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Característica 1, Característica 2, ..."
-                    />
+                    <label htmlFor="Features" className="block text-sm font-medium text-gray-700">Características</label>
+                    <div className="flex space-x-4">
+                        <input 
+                            type="text" 
+                            id="Features" 
+                            value={newFeature} 
+                            onChange={handleFeatureChange} 
+                            className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Ejemplo: Característica 1"
+                        />
+                        <button
+                            type="button"
+                            onClick={handleAddFeature}
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                        >
+                            Añadir
+                        </button>
+                    </div>
+                    <ul className="mt-2">
+                        {(planData.Features || []).map((feature, index) => (  // Aseguramos que Features sea un array
+                            <li key={index} className="flex justify-between text-gray-600">
+                                <span>{feature}</span>
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveFeature(feature)} 
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    Eliminar
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
                 {/* Moneda */}
                 <div>
-                    <label htmlFor="currancy" className="block text-sm font-medium text-gray-700">Moneda</label>
+                    <label htmlFor="Period" className="block text-sm font-medium text-gray-700">Period</label>
                     <select 
-                        id="currancy" 
-                        name="currancy" 
-                        value={planData.currancy} 
+                        id="Period" 
+                        name="Period" 
+                        value={planData.Period} 
                         onChange={handleChange} 
                         required 
                         className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -167,24 +254,24 @@ const EditPaymentPlan = () => {
 
                 {/* Fechas */}
                 <div>
-                    <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
+                    <label htmlFor="StartDate" className="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
                     <input 
                         type="date" 
-                        id="startDate" 
-                        name="startDate" 
-                        value={planData.startDate} 
+                        id="StartDate" 
+                        name="StartDate" 
+                        value={planData.StartDate} 
                         onChange={handleChange} 
                         className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">Fecha de Fin</label>
+                    <label htmlFor="EndDate" className="block text-sm font-medium text-gray-700">Fecha de Fin</label>
                     <input 
                         type="date" 
-                        id="endDate" 
-                        name="endDate" 
-                        value={planData.endDate} 
+                        id="EndDate" 
+                        name="EndDate" 
+                        value={planData.EndDate} 
                         onChange={handleChange} 
                         className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />

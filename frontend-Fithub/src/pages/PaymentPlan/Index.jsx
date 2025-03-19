@@ -1,23 +1,34 @@
 import { useEffect, useState } from "react";
-import { getPaymentPlans } from "../../services/paymentPlans";
+import { getPaymentPlans, deletePlan } from "../../services/paymentPlans";
 import { Link } from 'react-router-dom';
 
 const PaymentPlansPage = () => {
-
-    const [paymentPlans, setPaymentPlans] = useState([]);  // Nuevo estado para los PaymentPlans
+    const [paymentPlans, setPaymentPlans] = useState([]);
 
     useEffect(() => {
-        loadPaymentPlans();  // Cargar los planes de pago
+        loadPaymentPlans();
     }, []);
 
-
-    // Función para cargar planes de pago
+    // Cargar planes de pago
     const loadPaymentPlans = async () => {
         try {
-            const data = await getPaymentPlans(); // Debes crear esta función en tu servicio
+            const data = await getPaymentPlans();
             setPaymentPlans(data);
         } catch (error) {
             console.error("Error cargando planes de pago:", error);
+        }
+    };
+
+    // Eliminar un plan de pago
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este plan de pago?");
+        if (!confirmDelete) return;
+
+        try {
+            await deletePlan(id);
+            setPaymentPlans(paymentPlans.filter(plan => plan.idPaymentPlan !== id));  // Actualizar la lista
+        } catch (error) {
+            console.error("Error al eliminar el plan:", error);
         }
     };
 
@@ -31,48 +42,56 @@ const PaymentPlansPage = () => {
             >
                 Crear Plan de Pago
             </Link>
-    
+
             {/* Tabla de Planes de Pago */}
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 p-6">
                 {paymentPlans.map((plan) => (
-                    
                     <div key={plan.idPaymentPlan} className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition-shadow">
                         <h3 className="text-lg font-semibold text-gray-900">{plan.name}</h3>
-                        <p className="text-gray-600 mt-2">{plan.description}</p>
+                        <p className="text-gray-600 mt-2">{plan.price}€/{plan.period}</p>
                         <div className="mt-4 text-sm text-gray-500">
-                            <p><strong>Precio:</strong> ${plan.price}</p>
-                            <p><strong>Duración:</strong> {plan.duration} meses</p>
-                            <p><strong>Estado:</strong> 
-                                <span className={`font-semibold ${plan.isActive ? "text-green-500" : "text-red-500"}`}>
-                                    {plan.isActive ? "Activo" : "Inactivo"}
-                                </span>
-                            </p>
+                            <p><strong>Description:</strong> {plan.description}</p>
+                            <p><strong>Basic Feautures:</strong> {plan.isBasic ? "✅" : "❌"}</p>
+                            <p><strong>Features</strong> </p>
+                            {plan.features && plan.features.length > 0 ? (
+                                plan.features.map((feature, index) => (
+                                    <p key={index} className="font-semibold text-gray-500">
+                                        {feature}
+                                    </p>
+                                ))
+                            ) : (
+                                <p>No features available</p>
+                            )}
+                            
                         </div>
                         <div className="mt-4 flex gap-2 flex-wrap justify-center">
-                            {/* Enlace para Ver Detalles */}
+                            {/* Ver Detalles */}
                             <Link
                                 className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                                to={`/admin-dashboard/plans/${plan.idPaymentPlan}`}
+                                to={`/admin-dashboard/plan/${plan.idPaymentPlan}`}
                             >
                                 Ver Detalles
                             </Link>
-                            {/* Enlace para Editar */}
+                            {/* Editar */}
                             <Link
                                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-                                to={`/admin-dashboard/plans/${plan.idPaymentPlan}/edit`}
+                                to={`/admin-dashboard/plan/${plan.idPaymentPlan}/edit`}
                             >
                                 Editar
                             </Link>
-                            
-                                
-                            
+                            {/* Eliminar */}
+                            <button
+                                onClick={() => handleDelete(plan.idPaymentPlan)}
+                                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                            >
+                                Eliminar
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-    
 };
 
 export default PaymentPlansPage;

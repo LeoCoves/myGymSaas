@@ -44,7 +44,7 @@ namespace ApiFithub.Controllers
                     Price = g.PaymentPlan.Price,
                     IsBasic = g.PaymentPlan.IsBasic,
                     Features = g.PaymentPlan.Features,
-                    Currancy = g.PaymentPlan.Currancy,
+                    Period = g.PaymentPlan.Period,
                     StartDate = g.PaymentPlan.StartDate,
                     EndDate = g.PaymentPlan.EndDate
                 } : null
@@ -86,7 +86,7 @@ namespace ApiFithub.Controllers
                     Price = gym.PaymentPlan.Price,
                     IsBasic = gym.PaymentPlan.IsBasic,
                     Features = gym.PaymentPlan.Features,
-                    Currancy = gym.PaymentPlan.Currancy,
+                    Period = gym.PaymentPlan.Period,
                     StartDate = gym.PaymentPlan.StartDate,
                     EndDate = gym.PaymentPlan.EndDate
                 } : null
@@ -130,7 +130,7 @@ namespace ApiFithub.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGym(int id, GymDto gymDto)
+        public async Task<IActionResult> UpdateGym(int id,[FromBody] GymDto gymDto)
         {
             // Buscar el gimnasio por ID
             var gym = await _context.Gyms.FindAsync(id);
@@ -170,7 +170,29 @@ namespace ApiFithub.Controllers
             return NoContent(); // Devolvemos 204 (No Content) indicando que la actualización fue exitosa
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("{id}/activate")]
+        public async Task<IActionResult> ActivateGym(int id)
+        {
+            // Buscar el gimnasio por ID
+            var gym = await _context.Gyms.FindAsync(id);
+
+            if (gym == null)
+            {
+                return NotFound("Gimnasio no encontrado.");
+            }
+
+            // Activar el gimnasio
+            gym.IsActive = true;
+            _context.Entry(gym).State = EntityState.Modified;
+
+            // Guardar los cambios
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // Devolvemos 204 (No Content) indicando que la activación fue exitosa
+        }
+
+
+        [HttpPut("{id}/deactivate")]
         public async Task<IActionResult> DeactivateGym(int id)
         {
             // Buscar el gimnasio por ID
@@ -190,6 +212,7 @@ namespace ApiFithub.Controllers
 
             return NoContent(); // Devolvemos 204 (No Content) indicando que la desactivación fue exitosa
         }
+
 
     }
 }

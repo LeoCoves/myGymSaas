@@ -24,6 +24,11 @@ const Header = () => {
             </>
           ) : (
             <>
+              {location.pathname === "/" ? (
+                <li><button><Link to="/admin-dashboard">Dashboard</Link></button></li>
+              ) : (
+                <li><button><Link to="/">Volver</Link></button></li>
+              )}
               <li><button className='' onClick={logout}>Logout</button></li>
             </>
           )}
