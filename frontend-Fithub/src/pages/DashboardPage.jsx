@@ -1,19 +1,12 @@
-// pages/DashboardPage.js
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
 
-function DashboardPage() {
-
+function Dashboard() {
   return (
-    <>
-      <Sidebar />
-      <section className='relative m-0'>
-        {/* Aquí se renderiza el contenido de las rutas anidadas */}
-        <Outlet />
-      </section>
-    </>
+    <div className="p-6 text-center text-gray-600">
+      <h2 className="text-2xl font-semibold">Bienvenido al Panel de Administración</h2>
+      <p>Selecciona una opción del menú para empezar.</p>
+    </div>
   );
 }
 
-export default DashboardPage;
+export default Dashboard;

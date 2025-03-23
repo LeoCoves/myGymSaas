@@ -4,91 +4,97 @@ import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
-  const [user, setUser] = useState(()=>{
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
-  }); 
-  
-  const [gymName, setGymName] = useState(()=>{
-    const storedGymName = localStorage.getItem('gymName');
-    return storedGymName ? JSON.parse(storedGymName) : null;
-  }); 
-
-  const [role, setRole] = useState(()=>{
-    const storedRole = localStorage.getItem('role');
-    return storedRole ? storedRole : null;
-  });
-
-  
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    const storedUser = localStorage.getItem('user');
-    const storedGymName = localStorage.getItem('gymName');
+  // Estado inicial desde localStorage
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem('user')) || null;
+  });
+
+  const [gymName, setGymName] = useState(() => {
+    return JSON.parse(localStorage.getItem('gymName')) || null;
+  });
+
+  const [idGym, setIdGym] = useState(() => {
+    return JSON.parse(localStorage.getItem('idGym')) || null;
+  });
+
+  const [role, setRole] = useState(() => {
+    return localStorage.getItem('role') || null;
+  });
+
+  // Actualiza el estado si hay cambios en localStorage
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedGymName = JSON.parse(localStorage.getItem('gymName'));
+    const storedGymId = JSON.parse(localStorage.getItem('idGym')); // Obtener idGym
     const storedRole = localStorage.getItem('role');
 
-    if(storedUser) setUser(JSON.parse(storedUser));
-    if(storedGymName) setGymName(JSON.parse(storedGymName));
-    if(storedRole) setRole((storedRole))
-  }, [user]);
+    setUser(storedUser);
+    setGymName(storedGymName);
+    setIdGym(storedGymId); // Almacenar idGym
+    setRole(storedRole);
+  }, []);
 
   // Función para iniciar sesión
   const login = async (email, password) => {
-    const response = await fetch('https://localhost:7216/api/Auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch('https://localhost:7216/api/Auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!response.ok) {
-      throw new Error('Error en el inicio de sesión');
+      if (!response.ok) throw new Error('Error en el inicio de sesión');
+
+      const data = await response.json();
+
+      console.log(user);
+
+      // Guardar en el estado y en localStorage
+      setUser(data.userName);
+      setGymName(data.gymName);
+      setIdGym(data.idGym); // Almacenar idGym
+      const userRole = (data.Role || data.role || "").trim();
+      setRole(userRole);
+
+      localStorage.setItem('user', JSON.stringify(data.userName));
+      localStorage.setItem('gymName', JSON.stringify(data.gymName));
+      localStorage.setItem('idGym', JSON.stringify(data.idGym)); // Almacenar idGym
+      localStorage.setItem('role', userRole);
+      localStorage.setItem('token', data.Token);
+
+      // Redirección basada en el rol
+      setTimeout(() => {
+        if (userRole === "Admin") {
+          navigate("/admin");
+        } else if (data.gymName) {
+          navigate(`/${data.gymName}`); // Redirección dinámica
+        } else {
+          navigate("/"); // Fallback si no hay gymName
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
     }
-
-    const data = await response.json();
-    
-    setUser(data.userName); // Puedes agregar más información de usuario si es necesario
-    setGymName(data.gymName);
-
-    const userRole = (data.Role || data.role || "").trim();
-
-    if(userRole){
-      setRole(data.role) 
-      localStorage.setItem("role", data.role);
-    }
-
-    
-    
-    localStorage.setItem('user', JSON.stringify(data.userName));
-    localStorage.setItem('gymName', JSON.stringify(data.gymName))
-    localStorage.setItem('token', data.Token); // Guardar el token en el localStorage
-    
-    
-    setTimeout(() => {
-    
-      if (userRole === "Admin") {
-        navigate("/admin-dashboard");
-      } else {
-        navigate("/dashboard");
-      }
-    }, 100);
   };
 
   // Función para cerrar sesión
   const logout = () => {
     setUser(null);
-    setGymName('');
+    setGymName(null);
     setRole(null);
 
     localStorage.removeItem('user');
     localStorage.removeItem('gymName');
+    localStorage.removeItem('idGym');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     navigate('/');
   };
 
   return (
-    <AuthContext.Provider value={{ user, gymName, login, logout, role }}>
+    <AuthContext.Provider value={{ user, gymName, idGym, login, logout, role }}>
       {children}
     </AuthContext.Provider>
   );

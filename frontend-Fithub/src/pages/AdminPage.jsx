@@ -3,12 +3,12 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 
-function AdminDashboardPage() {
+function AdminPage() {
 
   return (
     <>
       <Sidebar />
-      <section className='relative m-0'>
+      <section className="flex-1 ml-40 p-6">
         {/* Aquí se renderiza el contenido de las rutas anidadas */}
         <Outlet />
       </section>
@@ -16,4 +16,4 @@ function AdminDashboardPage() {
   );
 }
 
-export default AdminDashboardPage;
+export default AdminPage;

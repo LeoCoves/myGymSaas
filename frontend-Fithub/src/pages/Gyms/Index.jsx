@@ -3,7 +3,7 @@ import { getGyms, deactivateGym, activateGym } from "../../services/gyms"; // As
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const GymPage = () => {
+const GymsPage = () => {
     const navigate = useNavigate();
     const [gyms, setGyms] = useState([]);
     const [paymentPlans, setPaymentPlans] = useState([]);
@@ -33,16 +33,21 @@ const GymPage = () => {
 
     const handleToggleStatus = async (id, isActive) => {
         try {
-            if (isActive) {
-                // Si el gimnasio está activo, lo desactivamos
-                await deactivateGym(id);
-            } else {
-                // Si el gimnasio está inactivo, lo activamos
-                await activateGym(id);
-            }
-            
-            // Recargar los gimnasios después de actualizar el estado
-            loadGyms();
+            // Actualiza el estado local inmediatamente
+        setGyms((prevGyms) =>
+            prevGyms.map((gym) =>
+                gym.idGym === id ? { ...gym, isActive: !isActive } : gym
+            )
+        );
+
+        if (isActive) {
+            await deactivateGym(id);
+        } else {
+            await activateGym(id);
+        }
+
+        // Cargar los gimnasios nuevamente para sincronizar con la base de datos
+        loadGyms();
         } catch (error) {
             console.error("Error al actualizar el gimnasio:", error);
         }
@@ -50,12 +55,9 @@ const GymPage = () => {
     
     
 
-    const handleClick = (id) => {
-        navigate(`/admin-dashboard/gym/${id}`);
-    };
 
     return (
-        <div className="flex-1 ml-40 p-6">
+        <div>
             <h1>Gestión de Gimnasios</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 p-6">
@@ -119,4 +121,4 @@ const GymPage = () => {
     );
 };
 
-export default GymPage;
+export default GymsPage;
