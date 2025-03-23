@@ -107,6 +107,7 @@ namespace ApiFithub.Controllers
             var role = roles.FirstOrDefault(); // Asumimos que tiene un solo rol
 
             string gymName = null; // Inicializamos en null
+            int idGym = 0;
 
             // Si el usuario es un "Gym", buscamos el gimnasio en la base de datos
             if (role == "Gym")
@@ -120,6 +121,7 @@ namespace ApiFithub.Controllers
                     return NotFound("Gimnasio no encontrado para este usuario");
                 }
 
+                idGym = gym.IdGym;
                 gymName = gym.Name; // Guardamos el nombre del gimnasio
             }
 
@@ -130,6 +132,7 @@ namespace ApiFithub.Controllers
                 Token = token,
                 UserName = user.UserName,
                 Role = role,  // Devolver el rol
+                IdGym = idGym,
                 GymName = gymName // Si es admin, será null
             });
         }

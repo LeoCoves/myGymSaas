@@ -16,7 +16,7 @@ namespace ApiFithub.Controllers
         }
 
         // ✅ GET: api/clients/{idGym} (Obtener todos los clientes de un gimnasio específico)
-        [HttpGet("/{idGym}")]
+        [HttpGet("gym/{idGym}")]
         public async Task<ActionResult<IEnumerable<Client>>> GetClients(int idGym)
         {
             var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == idGym);
@@ -96,7 +96,7 @@ namespace ApiFithub.Controllers
 
         // ✅ PUT: api/clients/5 (Actualizar un cliente)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateClient(int id, ClientDto clientDto)
+        public async Task<IActionResult> UpdateClient(int id, [FromBody] ClientDto clientDto)
         {
             if (clientDto == null || id != clientDto.IdClient)
             {
@@ -132,23 +132,49 @@ namespace ApiFithub.Controllers
             return Ok(existingClient);
         }
 
-        // ✅ DELETE (DESACTIVAR): api/clients/5 (Dar de baja a un cliente sin eliminarlo)
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeactivateClient(int id)
+        [HttpPut("{id}/activate")]
+        public async Task<IActionResult> ActivateClient(int id)
         {
+            // Buscar el cliente por ID
             var client = await _context.Clients.FindAsync(id);
+
             if (client == null)
             {
                 return NotFound("Cliente no encontrado.");
             }
 
-            // En lugar de eliminarlo, lo marcamos como inactivo
-            client.IsActive = false;
+            // Activar el cliente
+            client.IsActive = true;
+            _context.Entry(client).State = EntityState.Modified;
+
+            // Guardar los cambios
             await _context.SaveChangesAsync();
 
-            return NoContent(); // 204 (Operación exitosa sin contenido)
+            return NoContent(); // Devolvemos 204 (No Content) indicando que la activación fue exitosa
         }
 
-        
+
+        [HttpPut("{id}/deactivate")]
+        public async Task<IActionResult> DeactivateClient(int id)
+        {
+            // Buscar el cliente por ID
+            var client = await _context.Clients.FindAsync(id);
+
+            if (client == null)
+            {
+                return NotFound("Cliente no encontrado.");
+            }
+
+            // Desactivar el gimnasio
+            client.IsActive = false;
+            _context.Entry(client).State = EntityState.Modified;
+
+            // Guardar los cambios
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // Devolvemos 204 (No Content) indicando que la desactivación fue exitosa
+        }
+
+
     }
 }

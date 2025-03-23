@@ -20,17 +20,55 @@ namespace ApiFithub.Controllers
         [HttpGet("gym/{idGym}")]
         public async Task<ActionResult<IEnumerable<GymCustomPaymentPlan>>> GetPlansByGym(int idGym)
         {
-            var gym = await _context.Gyms.FindAsync(idGym);
-            if (gym == null)
+            var plans = await _context.GymCustomPaymentPlans
+            .Select(p => new
             {
-                return NotFound("El gimnasio no existe.");
+                p.IdGymCustomPaymentPlan,
+                p.GymId, // Solo se devuelve el ID
+                p.Name,
+                p.Description,
+                p.Price,
+                p.IsBasic,
+                p.Features,
+                p.Currancy,
+                p.StartDate,
+                p.EndDate
+            })
+            .Where(p => p.GymId == idGym)
+            .ToListAsync();
+
+                return Ok(plans);
+        }
+
+        // ✅ Obtener un plan de pago específico por su ID
+        [HttpGet("{idGymCustomPaymentPlan}")]
+        public async Task<ActionResult<GymCustomPaymentPlan>> GetPlanById(int idGymCustomPaymentPlan)
+        {
+            var plan = await _context.GymCustomPaymentPlans
+                .Where(p => p.IdGymCustomPaymentPlan == idGymCustomPaymentPlan)
+                .Select(p => new
+                {
+                    p.IdGymCustomPaymentPlan,
+                    p.GymId,
+                    p.Name,
+                    p.Description,
+                    p.Price,
+                    p.IsBasic,
+                    p.Features,
+                    p.Currancy,
+                    p.StartDate,
+                    p.EndDate
+                })
+                .FirstOrDefaultAsync();
+
+            if (plan == null)
+            {
+                return NotFound("Plan de pago no encontrado.");
             }
 
-            var plans = await _context.GymCustomPaymentPlans
-                                     .Where(p => p.GymId == idGym)
-                                     .ToListAsync();
-            return Ok(plans);
+            return Ok(plan);
         }
+
 
         // ✅ Crear un nuevo plan vinculado a un gimnasio
         [HttpPost]
