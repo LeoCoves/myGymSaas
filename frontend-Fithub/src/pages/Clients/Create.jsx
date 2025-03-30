@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createClient } from "../../services/clients"; // Asumimos que tienes un servicio para crear el cliente
+import { createClient } from "../../services/clients"; 
+import { useAuth } from "../../contexts/AuthContext.jsx";
+import { getPaymentPlans } from "../../services/gymPaymentPlan.js";
 
 const CreateClientPage = () => {
   const [clientData, setClientData] = useState({
@@ -8,11 +10,28 @@ const CreateClientPage = () => {
     surname: "",
     email: "",
     phoneNumber: "",
-    idGymCustomPaymentPlan: null, // Suponiendo que es opcional
+    idGym: null,
+    idGymCustomPaymentPlan: null,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { idGym } = useAuth();
+  const [paymentPlans, setPaymentPlans] = useState([]);
+
+  useEffect(() => {
+    loadPaymentPlans();
+    console.log("ID del gimnasios segun auth:", idGym);
+  }, []);
+
+  const loadPaymentPlans = async () => {
+    try {
+      const data = await getPaymentPlans(idGym);
+      setPaymentPlans(data);
+    } catch (error) {
+      console.error("Error cargando planes de pago:", error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,23 +41,47 @@ const CreateClientPage = () => {
     }));
   };
 
+  const handleSelectPlan = (planId) => {
+    console.log("Plan seleccionado:", planId);
+    setClientData((prevData) => ({
+      ...prevData,
+      idGym: idGym,
+      idGymCustomPaymentPlan: planId,
+    }));
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    try {
-      // Llamamos a la función de creación de cliente
-      const response = await createClient(clientData); // Suponiendo que `createClient` hace la solicitud POST
-      // Si la creación fue exitosa, redirigimos a la lista de clientes o a otra página
-      navigate("/gym/clients"); // Cambia la ruta según lo necesites
-    } catch (err) {
-      setError("Error al crear el cliente.");
-      console.error(err);
-    } finally {
-      setLoading(false);
+    // Asegurar que idGym está bien asignado
+    const finalClientData = { ...clientData, idGym };
+    console.log("Enviando datos:", finalClientData);
+
+    if (!finalClientData.idGym) {
+        setError("El ID del gimnasio es inválido.");
+        setLoading(false);
+        return;
     }
-  };
+
+    if (!clientData.idGymCustomPaymentPlan) {
+      setError("Debes seleccionar un plan de pago.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+        await createClient(finalClientData);
+        navigate("/gym/clients");
+    } catch (err) {
+        setError("Error al crear el cliente.");
+        console.error(err);
+    } finally {
+        setLoading(false);
+    }
+};
 
   return (
     <div>
@@ -98,17 +141,34 @@ const CreateClientPage = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="idGymCustomPaymentPlan" className="block">Plan de Pago</label>
-          <input
-            type="number"
-            id="idGymCustomPaymentPlan"
-            name="idGymCustomPaymentPlan"
-            value={clientData.idGymCustomPaymentPlan || ""}
-            onChange={handleInputChange}
-            className="p-2 border rounded"
-            placeholder="ID del Plan de Pago"
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+          {paymentPlans.map((plan) => (
+            <div
+              key={plan.idGymCustomPaymentPlan}
+              className={`bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer ${
+                clientData.idGymCustomPaymentPlan === plan.idGymCustomPaymentPlan ? "border-red-500 border-2" : ""
+              }`}
+              
+              onClick={() => handleSelectPlan(plan.idGymCustomPaymentPlan)}
+            >
+              <h3 className="text-lg font-semibold text-gray-900">{plan.name}</h3>
+              <p className="text-gray-600 mt-2">{plan.price}€/{plan.period}</p>
+              <div className="mt-4 text-sm text-gray-500">
+                <p><strong>Description:</strong> {plan.description}</p>
+                <p><strong>Basic Features:</strong> {plan.isBasic ? "✅" : "❌"}</p>
+                <p><strong>Features</strong></p>
+                {plan.features && plan.features.length > 0 ? (
+                  plan.features.map((feature) => (
+                    <p className="font-semibold text-gray-500">
+                      {feature}
+                    </p>
+                  ))
+                ) : (
+                  <p>No features available</p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mt-4">

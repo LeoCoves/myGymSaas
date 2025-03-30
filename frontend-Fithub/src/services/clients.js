@@ -32,6 +32,8 @@ export const getClientById = async (id) => {
 
 // Crear un nuevo gimnasio
 export const createClient = async (clientData) => {
+    console.log("Enviando datos al backend:", JSON.stringify(clientData, null, 2));
+
     try {
         const response = await fetch(API_URL, {
             method: 'POST',

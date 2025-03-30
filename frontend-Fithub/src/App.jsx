@@ -22,14 +22,30 @@ import EditPaymentPlan from './pages/PaymentPlan/Edit.jsx';
 
 
 import ChatApp from './pages/ChatPage.jsx';
+
+
 //Gimnasio
 
+  //Clients
 import ClientsPage from './pages/Clients/Index.jsx';
 import CreateClientPage from './pages/Clients/Create.jsx';
 import DetailClientPage from './pages/Clients/Detail.jsx';
 import EditClientPage from './pages/Clients/Edit.jsx';
 
+  //GymPaymentPlan
 import GymPaymentPlansPage from './pages/GymPaymentPlan/Index.jsx';
+import GymPaymentPlanDetail from './pages/GymPaymentPlan/Detail.jsx';
+import CreateGymPaymentPlan from './pages/GymPaymentPlan/Create.jsx';
+import EditGymPaymentPlan from './pages/GymPaymentPlan/Edit.jsx';
+
+  //Suppliers
+import SuppliersPage from './pages/Suppliers/Index.jsx';
+import CreateSupplierPage from './pages/Suppliers/Create.jsx';
+import UpdateSupplierPage from './pages/Suppliers/Edit.jsx';
+
+//Tasks
+import TasksPage from './pages/Tasks/Index.jsx';
+import TaskDetailPage from './pages/Tasks/Detail.jsx';
 
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
@@ -86,6 +102,17 @@ function App() {
           <Route path="client/:idClient/edit" element={<EditClientPage />} />
 
           <Route path="plans" element={<GymPaymentPlansPage />} />
+          <Route path="plan/:id" element={<CreateGymPaymentPlan />} />
+          <Route path="plan/:id" element={<GymPaymentPlanDetail />} />
+          <Route path="plan/:id/edit" element={<EditGymPaymentPlan />} />
+
+          <Route path="suppliers" element={<SuppliersPage />} />
+          <Route path="supplier/create" element={<CreateSupplierPage />} />
+          <Route path="supplier/:id/edit" element={<UpdateSupplierPage/>} />
+
+
+          <Route path="tasks" element={<TasksPage />} />
+          <Route path="task/:id" element={<TaskDetailPage />} />
         </Route>
 
         {/* Ruta por defecto si no encuentra ninguna */}

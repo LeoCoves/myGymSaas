@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 
 const Header = () => {
-  const { user, logout } = useAuth();
+  const { user, gymName, role, logout } = useAuth();
   const location = useLocation();
 
   return (
@@ -25,14 +25,19 @@ const Header = () => {
           ) : (
             <>
               {location.pathname === "/" ? (
-                <li><button><Link to="/admin">Dashboard</Link></button></li>
+                role === "Admin" ? (
+                  <li><Link to="/admin">Admin</Link></li>
+                ) : (
+                  <li><Link to={`/${gymName}`}>Dashboard</Link></li>
+                )
               ) : (
                 <li><button><Link to="/">Volver</Link></button></li>
               )}
               <li><button className='' onClick={logout}>Logout</button></li>
             </>
           )}
-        </ul>
+      </ul>
+
       </nav>
     </header>
   );

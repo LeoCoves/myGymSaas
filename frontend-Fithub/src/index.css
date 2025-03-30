@@ -5,7 +5,6 @@
 
   color-scheme: light dark;
   color: rgba(2, 2, 2, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,6 +26,16 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+}
+
+input{
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
+
+select{
+  border-radius: 5px;
+  background-color: whitesmoke;
 }
 
 h1 {

@@ -62,42 +62,42 @@ if(role === "Admin"){
             </div>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+            <Link to={`/${gymName}/dashboard`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
               <span className="ml-2 text-sm tracking-wide truncate">Dashboard</span>
             </Link>
           </li>
           <li>
             <Link to={`/${gymName}/clients`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
-              <span className="ml-2 text-sm tracking-wide truncate">Clients</span>
+              <span className="ml-2 text-sm tracking-wide truncate">Clients*</span>
             </Link>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+            <Link to={`/${gymName}/potential-clients`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
               <span className="ml-2 text-sm tracking-wide truncate">Potential Clients</span>
             </Link>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+            <Link to={`/${gymName}/tasks`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
               <span className="ml-2 text-sm tracking-wide truncate">Tasks</span>
             </Link>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+            <Link to={`/${gymName}/classes`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
               <span className="ml-2 text-sm tracking-wide truncate">Classes</span>
             </Link>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
-              <span className="ml-2 text-sm tracking-wide truncate">Suppliers</span>
+            <Link to={`/${gymName}/suppliers`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <span className="ml-2 text-sm tracking-wide truncate">Suppliers*</span>
             </Link>
           </li>
           <li>
             <Link to={`/${gymName}/plans`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
-              <span className="ml-2 text-sm tracking-wide truncate">Payment Plans</span>
+              <span className="ml-2 text-sm tracking-wide truncate">Payment Plans*</span>
             </Link>
           </li>
           <li>
-            <Link to="/gym/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+            <Link to={`/${gymName}/about`} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
               <span className="ml-2 text-sm tracking-wide truncate">About</span>
             </Link>
           </li>

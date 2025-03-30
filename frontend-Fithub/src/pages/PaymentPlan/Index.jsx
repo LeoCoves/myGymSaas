@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getPaymentPlans, deletePlan } from "../../services/paymentPlans";
 import { Link } from 'react-router-dom';
+import ConfirmModal from "../../components/ConfirmModal";
 
 const PaymentPlansPage = () => {
     const [paymentPlans, setPaymentPlans] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
 
     useEffect(() => {
         loadPaymentPlans();
@@ -20,15 +23,14 @@ const PaymentPlansPage = () => {
     };
 
     // Eliminar un plan de pago
-    const handleDelete = async (id) => {
-        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este plan de pago?");
-        if (!confirmDelete) return;
-
+    const handleDelete = async () => {
         try {
-            await deletePlan(id);
-            setPaymentPlans(paymentPlans.filter(plan => plan.idPaymentPlan !== id));  // Actualizar la lista
+            await deletePlan(selectedId);
+            setPaymentPlans((prevPlans) => prevPlans.filter(plan => plan.idPaymentPlan !== selectedId));
         } catch (error) {
             console.error("Error al eliminar el plan:", error);
+        } finally {
+            setModalOpen(false);
         }
     };
 
@@ -51,7 +53,7 @@ const PaymentPlansPage = () => {
                         <p className="text-gray-600 mt-2">{plan.price}€/{plan.period}</p>
                         <div className="mt-4 text-sm text-gray-500">
                             <p><strong>Description:</strong> {plan.description}</p>
-                            <p><strong>Basic Feautures:</strong> {plan.isBasic ? "✅" : "❌"}</p>
+                            <p><strong>Basic Features:</strong> {plan.isBasic ? "✅" : "❌"}</p>
                             <p><strong>Features</strong> </p>
                             {plan.features && plan.features.length > 0 ? (
                                 plan.features.map((feature, index) => (
@@ -62,7 +64,6 @@ const PaymentPlansPage = () => {
                             ) : (
                                 <p>No features available</p>
                             )}
-                            
                         </div>
                         <div className="mt-4 flex gap-2 flex-wrap justify-center">
                             {/* Ver Detalles */}
@@ -81,7 +82,10 @@ const PaymentPlansPage = () => {
                             </Link>
                             {/* Eliminar */}
                             <button
-                                onClick={() => handleDelete(plan.idPaymentPlan)}
+                                onClick={() => {
+                                    setSelectedId(plan.idPaymentPlan);
+                                    setModalOpen(true);
+                                }}
                                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
                             >
                                 Eliminar
@@ -90,6 +94,15 @@ const PaymentPlansPage = () => {
                     </div>
                 ))}
             </div>
+
+            {/* Modal de confirmación reutilizable */}
+            <ConfirmModal
+                isOpen={modalOpen}
+                title="Eliminar Plan de Pago"
+                message="¿Estás seguro de que deseas eliminar este plan de pago? Esta acción no se puede deshacer."
+                onConfirm={handleDelete}
+                onCancel={() => setModalOpen(false)}
+            />
         </div>
     );
 };

@@ -1,0 +1,202 @@
+/* Importación de fuente moderna y refinada */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@300;400;600&display=swap');
+
+/* Aseguramos que el body y el html ocupen toda la pantalla */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Contenedor del calendario */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* Esto hace que el contenedor ocupe toda la altura de la pantalla */
+  background-color: #fff;
+  padding: 0 10px; /* Para agregar algo de espacio en los lados */
+  border-radius: 15px;
+}
+
+/* Estilo general del calendario */
+.rbc-calendar {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff; /* Fondo blanco puro */
+  height: 90%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* Encabezado (días de la semana) */
+.rbc-header {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #616161; /* Gris suave */
+  text-transform: uppercase;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Celdas de días (Días del mes) */
+.rbc-day-bg {
+  background-color: #f5f5f5; /* Gris suave de fondo */
+  border-radius: 6px;
+  border: 1px solid #e0e0e0; /* Borde muy fino */
+  transition: background-color 0.3s ease;
+  padding: 10px 0;
+  text-align: center;
+  height: 120px; /* Ajusta este valor para hacer las celdas de los días más altas */
+}
+
+/* Hover sobre el día */
+.rbc-day-bg:hover {
+  background-color: #e0e0e0; /* Gris oscuro cuando se pasa el ratón */
+}
+
+/* Eventos */
+.rbc-event {
+  background-color: #007aff; /* Azul moderno */
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover sobre los eventos */
+.rbc-event:hover {
+  background-color: #0051a2; /* Azul más oscuro al hacer hover */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+}
+
+/* Título del evento */
+.rbc-event-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Descripción o contenido del evento */
+.rbc-event-content {
+  font-size: 11px;
+  color: #e0e0e0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Barra lateral (hora del día) */
+.rbc-time-gutter {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #757575;
+  padding: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border-right: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+/* Botones de navegación */
+.rbc-btn-group button {
+  background-color: transparent;
+  border: none;
+  color: #007aff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  border-radius: 5px;
+}
+
+.rbc-btn-group button:hover {
+  color: #0051a2;
+  cursor: pointer;
+}
+
+/* Botón actual (hoy) */
+.rbc-toolbar button.rbc-btn-group__today {
+  background-color: #f0f0f5;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+/* Vista de semana (barra de tiempo) */
+.rbc-time-slot {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Sombra ligera de las celdas */
+.rbc-day-bg, .rbc-event {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.rbc-month-view{
+  border: 0;
+}
+
+
+
+
+/* Desplegable de eventos (popup) */
+.rbc-event-popup {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+/* Animación del calendario para transiciones suaves */
+.rbc-calendar {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Vista responsiva para dispositivos pequeños */
+@media (max-width: 768px) {
+  .rbc-calendar {
+    padding: 15px;
+  }
+
+  .rbc-header {
+    font-size: 12px;
+  }
+
+  .rbc-event {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .rbc-time-gutter {
+    font-size: 11px;
+    padding: 8px 0;
+  }
+
+  .rbc-btn-group button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
