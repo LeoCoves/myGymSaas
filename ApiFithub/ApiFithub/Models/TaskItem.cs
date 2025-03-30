@@ -14,10 +14,11 @@ namespace ApiFithub.Models
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Description is a required field")]
         public string Description { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
         public int LevelImportant { get; set; }
+
     }
 }

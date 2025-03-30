@@ -16,7 +16,7 @@ namespace ApiFithub.Controllers
         }
 
         // GET: api/gym/{gymId}/tasks (Obtener tareas de un gimnasio específico)
-        [HttpGet("/{gymId}/tasks")]
+        [HttpGet("{gymId}/tasks")]
         public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasksByGym(int gymId)
         {
             // Obtener los proveedores del gimnasio especificado
@@ -26,7 +26,7 @@ namespace ApiFithub.Controllers
 
             if (tasks == null || tasks.Count == 0)
             {
-                return NotFound("No se encontraron proveedores para este gimnasio.");
+                return NotFound("No se encontraron tareas para este gimnasio.");
             }
 
             return Ok(tasks);
@@ -45,7 +45,7 @@ namespace ApiFithub.Controllers
         // POST: api/task (Crear una nueva tarea)
         [HttpPost]
         //[Authorize(Roles = "Admin")] // Solo administradores pueden crear planes
-        public async Task<ActionResult<TaskItem>> CreateTask(TaskItemDto taskDto)
+        public async Task<ActionResult<TaskItem>> CreateTask([FromBody] TaskItemDto taskDto)
         {
             if (taskDto == null)
             {
@@ -77,7 +77,7 @@ namespace ApiFithub.Controllers
 
         // PUT: api/task/{id} (Actualizar una tarea)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(int id, TaskItemDto taskDto)
+        public async Task<IActionResult> UpdateTask(int id,[FromBody] TaskItemDto taskDto)
         {
             if (taskDto == null || id != taskDto.IdTask)
             {

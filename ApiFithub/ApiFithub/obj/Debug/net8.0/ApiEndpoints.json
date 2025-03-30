@@ -1,57 +1,5 @@
 [
   {
-    "ContainingType": "ApiFithub.Controllers.SupplierController",
-    "Method": "GetSuppliersByGym",
-    "RelativePath": "{gymId}/suppliers",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "gymId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.Supplier, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiFithub.Controllers.TaskController",
-    "Method": "GetTasksByGym",
-    "RelativePath": "{gymId}/tasks",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "gymId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.TaskItem, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ApiFithub.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
@@ -92,44 +40,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdClient",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGym",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Surname",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsActive",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGymCustomPaymentPlan",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
+        "Name": "clientDto",
+        "Type": "ApiFithub.Models.DTOs.ClientDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -463,54 +376,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdGymCustomPaymentPlan",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "GymId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsBasic",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Features",
-        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Currancy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StartDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "EndDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
+        "Name": "gymPlanDto",
+        "Type": "ApiFithub.Models.DTOs.GymCustomPaymentPlanDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -539,54 +407,9 @@
         "IsRequired": true
       },
       {
-        "Name": "IdGymCustomPaymentPlan",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "GymId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsBasic",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Features",
-        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Currancy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StartDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "EndDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
+        "Name": "gymPlanDto",
+        "Type": "ApiFithub.Models.DTOs.GymCustomPaymentPlanDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -777,34 +600,40 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdSupplier",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGym",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberPhone",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "supplierDto",
+        "Type": "ApiFithub.Models.DTOs.SupplierDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
         "Type": "ApiFithub.Models.Supplier",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.SupplierController",
+    "Method": "GetSuppliersByGym",
+    "RelativePath": "api/Supplier/{gymId}/suppliers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gymId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.Supplier, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -854,29 +683,9 @@
         "IsRequired": true
       },
       {
-        "Name": "IdSupplier",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGym",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberPhone",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "supplierDto",
+        "Type": "ApiFithub.Models.DTOs.SupplierDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -906,39 +715,40 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdTask",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGym",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StartDate",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "EndDate",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "LevelImportant",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "taskDto",
+        "Type": "ApiFithub.Models.DTOs.TaskItemDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
         "Type": "ApiFithub.Models.TaskItem",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.TaskController",
+    "Method": "GetTasksByGym",
+    "RelativePath": "api/Task/{gymId}/tasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gymId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.TaskItem, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -988,34 +798,9 @@
         "IsRequired": true
       },
       {
-        "Name": "IdTask",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IdGym",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StartDate",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "EndDate",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "LevelImportant",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "taskDto",
+        "Type": "ApiFithub.Models.DTOs.TaskItemDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -9,7 +9,7 @@
         public decimal Price { get; set; }
         public bool IsBasic { get; set; }
         public List<string> Features { get; set; }
-        public string Currancy { get; set; }
+        public string Period { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
     }

@@ -19,7 +19,7 @@ namespace ApiFithub.Controllers
         }
 
         // GET: api/gym/{gymId}/suppliers (Obtener proveedores de un gimnasio específico)
-        [HttpGet("/{gymId}/suppliers")]
+        [HttpGet("{gymId}/suppliers")]
         public async Task<ActionResult<IEnumerable<Supplier>>> GetSuppliersByGym(int gymId)
         {
             // Obtener los proveedores del gimnasio especificado
@@ -47,7 +47,7 @@ namespace ApiFithub.Controllers
         // POST: api/supplier (Crear un nuevo proveedor)
         [HttpPost]
         //[Authorize(Roles = "Admin")] // Solo administradores pueden crear planes
-        public async Task<ActionResult<Supplier>> CreateSupplier(SupplierDto supplierDto)
+        public async Task<ActionResult<Supplier>> CreateSupplier([FromBody] SupplierDto supplierDto)
         {
             if (supplierDto == null)
             {
@@ -78,7 +78,7 @@ namespace ApiFithub.Controllers
 
         // PUT: api/supplier/{id} (Actualizar un proveedor)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSupplier(int id, SupplierDto supplierDto)
+        public async Task<IActionResult> UpdateSupplier(int id, [FromBody] SupplierDto supplierDto)
         {
             if (supplierDto == null || id != supplierDto.IdSupplier)
             {

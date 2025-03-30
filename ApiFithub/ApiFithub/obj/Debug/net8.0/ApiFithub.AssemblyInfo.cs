@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiFithub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f0314fd622a39b31884760fa3cb4838c489a5a2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b1791292a3235088b25611057079ddfc6d597a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiFithub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiFithub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

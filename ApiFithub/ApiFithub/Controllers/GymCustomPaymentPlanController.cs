@@ -30,7 +30,7 @@ namespace ApiFithub.Controllers
                 p.Price,
                 p.IsBasic,
                 p.Features,
-                p.Currancy,
+                p.Period,
                 p.StartDate,
                 p.EndDate
             })
@@ -55,7 +55,7 @@ namespace ApiFithub.Controllers
                     p.Price,
                     p.IsBasic,
                     p.Features,
-                    p.Currancy,
+                    p.Period,
                     p.StartDate,
                     p.EndDate
                 })
@@ -72,7 +72,7 @@ namespace ApiFithub.Controllers
 
         // ✅ Crear un nuevo plan vinculado a un gimnasio
         [HttpPost]
-        public async Task<ActionResult<GymCustomPaymentPlan>> CreateGymPlan(GymCustomPaymentPlanDto gymPlanDto)
+        public async Task<ActionResult<GymCustomPaymentPlan>> CreateGymPlan([FromBody] GymCustomPaymentPlanDto gymPlanDto)
         {
             var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == gymPlanDto.GymId);
             if (!gymExists)
@@ -88,7 +88,7 @@ namespace ApiFithub.Controllers
                 Price = gymPlanDto.Price,
                 IsBasic = gymPlanDto.IsBasic,
                 Features = gymPlanDto.Features,
-                Currancy = gymPlanDto.Currancy,
+                Period = gymPlanDto.Period,
                 StartDate = gymPlanDto.StartDate,
                 EndDate = gymPlanDto.EndDate
             };
@@ -101,7 +101,7 @@ namespace ApiFithub.Controllers
 
         // ✅ Editar un plan de pago
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGymPlan(int id, GymCustomPaymentPlanDto gymPlanDto)
+        public async Task<IActionResult> UpdateGymPlan(int id,[FromBody] GymCustomPaymentPlanDto gymPlanDto)
         {
             if (id != gymPlanDto.IdGymCustomPaymentPlan)
             {
@@ -120,7 +120,7 @@ namespace ApiFithub.Controllers
             existingPlan.Price = gymPlanDto.Price;
             existingPlan.IsBasic = gymPlanDto.IsBasic;
             existingPlan.Features = gymPlanDto.Features;
-            existingPlan.Currancy = gymPlanDto.Currancy;
+            existingPlan.Period = gymPlanDto.Period;
             existingPlan.StartDate = gymPlanDto.StartDate;
             existingPlan.EndDate = gymPlanDto.EndDate;
 

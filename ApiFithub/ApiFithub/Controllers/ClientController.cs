@@ -2,6 +2,7 @@
 using ApiFithub.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ApiFithub.Controllers
 {
@@ -55,13 +56,13 @@ namespace ApiFithub.Controllers
 
         // ✅ Crear un cliente
         [HttpPost]
-        public async Task<ActionResult<Client>> CreateClient(ClientDto clientDto)
+        public async Task<ActionResult<Client>> CreateClient([FromBody] ClientDto clientDto)
         {
             // Verificar si el gimnasio existe
-            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == clientDto.IdGym);
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == clientDto.idGym);
             if (!gymExists)
             {
-                return NotFound($"El gimnasio con ID {clientDto.IdGym} no existe.");
+                return NotFound($"El gimnasio con ID {clientDto.idGym} no existe.");
             }
 
             // Verificar si el GymCustomPaymentPlan existe si se proporciona
@@ -79,7 +80,7 @@ namespace ApiFithub.Controllers
             // Crear el nuevo cliente
             var newClient = new Client
             {
-                IdGym = clientDto.IdGym,  // Relacionando al cliente con el gimnasio
+                IdGym = clientDto.idGym,  // Relacionando al cliente con el gimnasio
                 IdGymCustomPaymentPlan = clientDto.IdGymCustomPaymentPlan,  // Relacionando al cliente con el plan de pago (si es proporcionado)
                 Name = clientDto.Name,
                 Surname = clientDto.Surname,
