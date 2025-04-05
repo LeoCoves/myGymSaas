@@ -32,6 +32,153 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "GetClassSessions",
+    "RelativePath": "api/Class/sessions/{classTemplateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classTemplateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "AddClientToSession",
+    "RelativePath": "api/Class/sessions/{sessionId}/clients/{clientId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "clientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "RemoveClientFromSession",
+    "RelativePath": "api/Class/sessions/{sessionId}/clients/{clientId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "clientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "CreateClassTemplate",
+    "RelativePath": "api/Class/template",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classdto",
+        "Type": "ApiFithub.Models.DTOs.ClassTemplateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.ClassTemplate",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "GetClassTemplates",
+    "RelativePath": "api/Class/templates/{gymId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gymId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.ClassTemplate, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "UpdateClassTemplate",
+    "RelativePath": "api/Class/templates/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ApiFithub.Models.DTOs.ClassTemplateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "DeleteClassTemplate",
+    "RelativePath": "api/Class/templates/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ApiFithub.Controllers.ClientController",
     "Method": "CreateClient",
     "RelativePath": "api/clients",

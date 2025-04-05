@@ -4,6 +4,7 @@ using ApiFithub.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiFithub.Migrations
 {
     [DbContext(typeof(ApiFithubContexto))]
-    partial class ApiFithubContextoModelSnapshot : ModelSnapshot
+    [Migration("20250401191219_SetTitleTask")]
+    partial class SetTitleTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,15 +25,46 @@ namespace ApiFithub.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ApiFithub.Models.ClassEnrollment", b =>
+            modelBuilder.Entity("ApiFithub.Models.Class", b =>
                 {
-                    b.Property<int>("IdEnrollment")
+                    b.Property<int>("IdClass")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEnrollment"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClass"));
 
-                    b.Property<int>("IdClassSession")
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdGym")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdClass");
+
+                    b.HasIndex("IdGym");
+
+                    b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("ApiFithub.Models.ClassEnrollment", b =>
+                {
+                    b.Property<int>("IdInscription")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdInscription"));
+
+                    b.Property<int>("IdClass")
                         .HasColumnType("int");
 
                     b.Property<int>("IdClient")
@@ -39,72 +73,13 @@ namespace ApiFithub.Migrations
                     b.Property<DateTime>("InscriptionDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("IdEnrollment");
+                    b.HasKey("IdInscription");
 
-                    b.HasIndex("IdClassSession");
+                    b.HasIndex("IdClass");
 
                     b.HasIndex("IdClient");
 
                     b.ToTable("ClassEnrollments");
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.ClassSession", b =>
-                {
-                    b.Property<int>("IdClassSession")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClassSession"));
-
-                    b.Property<int>("IdClassTemplate")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SessionDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdClassSession");
-
-                    b.HasIndex("IdClassTemplate");
-
-                    b.ToTable("ClassSessions");
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.ClassTemplate", b =>
-                {
-                    b.Property<int>("IdClassTemplate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClassTemplate"));
-
-                    b.Property<int>("DayOfWeek")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("IdGym")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Instructor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdClassTemplate");
-
-                    b.HasIndex("IdGym");
-
-                    b.ToTable("ClassTemplates");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.Client", b =>
@@ -114,9 +89,6 @@ namespace ApiFithub.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClient"));
-
-                    b.Property<int?>("ClassSessionIdClassSession")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -147,8 +119,6 @@ namespace ApiFithub.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdClient");
-
-                    b.HasIndex("ClassSessionIdClassSession");
 
                     b.HasIndex("GymCustomPaymentPlanIdGymCustomPaymentPlan");
 
@@ -651,11 +621,22 @@ namespace ApiFithub.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ApiFithub.Models.Class", b =>
+                {
+                    b.HasOne("ApiFithub.Models.Gym", "Gym")
+                        .WithMany("Classes")
+                        .HasForeignKey("IdGym")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gym");
+                });
+
             modelBuilder.Entity("ApiFithub.Models.ClassEnrollment", b =>
                 {
-                    b.HasOne("ApiFithub.Models.ClassSession", "ClassSession")
-                        .WithMany()
-                        .HasForeignKey("IdClassSession")
+                    b.HasOne("ApiFithub.Models.Class", "Class")
+                        .WithMany("ClassEnrollments")
+                        .HasForeignKey("IdClass")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -665,39 +646,13 @@ namespace ApiFithub.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("ClassSession");
+                    b.Navigation("Class");
 
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("ApiFithub.Models.ClassSession", b =>
-                {
-                    b.HasOne("ApiFithub.Models.ClassTemplate", "ClassTemplate")
-                        .WithMany("ClassSessions")
-                        .HasForeignKey("IdClassTemplate")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClassTemplate");
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.ClassTemplate", b =>
-                {
-                    b.HasOne("ApiFithub.Models.Gym", "Gym")
-                        .WithMany("ClassTemplates")
-                        .HasForeignKey("IdGym")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Gym");
-                });
-
             modelBuilder.Entity("ApiFithub.Models.Client", b =>
                 {
-                    b.HasOne("ApiFithub.Models.ClassSession", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ClassSessionIdClassSession");
-
                     b.HasOne("ApiFithub.Models.GymCustomPaymentPlan", "GymCustomPaymentPlan")
                         .WithMany("Clients")
                         .HasForeignKey("GymCustomPaymentPlanIdGymCustomPaymentPlan");
@@ -871,14 +826,9 @@ namespace ApiFithub.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ApiFithub.Models.ClassSession", b =>
+            modelBuilder.Entity("ApiFithub.Models.Class", b =>
                 {
-                    b.Navigation("Clients");
-                });
-
-            modelBuilder.Entity("ApiFithub.Models.ClassTemplate", b =>
-                {
-                    b.Navigation("ClassSessions");
+                    b.Navigation("ClassEnrollments");
                 });
 
             modelBuilder.Entity("ApiFithub.Models.Client", b =>
@@ -888,7 +838,7 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Gym", b =>
                 {
-                    b.Navigation("ClassTemplates");
+                    b.Navigation("Classes");
 
                     b.Navigation("Suppliers");
 

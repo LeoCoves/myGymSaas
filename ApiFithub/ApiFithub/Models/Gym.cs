@@ -33,7 +33,7 @@ namespace ApiFithub.Models
         public int? IdPaymentPlan { get; set; }
         public PaymentPlan? PaymentPlan { get; set; } // Navegación
         public ICollection<Supplier> Suppliers { get; set; }
-        public ICollection<Class> Classes { get; set; }
+        public ICollection<ClassTemplate> ClassTemplates { get; set; }
         public ICollection<TaskItem> Tasks { get; set; }
     }
 }

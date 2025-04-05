@@ -62,10 +62,12 @@ namespace ApiFithub.Controllers
             var newTask = new TaskItem
             {
                 IdGym = taskDto.IdGym, 
+                Title = taskDto.Title,
                 Description = taskDto.Description,
+                LevelImportant = taskDto.LevelImportant,
                 StartDate = taskDto.StartDate,
-                EndDate = taskDto.EndDate,
-                LevelImportant = taskDto.LevelImportant
+                EndDate = taskDto.EndDate
+                
             };
 
             // Guardar en la base de datos
@@ -90,12 +92,11 @@ namespace ApiFithub.Controllers
                 return NotFound("Tarea no encontrada");
             }
 
-
+            existingTask.Title = taskDto.Title;
             existingTask.Description = taskDto.Description;
+            existingTask.LevelImportant = taskDto.LevelImportant;
             existingTask.StartDate = taskDto.StartDate;
             existingTask.EndDate = taskDto.EndDate;
-            existingTask.LevelImportant = taskDto.LevelImportant;
-
 
             _context.TaskItems.Update(existingTask);
             await _context.SaveChangesAsync();

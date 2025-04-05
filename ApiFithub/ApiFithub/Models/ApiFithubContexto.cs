@@ -20,8 +20,12 @@ namespace ApiFithub.Models
         public DbSet<ClientGymCustomPaymentPlan> ClientGymCustomPaymentPlans { get; set; }
         public DbSet<MessageAdminGym> MessageAdminGyms { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Class> Classes { get; set; }
+
+        // ✅ Renombrado para mayor claridad
+        public DbSet<ClassTemplate> ClassTemplates { get; set; }
+        public DbSet<ClassSession> ClassSessions { get; set; }
         public DbSet<ClassEnrollment> ClassEnrollments { get; set; }
+
         public DbSet<TaskItem> TaskItems { get; set; }
         public DbSet<Client> Clients { get; set; }
 
@@ -45,7 +49,22 @@ namespace ApiFithub.Models
                 .OnDelete(DeleteBehavior.NoAction);  // Evita cascada de eliminación
 
 
-            // Relación entre Client y ClassEnrollment
+            // ✅ Relación entre ClassTemplate y Gym
+            modelBuilder.Entity<ClassTemplate>()
+                .HasOne(ct => ct.Gym)
+                .WithMany(g => g.ClassTemplates)  // Un gimnasio tiene muchas plantillas de clases
+                .HasForeignKey(ct => ct.IdGym)
+                .OnDelete(DeleteBehavior.Cascade);  // Si se elimina el gym, se eliminan las plantillas
+
+            // ✅ Relación entre ClassSession y ClassTemplate
+            modelBuilder.Entity<ClassSession>()
+                .HasOne(cs => cs.ClassTemplate)
+                .WithMany(ct => ct.ClassSessions)  // Una plantilla puede tener muchas sesiones
+                .HasForeignKey(cs => cs.IdClassTemplate)
+                .OnDelete(DeleteBehavior.Cascade);  // Si se elimina la plantilla, se eliminan sus sesiones
+
+           
+            // Relación entre Client y ClassEnrollment (Ya estaba)
             modelBuilder.Entity<ClassEnrollment>()
                 .HasOne(ce => ce.Client)
                 .WithMany(c => c.ClassEnrollments)
