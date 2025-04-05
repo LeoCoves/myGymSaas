@@ -50,7 +50,7 @@ export const createTask = async (taskData) => {
 };
 
 // Actualizar una tarea existente
-export const updateTask = async (taskId, updatedTask, idGym) => {
+export const updateTask = async (taskId, updatedTask) => {
   console.log("Actualizando tarea con ID:", taskId);
   console.log("Datos de la tarea actualizada:", updatedTask);
   try {
@@ -59,14 +59,7 @@ export const updateTask = async (taskId, updatedTask, idGym) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        taskId,  // Pasamos el ID junto con los demás campos
-        idGym: idGym,
-        description: updatedTask.description,
-        startDate: updatedTask.startDate,
-        endDate: updatedTask.endDate,
-        levelImportant: updatedTask.levelImportant,
-      }),
+      body: JSON.stringify(updatedTask), // data debe ser un objeto JSON
     });
     if (!response.ok) {
       throw new Error("Error al actualizar la tarea");

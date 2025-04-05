@@ -39,6 +39,10 @@ html, body {
   text-align: center;
 }
 
+.rbc-header:hover {
+  background-color: rgb(202, 181, 142);
+}
+
 /* Celdas de días (Días del mes) */
 .rbc-day-bg {
   background-color: #f5f5f5; /* Gris suave de fondo */
@@ -57,7 +61,6 @@ html, body {
 
 /* Eventos */
 .rbc-event {
-  background-color: #007aff; /* Azul moderno */
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -69,11 +72,16 @@ html, body {
   align-items: center;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.rbc-event.rbc-event{
+  background-color: rgb(129, 74, 74);
 }
 
 /* Hover sobre los eventos */
 .rbc-event:hover {
-  background-color: #0051a2; /* Azul más oscuro al hacer hover */
+  background-color: #b58149; /* Azul más oscuro al hacer hover */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
 }
 
@@ -133,10 +141,21 @@ html, body {
   font-weight: 500;
 }
 
+.rbc-allday-cell{
+  display: none;
+}
+
+/* Día actual */
+.rbc-day-today {
+  background-color: #d9f7ff;
+}
+
 /* Vista de semana (barra de tiempo) */
 .rbc-time-slot {
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* Fondo blanco puro */
   border-bottom: 1px solid #e0e0e0;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 /* Sombra ligera de las celdas */
@@ -159,6 +178,15 @@ html, body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+}
+
+.rbc-time-content > * + * > *{
+  border-left: 0;
+}
+
+.rbc-timeslot-group{
+  border-bottom: 0;
+  min-height: 60px;
 }
 
 /* Animación del calendario para transiciones suaves */
@@ -193,6 +221,10 @@ html, body {
   .rbc-time-gutter {
     font-size: 11px;
     padding: 8px 0;
+  }
+
+  .rbc-time-view{
+    border: 0px !important;
   }
 
   .rbc-btn-group button {

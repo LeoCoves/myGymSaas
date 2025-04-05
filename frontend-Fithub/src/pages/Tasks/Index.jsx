@@ -1,13 +1,12 @@
 import React from "react";
-import MyCalendar from "../../components/Calendar";
+import TaskCalendar from "../../components/CalendarForTasks.jsx";
 
 
 function TasksPage() {
     
-
   return(
     <div>
-        <MyCalendar />
+        <TaskCalendar />
     </div>
   )
 }

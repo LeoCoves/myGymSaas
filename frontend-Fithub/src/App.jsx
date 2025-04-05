@@ -45,7 +45,9 @@ import UpdateSupplierPage from './pages/Suppliers/Edit.jsx';
 
 //Tasks
 import TasksPage from './pages/Tasks/Index.jsx';
-import TaskDetailPage from './pages/Tasks/Detail.jsx';
+
+//Classes
+import { ClassesPage } from './pages/Classes/Index.jsx';
 
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
@@ -112,7 +114,9 @@ function App() {
 
 
           <Route path="tasks" element={<TasksPage />} />
-          <Route path="task/:id" element={<TaskDetailPage />} />
+     
+
+          <Route path="classes" element={<ClassesPage />} />
         </Route>
 
         {/* Ruta por defecto si no encuentra ninguna */}
