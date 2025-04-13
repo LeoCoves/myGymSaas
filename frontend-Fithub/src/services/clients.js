@@ -1,8 +1,7 @@
 const API_URL = "https://localhost:7216/api/clients";
 
-// Obtener todos los gimnasios
+// Obtener todos los clientes
 export const getClients = async (idGym) => {
-    console.log(idGym);
     try {
         const response = await fetch(`${API_URL}/gym/${idGym}`);
         if (!response.ok) {
@@ -15,7 +14,7 @@ export const getClients = async (idGym) => {
     }
 };
 
-// Obtener un gimnasio por ID
+// Obtener un cliente por ID
 export const getClientById = async (id) => {
     try {
         const response = await fetch(`${API_URL}/${id}`, { method: 'GET' });
@@ -30,10 +29,8 @@ export const getClientById = async (id) => {
     }
 };
 
-// Crear un nuevo gimnasio
+// Crear un nuevo cliente
 export const createClient = async (clientData) => {
-    console.log("Enviando datos al backend:", JSON.stringify(clientData, null, 2));
-
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -77,6 +74,36 @@ export const updateClient = async (id, clientData) => {
         return JSON.parse(responseText);  // Convertir la respuesta a JSON solo si tiene cuerpo
     } catch (error) {
         console.error(`Error actualizando el cliente ${id}:`, error);
+        throw error;
+    }
+};
+
+export const getInscriptionByClient = async (idClient) => {
+    try {
+        const response = await fetch(`${API_URL}/${idClient}/inscription`);
+        if (!response.ok) {
+            throw new Error("Error al obtener los datos de inscripción");
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.error("Error obteniendo la inscripción:", err);
+        throw err;
+    }
+};
+
+// Crear una inscripcion para el cliente
+export const createInscription = async (idClient, inscriptionData) => {
+    try {
+        const response = await fetch(`${API_URL}/${idClient}/inscriptions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(inscriptionData),
+        });
+        if (!response.ok) throw new Error(response.statusText);
+        return await response.json();
+    } catch (error) {
+        console.error("Error creando la inscripcion:", error);
         throw error;
     }
 };

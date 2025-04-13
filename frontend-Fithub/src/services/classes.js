@@ -23,14 +23,33 @@ export async function createClassTemplate(dto) {
     }
 }
 
-export async function getClassSessions(classTemplateId) {
-    const response = await fetch(`${API_URL}/sessions/${classTemplateId}`);
+export async function getClassSessions(classTemplate) {
+    const response = await fetch(`${API_URL}/sessions/${classTemplate}`);
     const data = await response.json();
     return data;
 }
 
+export async function getClassSessionById(sessionId) {
+    try {
+        const response = await fetch(`${API_URL}/session/${sessionId}`);
+
+        if (!response.ok) {
+            throw new Error(`Error al obtener la sesión: ${response.status}`);
+        }
+
+        const sessionData = await response.json();
+
+        console.log("Sesión obtenida:", sessionData);
+        return sessionData;
+    } catch (error) {
+        console.error("Hubo un problema al obtener la sesión:", error);
+        return null;
+    }
+}
+
+
 export async function addClientToSession(sessionId, clientId) {
-    const response = await fetch(`${API_URL}/${sessionId}/clients/${clientId}`, {
+    const response = await fetch(`${API_URL}/sessions/${sessionId}/clients/${clientId}`, {
         method: 'POST'
     });
 
@@ -60,7 +79,7 @@ export async function updateClassTemplate(id, dto) {
 
 
 export async function removeClientFromSession(sessionId, clientId) {
-    const response = await fetch(`${API_URL}/${sessionId}/clients/${clientId}`, {
+    const response = await fetch(`${API_URL}/sessions/${sessionId}/clients/${clientId}`, {
         method: 'DELETE'
     });
 

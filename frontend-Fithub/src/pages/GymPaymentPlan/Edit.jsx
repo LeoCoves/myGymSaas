@@ -15,8 +15,7 @@ const EditGymPaymentPlan = () => {
         IsBasic: true,
         Features: [],  // Asegurarse de que Features siempre sea un array
         Period: 'Mensual',
-        StartDate: '',
-        EndDate: ''
+        Duration: 1
     });
 
     const [loading, setLoading] = useState(true);
@@ -43,8 +42,7 @@ const EditGymPaymentPlan = () => {
                     IsBasic: data.isBasic ?? true, 
                     Features: data.features || [],
                     Period: data.period || 'Mensual',
-                    StartDate: data.startDate || null,
-                    EndDate: data.endDate || null
+                    Duration: data.duration || 1
                 });
     
             } catch (error) {
@@ -104,11 +102,9 @@ const EditGymPaymentPlan = () => {
             IsBasic: planData.IsBasic,
             Features: planData.Features,
             Period: planData.Period,
-            StartDate: planData.StartDate,
-            EndDate: planData.EndDate
+            Duration: planData.Duration,
         };
     
-        console.log("Datos enviados:", dataToSend); // Verifica si el ID aparece correctamente
     
         try {
             const response = await updateGymPlan(id, dataToSend);
@@ -221,7 +217,7 @@ const EditGymPaymentPlan = () => {
                     </div>
                     <ul className="mt-2">
                         {(planData.Features || []).map((feature, index) => (  // Aseguramos que Features sea un array
-                            <li key={index} className="flex justify-between text-gray-600">
+                            <li key={index} className="flex justify-between text-gray-600 border-gray-300 border-b py-2">
                                 <span>{feature}</span>
                                 <button
                                     type="button"
@@ -235,45 +231,37 @@ const EditGymPaymentPlan = () => {
                     </ul>
                 </div>
 
-                <div>
-                    <label htmlFor="Period" className="block text-sm font-medium text-gray-700">Period</label>
-                    <select 
-                        id="Period" 
-                        name="Period" 
-                        value={planData.Period} 
-                        onChange={handleChange} 
-                        required 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                         <option value="Semanal">Semanal</option>
-                        <option value="Mensual">Mensual</option>
-                        <option value="Anual">Anual</option>
-                    </select>
-                </div>
-
-                {/* Fechas */}
-                <div>
-                    <label htmlFor="StartDate" className="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
-                    <input 
-                        type="date" 
-                        id="StartDate" 
-                        name="StartDate" 
-                        value={planData.StartDate} 
-                        onChange={handleChange} 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="EndDate" className="block text-sm font-medium text-gray-700">Fecha de Fin</label>
-                    <input 
-                        type="date" 
-                        id="EndDate" 
-                        name="EndDate" 
-                        value={planData.EndDate} 
-                        onChange={handleChange} 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
+                <div className="flex space-x-4">
+                    {/* Duracion */}
+                    <div className="flex-1">
+                        <label htmlFor="Duration" className="block text-sm font-medium text-gray-700">Cantidad</label>
+                        <input
+                            type="number"
+                            id="Duration" 
+                            name="Duration" 
+                            value={planData.Duration} 
+                            onChange={handleChange} 
+                            required 
+                            className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="La cantidad de tiempo que dura el plan"
+                        />
+                    </div>
+                    {/* Periodo */}
+                    <div className="flex-1">
+                        <label htmlFor="Period" className="block text-sm font-medium text-gray-700">Periodo</label>
+                        <select 
+                            id="Period" 
+                            name="Period" 
+                            value={planData.Period} 
+                            onChange={handleChange} 
+                            className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                            <option value="Semanal">Semana</option>
+                            <option value="Diario">Día</option>
+                            <option value="Mensual">Mes</option>
+                            <option value="Anual">Año</option>
+                        </select>
+                    </div>
                 </div>
 
                 {/* Botón de Enviar */}

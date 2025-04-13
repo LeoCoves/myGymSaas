@@ -23,17 +23,18 @@ const ClassCalendar = () => {
   const { idGym } = useAuth();
   const [currentDate, setCurrentDate] = useState(new Date());
 
+
+  const fetchClassTemplates = async () => {
+    try {
+      const data = await getClassTemplates(idGym);
+      console.log("Plantillas de clases:", data.$values); // Para depuración
+      setClassTemplates(data.$values);
+    } catch (error) {
+      console.error("Error al cargar las plantillas de clases:", error);
+    }
+  };
   // Cargar plantillas de clases
   useEffect(() => {
-    const fetchClassTemplates = async () => {
-      try {
-        const data = await getClassTemplates(idGym);
-        console.log("Plantillas de clases:", data.$values); // Para depuración
-        setClassTemplates(data.$values);
-      } catch (error) {
-        console.error("Error al cargar las plantillas de clases:", error);
-      }
-    };
     fetchClassTemplates();
   }, [idGym]);
 
@@ -70,7 +71,7 @@ const ClassCalendar = () => {
                 description: template.Description || "Sin descripción",  // Descripción
                 start: startDateTime,  // Fecha de inicio
                 end: endDateTime,    // Fecha de fin (puedes modificar si tienes horas de fin)
-                idSession: session.IdClassSession,  // ID de la sesión
+                idSession: session.id,  // ID de la sesión
                 idClassTemplate: template.IdClassTemplate,  // ID de la plantilla de clase
                 instructor: template.Instructor,  // Instructor
               });
@@ -87,6 +88,10 @@ const ClassCalendar = () => {
       fetchClassSessions();
     }
   }, [idGym, classTemplates]);
+
+  const reloadCalendar = async () => {
+    await fetchClassTemplates(); // Esto va a gatillar el otro useEffect que actualiza las sesiones
+  };
 
   const handleSelectSlot = (info) => {
     console.log("Slot seleccionado:", info); // Para depuración
@@ -122,18 +127,21 @@ const ClassCalendar = () => {
       />
 
       {/* Modal para crear plantilla de clase */}
-      // En el modal CreateClassModal:
         <CreateClassModal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
         selectedDate={selectedDate}
+        reloadClasses={reloadCalendar}
         />
+
+
 
       {/* Modal para ver detalles de clases */}
       <DetailClassModal
         isOpen={showDetailModal}
         onClose={() => setShowDetailModal(false)}
         classTemplate={selectedClassTemplate}
+        reloadClasses={reloadCalendar}
       />
     </div>
   );

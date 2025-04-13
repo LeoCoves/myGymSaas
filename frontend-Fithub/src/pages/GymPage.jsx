@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar.jsx';
+import Header from '../components/Header.jsx';
 
 function GymPage() {
 
@@ -8,6 +9,7 @@ function GymPage() {
     <>
       <Sidebar/>
       <section className="flex-1 ml-40">
+        <Header classname="justify-center"/>
           <Outlet /> {/* Aquí se renderizará DashboardPage */}
       </section>
       

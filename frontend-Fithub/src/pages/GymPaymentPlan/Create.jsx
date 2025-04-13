@@ -9,13 +9,12 @@ const CreateGymPaymentPlan = () => {
     const [planData, setPlanData] = useState({
         Name: '',
         Description: '',
-        Price: 0,
+        Price: null,
         IsBasic: true,
         Features: ['Gestión administrativa Básica'],  // Array de características, por defecto tiene una característica inicial
-        Period: 'Mensual',  // Valor inicial para currency
-        StartDate: null,  // Asignar una fecha de inicio válida
-        EndDate: null,  // Asignar una fecha de fin válida
-        GymId: idGym,  // ID del gimnasio
+        Period: 'Mensual',  // Valor inicial para period
+        Duration: 1,
+        IdGym: idGym,  // ID del gimnasio
     });
 
     const [loading, setLoading] = useState(false);
@@ -49,8 +48,6 @@ const CreateGymPaymentPlan = () => {
         setLoading(true);
         setError("");
         
-        // Asegúrate de que los datos se están enviando correctamente
-        console.log("Datos que se enviarán:", planData);
         
         // Validación de Price antes de enviarlo al backend
         const price = parseFloat(planData.Price);
@@ -68,9 +65,8 @@ const CreateGymPaymentPlan = () => {
             Price: price,
             IsBasic: planData.IsBasic,
             Features: planData.Features,
-            StartDate: planData.StartDate,
-            EndDate: planData.EndDate,
-            GymId: idGym
+            Duration: planData.Duration,
+            IdGym: idGym
         };
     
         try {
@@ -174,50 +170,39 @@ const CreateGymPaymentPlan = () => {
                     </ul>
                 </div>
 
-                {/* Periodo */}
-                <div>
-                    <label htmlFor="Period" className="block text-sm font-medium text-gray-700">Period</label>
-                    <select 
-                        id="Period" 
-                        name="Period" 
-                        value={planData.Period} 
-                        onChange={handleChange} 
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                        <option value="Diario">Diario</option>
-                        <option value="Mensual">Mensual</option>
-                        <option value="Semanal">Semanal</option>
-                        <option value="Trimestral">Trimestral</option>
-                        <option value="Anual">Anual</option>
-                        
-                    </select>
+                <div className="flex space-x-4">
+                    {/* Duracion */}
+                    <div className="flex-1">
+                        <label htmlFor="Duration" className="block text-sm font-medium text-gray-700">Cantidad</label>
+                        <input
+                            type="number"
+                            id="Duration" 
+                            name="Duration" 
+                            value={planData.Duration} 
+                            onChange={handleChange} 
+                            required 
+                            className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="La cantidad de tiempo que dura el plan"
+                        />
+                    </div>
+                    {/* Periodo */}
+                    <div className="flex-1">
+                        <label htmlFor="Period" className="block text-sm font-medium text-gray-700">Periodo</label>
+                        <select 
+                            id="Period" 
+                            name="Period" 
+                            value={planData.Period} 
+                            onChange={handleChange} 
+                            className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                            <option value="Semanal">Semana</option>
+                            <option value="Diario">Día</option>
+                            <option value="Mensual">Mes</option>
+                            <option value="Anual">Año</option>
+                        </select>
+                    </div>
                 </div>
 
-                {/* Fecha de inicio */}
-                <div>
-                    <label htmlFor="StartDate" className="block text-sm font-medium text-gray-700">Fecha de inicio</label>
-                    <input 
-                        type="date" 
-                        id="StartDate" 
-                        name="StartDate" 
-                        value={planData.StartDate} // Formato de fecha para input
-                        onChange={handleChange}
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-
-                {/* Fecha de fin */}
-                <div>
-                    <label htmlFor="EndDate" className="block text-sm font-medium text-gray-700">Fecha de fin</label>
-                    <input 
-                        type="date" 
-                        id="EndDate" 
-                        name="EndDate" 
-                        value={planData.EndDate} // Formato de fecha para input
-                        onChange={handleChange}
-                        className="mt-1 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
 
                 {/* Botón de Enviar */}
                 <div className="flex justify-center">
