@@ -7,33 +7,34 @@ namespace ApiFithub.Models
     public class Gym
     {
         [Key]
-        public int IdGym { get; set; }  // Clave primaria de tipo int
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "Name is a required field")]
-        public string Name { get; set; }
+        public int IdGym { get; set; }
 
-        [Display(Name = "Description")]
-        [Required(ErrorMessage = "Description is a required field")]
+        [Required]
+        public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "Address is a required field")]
+        [Required]
         public string Address { get; set; }
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "Email is a required field")]
+        [Required]
         public string Email { get; set; }
-        [Display(Name = "NumberPhone")]
-        [Required(ErrorMessage = "Number phone is a required field")]
+        [Required]
         public string Numberphone { get; set; }
+
         public bool IsActive { get; set; } = true;
 
-        public string UserId { get; set; }  // Relacionar con AspNetUser
+        // Usuario propietario del gimnasio
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        // Relación con el plan de pago (opcional)
+        // Plan contratado con el administrador
         public int? IdPaymentPlan { get; set; }
-        public PaymentPlan? PaymentPlan { get; set; } // Navegación
+        public PaymentPlan? PaymentPlan { get; set; }
+
+        // Planes personalizados creados por el gimnasio para sus clientes
+        public ICollection<GymCustomPaymentPlan> GymCustomPaymentPlans { get; set; }
         public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<ClassTemplate> ClassTemplates { get; set; }
         public ICollection<TaskItem> Tasks { get; set; }
+
     }
 }

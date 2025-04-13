@@ -16,50 +16,29 @@ namespace ApiFithub.Controllers
         }
 
 
-        // ✅ Obtener los planes de un gimnasio específico
+        // ✅ GET: api/gymcustompaymentplan/gym/{idGym} (Obtener planes de pago para un gimnasio)
         [HttpGet("gym/{idGym}")]
         public async Task<ActionResult<IEnumerable<GymCustomPaymentPlan>>> GetPlansByGym(int idGym)
         {
             var plans = await _context.GymCustomPaymentPlans
-            .Select(p => new
-            {
-                p.IdGymCustomPaymentPlan,
-                p.GymId, // Solo se devuelve el ID
-                p.Name,
-                p.Description,
-                p.Price,
-                p.IsBasic,
-                p.Features,
-                p.Period,
-                p.StartDate,
-                p.EndDate
-            })
-            .Where(p => p.GymId == idGym)
-            .ToListAsync();
+                .Where(p => p.IdGym == idGym && p.IdGym != null)  // Asegurando que IdGym no sea null
+                .ToListAsync();
 
-                return Ok(plans);
+
+            if (plans.Count == 0)
+            {
+                return NotFound("No se encontraron planes de pago para este gimnasio.");
+            }
+
+            return Ok(plans);
         }
 
-        // ✅ Obtener un plan de pago específico por su ID
-        [HttpGet("{idGymCustomPaymentPlan}")]
-        public async Task<ActionResult<GymCustomPaymentPlan>> GetPlanById(int idGymCustomPaymentPlan)
+        // ✅ GET: api/gymcustompaymentplan/{id} (Obtener un plan de pago por ID)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<GymCustomPaymentPlan>> GetPlanById(int id)
         {
             var plan = await _context.GymCustomPaymentPlans
-                .Where(p => p.IdGymCustomPaymentPlan == idGymCustomPaymentPlan)
-                .Select(p => new
-                {
-                    p.IdGymCustomPaymentPlan,
-                    p.GymId,
-                    p.Name,
-                    p.Description,
-                    p.Price,
-                    p.IsBasic,
-                    p.Features,
-                    p.Period,
-                    p.StartDate,
-                    p.EndDate
-                })
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(p => p.IdGymCustomPaymentPlan == id);
 
             if (plan == null)
             {
@@ -69,39 +48,43 @@ namespace ApiFithub.Controllers
             return Ok(plan);
         }
 
-
-        // ✅ Crear un nuevo plan vinculado a un gimnasio
+        // ✅ POST: api/gymcustompaymentplan (Crear un nuevo plan de pago)
         [HttpPost]
-        public async Task<ActionResult<GymCustomPaymentPlan>> CreateGymPlan([FromBody] GymCustomPaymentPlanDto gymPlanDto)
+        public async Task<ActionResult<GymCustomPaymentPlan>> CreatePlan([FromBody] GymCustomPaymentPlanDto gymPlanDto)
         {
-            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == gymPlanDto.GymId);
+            if (gymPlanDto == null)
+            {
+                return BadRequest("El objeto del plan de pago no puede ser nulo.");
+            }
+
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == gymPlanDto.IdGym);
+
             if (!gymExists)
             {
                 return NotFound("El gimnasio especificado no existe.");
             }
 
-            var newGymPlan = new GymCustomPaymentPlan
+            var newPlan = new GymCustomPaymentPlan
             {
-                GymId = gymPlanDto.GymId,
+                IdGym = gymPlanDto.IdGym,
                 Name = gymPlanDto.Name,
                 Description = gymPlanDto.Description,
                 Price = gymPlanDto.Price,
                 IsBasic = gymPlanDto.IsBasic,
                 Features = gymPlanDto.Features,
                 Period = gymPlanDto.Period,
-                StartDate = gymPlanDto.StartDate,
-                EndDate = gymPlanDto.EndDate
+                Duration = gymPlanDto.Duration
             };
 
-            _context.GymCustomPaymentPlans.Add(newGymPlan);
+            _context.GymCustomPaymentPlans.Add(newPlan);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPlansByGym), new { idGym = newGymPlan.GymId }, newGymPlan);
+            return CreatedAtAction(nameof(GetPlanById), new { id = newPlan.IdGymCustomPaymentPlan }, newPlan);
         }
 
-        // ✅ Editar un plan de pago
+        // ✅ PUT: api/gymcustompaymentplan/{id} (Actualizar un plan de pago)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGymPlan(int id,[FromBody] GymCustomPaymentPlanDto gymPlanDto)
+        public async Task<IActionResult> UpdatePlan(int id, [FromBody] GymCustomPaymentPlanDto gymPlanDto)
         {
             if (id != gymPlanDto.IdGymCustomPaymentPlan)
             {
@@ -114,29 +97,27 @@ namespace ApiFithub.Controllers
                 return NotFound("Plan de pago no encontrado.");
             }
 
-            // Mantiene la relación con el gimnasio
             existingPlan.Name = gymPlanDto.Name;
             existingPlan.Description = gymPlanDto.Description;
             existingPlan.Price = gymPlanDto.Price;
             existingPlan.IsBasic = gymPlanDto.IsBasic;
             existingPlan.Features = gymPlanDto.Features;
             existingPlan.Period = gymPlanDto.Period;
-            existingPlan.StartDate = gymPlanDto.StartDate;
-            existingPlan.EndDate = gymPlanDto.EndDate;
+            existingPlan.Duration = gymPlanDto.Duration;
 
             await _context.SaveChangesAsync();
 
             return Ok(existingPlan);
         }
 
-        // ✅ Eliminar un plan de pago
+        // ✅ DELETE: api/gymcustompaymentplan/{id} (Eliminar un plan de pago)
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGymPlan(int id)
+        public async Task<IActionResult> DeletePlan(int id)
         {
             var plan = await _context.GymCustomPaymentPlans.FindAsync(id);
             if (plan == null)
             {
-                return NotFound();
+                return NotFound("Plan de pago no encontrado.");
             }
 
             _context.GymCustomPaymentPlans.Remove(plan);

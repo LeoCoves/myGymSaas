@@ -33,6 +33,22 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.ClassController",
+    "Method": "GetClassSessionById",
+    "RelativePath": "api/Class/session/{sessionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClassController",
     "Method": "GetClassSessions",
     "RelativePath": "api/Class/sessions/{classTemplateId}",
     "HttpMethod": "GET",
@@ -206,6 +222,27 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.ClientController",
+    "Method": "CreateInscription",
+    "RelativePath": "api/clients/{clientId}/inscriptions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "inscriptionDto",
+        "Type": "ApiFithub.Models.DTOs.InscriptionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClientController",
     "Method": "GetClientById",
     "RelativePath": "api/clients/{id}",
     "HttpMethod": "GET",
@@ -285,7 +322,23 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.ClientController",
-    "Method": "GetClients",
+    "Method": "GetClientInscription",
+    "RelativePath": "api/clients/{idClient}/inscription",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idClient",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.ClientController",
+    "Method": "GetClientsByGym",
     "RelativePath": "api/clients/gym/{idGym}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -516,7 +569,7 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",
-    "Method": "CreateGymPlan",
+    "Method": "CreatePlan",
     "RelativePath": "api/GymCustomPaymentPlan",
     "HttpMethod": "POST",
     "IsController": true,
@@ -542,7 +595,33 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",
-    "Method": "UpdateGymPlan",
+    "Method": "GetPlanById",
+    "RelativePath": "api/GymCustomPaymentPlan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.GymCustomPaymentPlan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",
+    "Method": "UpdatePlan",
     "RelativePath": "api/GymCustomPaymentPlan/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -563,7 +642,7 @@
   },
   {
     "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",
-    "Method": "DeleteGymPlan",
+    "Method": "DeletePlan",
     "RelativePath": "api/GymCustomPaymentPlan/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -576,32 +655,6 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",
-    "Method": "GetPlanById",
-    "RelativePath": "api/GymCustomPaymentPlan/{idGymCustomPaymentPlan}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idGymCustomPaymentPlan",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ApiFithub.Models.GymCustomPaymentPlan",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   },
   {
     "ContainingType": "ApiFithub.Controllers.GymCustomPaymentPlanController",

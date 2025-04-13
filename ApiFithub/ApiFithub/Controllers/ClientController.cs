@@ -16,9 +16,9 @@ namespace ApiFithub.Controllers
             _context = context;
         }
 
-        // ✅ GET: api/clients/{idGym} (Obtener todos los clientes de un gimnasio específico)
+        // ✅ GET: api/clients/gym/{idGym} (Obtener todos los clientes de un gimnasio específico)
         [HttpGet("gym/{idGym}")]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients(int idGym)
+        public async Task<ActionResult<IEnumerable<Client>>> GetClientsByGym(int idGym)
         {
             var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == idGym);
             if (!gymExists)
@@ -27,9 +27,9 @@ namespace ApiFithub.Controllers
             }
 
             var clients = await _context.Clients
-                                        .Where(c => c.IdGym == idGym)  // Filtramos por el ID del gimnasio
-                                        .Include(c => c.GymCustomPaymentPlan)  // Incluimos el plan de pago asociado
-                                        .ToListAsync();
+                .Where(c => c.IdGym == idGym)
+                .Include(c => c.GymCustomPaymentPlans)  // Relacionamos el plan de pago
+                .ToListAsync();
 
             if (clients.Count == 0)
             {
@@ -39,12 +39,13 @@ namespace ApiFithub.Controllers
             return Ok(clients);
         }
 
-
-        // ✅ GET: api/clients/5 (Obtener cliente por ID)
+        // ✅ GET: api/clients/{id} (Obtener cliente por ID)
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClientById(int id)
         {
-            var client = await _context.Clients.Include(c => c.GymCustomPaymentPlan).FirstOrDefaultAsync(c => c.IdClient == id);
+            var client = await _context.Clients
+                .Include(c => c.GymCustomPaymentPlans)  // Relacionamos el plan de pago
+                .FirstOrDefaultAsync(c => c.IdClient == id);
 
             if (client == null)
             {
@@ -54,39 +55,25 @@ namespace ApiFithub.Controllers
             return Ok(client);
         }
 
-        // ✅ Crear un cliente
+        // POST: api/clients
         [HttpPost]
         public async Task<ActionResult<Client>> CreateClient([FromBody] ClientDto clientDto)
         {
-            // Verificar si el gimnasio existe
-            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == clientDto.idGym);
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == clientDto.IdGym);
             if (!gymExists)
             {
-                return NotFound($"El gimnasio con ID {clientDto.idGym} no existe.");
+                return NotFound($"El gimnasio con ID {clientDto.IdGym} no existe.");
             }
 
-            // Verificar si el GymCustomPaymentPlan existe si se proporciona
-            if (clientDto.IdGymCustomPaymentPlan.HasValue)
-            {
-                var paymentPlanExists = await _context.GymCustomPaymentPlans
-                    .AnyAsync(p => p.IdGymCustomPaymentPlan == clientDto.IdGymCustomPaymentPlan);
-
-                if (!paymentPlanExists)
-                {
-                    return NotFound($"El plan de pago con ID {clientDto.IdGymCustomPaymentPlan} no existe.");
-                }
-            }
-
-            // Crear el nuevo cliente
             var newClient = new Client
             {
-                IdGym = clientDto.idGym,  // Relacionando al cliente con el gimnasio
-                IdGymCustomPaymentPlan = clientDto.IdGymCustomPaymentPlan,  // Relacionando al cliente con el plan de pago (si es proporcionado)
+                IdGym = clientDto.IdGym,
                 Name = clientDto.Name,
                 Surname = clientDto.Surname,
                 Email = clientDto.Email,
                 PhoneNumber = clientDto.PhoneNumber,
-                IsActive = true  // Establecer el estado de "activo" por defecto
+                IsActive = clientDto.IsActive,
+                FirstDayInscription = DateTime.UtcNow
             };
 
             _context.Clients.Add(newClient);
@@ -95,48 +82,150 @@ namespace ApiFithub.Controllers
             return CreatedAtAction(nameof(GetClientById), new { id = newClient.IdClient }, newClient);
         }
 
-        // ✅ PUT: api/clients/5 (Actualizar un cliente)
+        [HttpGet("{idClient}/inscription")]
+        public async Task<IActionResult> GetClientInscription(int idClient)
+        {
+            var client = await _context.Clients
+                .Where(c => c.IdClient == idClient)
+                .Select(c => new
+                {
+                    c.IdInscription,
+                    Inscription = _context.Inscriptions
+                        .Where(i => i.IdInscription == c.IdInscription)
+                        .Select(i => new
+                        {
+                            i.IdGymCustomPaymentPlan,
+                            i.StartDate,
+                            i.EndDate,
+                            i.Payment,
+                            i.Cost,
+                            i.Refund,
+                            i.PaymentMethod,
+                            Plan = new
+                            {
+                                i.GymCustomPaymentPlan.Name,
+                                i.GymCustomPaymentPlan.Description,
+                                i.GymCustomPaymentPlan.Price,
+                                i.GymCustomPaymentPlan.Period,
+                                i.GymCustomPaymentPlan.Duration
+                            }
+                        })
+                        .FirstOrDefault()
+                })
+                .FirstOrDefaultAsync();
+
+            if (client == null || client.Inscription == null)
+            {
+                return NotFound(new { message = "Inscripción no encontrada" });
+            }
+
+            return Ok(client.Inscription);
+        }
+
+
+        [HttpPost("{clientId}/inscriptions")]
+        public async Task<IActionResult> CreateInscription(int clientId, [FromBody] InscriptionDto inscriptionDto)
+        {
+            // Verificamos si el gimnasio especificado existe
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == inscriptionDto.IdGym);
+            if (!gymExists)
+            {
+                return BadRequest("El gimnasio especificado no existe.");
+            }
+
+            // Buscamos el cliente
+            var client = await _context.Clients.FindAsync(clientId);
+            if (client == null)
+            {
+                return NotFound("Cliente no encontrado.");
+            }
+
+            // Verificamos si el plan de pago existe
+            var planExists = await _context.GymCustomPaymentPlans
+                .AnyAsync(p => p.IdGymCustomPaymentPlan == inscriptionDto.IdGymCustomPaymentPlan);
+            if (!planExists)
+            {
+                return NotFound("El plan de pago especificado no existe.");
+            }
+
+            // Calculamos la fecha de finalización del plan
+            var paymentPlan = await _context.GymCustomPaymentPlans.FindAsync(inscriptionDto.IdGymCustomPaymentPlan);
+    
+
+            // Crear una nueva inscripción, sin modificar la anterior
+            var newInscription = new Inscription
+            {
+                IdClient = clientId,
+                IdGymCustomPaymentPlan = inscriptionDto.IdGymCustomPaymentPlan,
+                IdGym = inscriptionDto.IdGym,
+                Payment = inscriptionDto.Payment,
+                Cost = inscriptionDto.Cost,
+                Refund = inscriptionDto.Refund,
+                PaymentMethod = inscriptionDto.PaymentMethod,
+                StartDate = inscriptionDto.StartDate,
+                EndDate = inscriptionDto.EndDate // Fecha de finalización calculada
+            };
+
+            // Añadimos la nueva inscripción al contexto
+            _context.Inscriptions.Add(newInscription);
+            await _context.SaveChangesAsync(); // Guardamos la nueva inscripción
+
+            // Si quieres asignar esta nueva inscripción a un campo específico en el cliente (opcional)
+            client.IdInscription = newInscription.IdInscription; // O alguna lógica similar
+            client.IsActive = true;
+            _context.Entry(client).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            var inscriptionResultDto = new InscriptionDto
+            {
+                
+                IdGymCustomPaymentPlan = newInscription.IdGymCustomPaymentPlan,
+                IdGym = newInscription.IdGym,
+                Payment = newInscription.Payment,
+                Cost = newInscription.Cost,
+                Refund = newInscription.Refund,
+                PaymentMethod = newInscription.PaymentMethod,
+                StartDate = newInscription.StartDate,
+                EndDate = newInscription.EndDate
+            };
+
+            return Ok(inscriptionResultDto); 
+        }
+
+
+        // PUT: api/clients/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClient(int id, [FromBody] ClientDto clientDto)
         {
-            if (clientDto == null || id != clientDto.IdClient)
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == clientDto.IdGym);
+            if (!gymExists)
             {
-                return BadRequest("Datos inválidos.");
+                return BadRequest("El gimnasio especificado no existe.");
             }
 
-            var existingClient = await _context.Clients.FindAsync(id);
-            if (existingClient == null)
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
             {
                 return NotFound("Cliente no encontrado.");
             }
 
-            // Verificar si el nuevo plan de pago existe
-            if (clientDto.IdGymCustomPaymentPlan.HasValue)
-            {
-                var planExists = await _context.GymCustomPaymentPlans.AnyAsync(p => p.IdGymCustomPaymentPlan == clientDto.IdGymCustomPaymentPlan);
-                if (!planExists)
-                {
-                    return NotFound("El plan de pago especificado no existe.");
-                }
-            }
+            client.Name = clientDto.Name;
+            client.Surname = clientDto.Surname;
+            client.Email = clientDto.Email;
+            client.PhoneNumber = clientDto.PhoneNumber;
+            client.IsActive = clientDto.IsActive;
 
-            // Actualizamos los datos del cliente
-            existingClient.Name = clientDto.Name;
-            existingClient.Surname = clientDto.Surname;
-            existingClient.Email = clientDto.Email;
-            existingClient.PhoneNumber = clientDto.PhoneNumber;
-            existingClient.IsActive = clientDto.IsActive;
-            existingClient.IdGymCustomPaymentPlan = clientDto.IdGymCustomPaymentPlan; // Puede ser NULL si se quiere quitar el plan
-
+            _context.Entry(client).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return Ok(existingClient);
+            return Ok(client);
         }
 
+
+        // ✅ PUT: api/clients/{id}/activate (Activar cliente)
         [HttpPut("{id}/activate")]
         public async Task<IActionResult> ActivateClient(int id)
         {
-            // Buscar el cliente por ID
             var client = await _context.Clients.FindAsync(id);
 
             if (client == null)
@@ -144,21 +233,17 @@ namespace ApiFithub.Controllers
                 return NotFound("Cliente no encontrado.");
             }
 
-            // Activar el cliente
             client.IsActive = true;
             _context.Entry(client).State = EntityState.Modified;
-
-            // Guardar los cambios
             await _context.SaveChangesAsync();
 
-            return NoContent(); // Devolvemos 204 (No Content) indicando que la activación fue exitosa
+            return NoContent();
         }
 
-
+        // ✅ PUT: api/clients/{id}/deactivate (Desactivar cliente)
         [HttpPut("{id}/deactivate")]
         public async Task<IActionResult> DeactivateClient(int id)
         {
-            // Buscar el cliente por ID
             var client = await _context.Clients.FindAsync(id);
 
             if (client == null)
@@ -166,16 +251,14 @@ namespace ApiFithub.Controllers
                 return NotFound("Cliente no encontrado.");
             }
 
-            // Desactivar el gimnasio
+            client.IdInscription = null;
+
             client.IsActive = false;
             _context.Entry(client).State = EntityState.Modified;
-
-            // Guardar los cambios
             await _context.SaveChangesAsync();
 
-            return NoContent(); // Devolvemos 204 (No Content) indicando que la desactivación fue exitosa
+            return NoContent();
         }
-
 
     }
 }

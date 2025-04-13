@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http.Json;
 
 namespace ApiFithub.Controllers
 {
@@ -53,7 +54,7 @@ namespace ApiFithub.Controllers
             }
 
             // Verificar si el gimnasio existe
-            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == classdto.GymId);
+            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == classdto.IdGym);
             if (!gymExists)
             {
                 return NotFound("El gimnasio especificado no existe.");
@@ -98,7 +99,7 @@ namespace ApiFithub.Controllers
                 DayOfWeek = classdto.DayOfWeek,
                 StartTime = classdto.StartTime,
                 EndTime = classdto.EndTime,
-                IdGym = classdto.GymId,
+                IdGym = classdto.IdGym,
                 ClassSessions = sessionsToCreate  // Asociar las sesiones directamente al template
             };
 
@@ -153,6 +154,34 @@ namespace ApiFithub.Controllers
             return Ok(sessions);
         }
 
+        [HttpGet("session/{sessionId}")]
+        public async Task<IActionResult> GetClassSessionById(int sessionId)
+        {
+            var session = await _context.ClassSessions
+                .Include(cs => cs.Clients) // Incluye los clientes si están relacionados
+                .FirstOrDefaultAsync(cs => cs.IdClassSession == sessionId);
+
+            if (session == null)
+                return NotFound("Sesión de clase no encontrada.");
+
+            // Si quieres devolver un DTO en lugar de toda la entidad, puedes mapearlo así:
+            var sessionDto = new ClassSessionDto
+            {
+                Id = session.IdClassSession,
+                ClassTemplateId = session.IdClassTemplate,
+                SessionDate = session.SessionDate,
+                Clients = session.Clients.Select(c => new ClientDto
+                {
+                    IdClient = c.IdClient,
+                    Name = c.Name,
+                    Surname = c.Surname
+                }).ToList()
+            };
+
+            return Ok(sessionDto);
+        }
+
+
 
         // 🔹 Inscribir un cliente en una sesión de clase
         [HttpPost("sessions/{sessionId}/clients/{clientId}")]
@@ -195,12 +224,24 @@ namespace ApiFithub.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok();
+            // Usar JsonSerializerOptions para evitar el ciclo de referencia
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true  // Opcional, para hacer la salida JSON más legible
+            };
+
+            if (template == null)
+            {
+                return NotFound("Plantilla de clase no encontrada.");
+            }
+
+            return new JsonResult(template, jsonOptions); // Usamos JsonResult para personalizar la serialización
         }
 
 
         [HttpDelete("sessions/{sessionId}/clients/{clientId}")]
-        public async Task<IActionResult> RemoveClientFromSession(int sessionId, int clientId)
+        public async Task<IActionResult> RemoveClientFromSession( int sessionId, int clientId)
         {
             var session = await _context.ClassSessions
                 .Include(cs => cs.Clients)

@@ -4,6 +4,7 @@ using ApiFithub.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiFithub.Migrations
 {
     [DbContext(typeof(ApiFithubContexto))]
-    partial class ApiFithubContextoModelSnapshot : ModelSnapshot
+    [Migration("20250413141612_RemoveUniqueIndexFromIdClient")]
+    partial class RemoveUniqueIndexFromIdClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -316,12 +319,6 @@ namespace ApiFithub.Migrations
 
                     b.Property<decimal>("Payment")
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Refund")
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<DateTime>("StartDate")
