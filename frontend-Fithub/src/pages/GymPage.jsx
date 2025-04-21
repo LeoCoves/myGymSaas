@@ -8,7 +8,7 @@ function GymPage() {
   return (
     <>
       <Sidebar/>
-      <section className="flex-1 ml-40">
+      <section className="flex-1 ml-10">
         <Header classname="justify-center"/>
           <Outlet /> {/* Aquí se renderizará DashboardPage */}
       </section>

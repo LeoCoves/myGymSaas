@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
     setRole(storedRole);
   }, []);
 
-  // Función para iniciar sesión
   const login = async (email, password) => {
     try {
       const response = await fetch('https://localhost:7216/api/Auth/login', {
@@ -44,40 +43,45 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
-      if (!response.ok) throw new Error('Error en el inicio de sesión');
-
+  
+      if (!response.ok) {
+        // Si la respuesta no es "OK", obtenemos el mensaje de error
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Invalid credentials');  // Asegúrate de que el backend envíe "message"
+      }
+  
       const data = await response.json();
-
-      console.log(user);
-
-      // Guardar en el estado y en localStorage
+  
+      // Guardamos los datos del usuario y rol
       setUser(data.userName);
       setGymName(data.gymName);
-      setIdGym(data.idGym); // Almacenar idGym
-      const userRole = (data.Role || data.role || "").trim();
-      setRole(userRole);
-
+      setIdGym(data.idGym);
+      setRole(data.Role || data.role);
+  
+      // Guardar en localStorage
       localStorage.setItem('user', JSON.stringify(data.userName));
       localStorage.setItem('gymName', JSON.stringify(data.gymName));
-      localStorage.setItem('idGym', JSON.stringify(data.idGym)); // Almacenar idGym
-      localStorage.setItem('role', userRole);
+      localStorage.setItem('idGym', JSON.stringify(data.idGym));
+      localStorage.setItem('role', data.Role || data.role);
       localStorage.setItem('token', data.Token);
-
-      // Redirección basada en el rol
+  
+      // Redirigir según el rol
       setTimeout(() => {
-        if (userRole === "Admin") {
+        if (data.Role === "Admin") {
           navigate("/admin");
         } else if (data.gymName) {
-          navigate(`/${data.gymName}`); // Redirección dinámica
+          navigate(`/${data.gymName}`);
         } else {
-          navigate("/"); // Fallback si no hay gymName
+          navigate("/");  // Fallback si no hay gymName
         }
       }, 100);
     } catch (error) {
+      error.message = 'Email and password are incorrect';  // Asegúrate de que el backend envíe "message"
       console.error("Error en el inicio de sesión:", error);
+      throw error;  // Lanza el error para ser manejado por el componente
     }
   };
+  
 
   // Función para cerrar sesión
   const logout = () => {

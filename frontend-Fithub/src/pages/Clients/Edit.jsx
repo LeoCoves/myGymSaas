@@ -14,6 +14,7 @@ const EditClientPage = () => {
     const [paymentPlans, setPaymentPlans] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
     const [inscription, setInscription] = useState({
         idGymCustomPaymentPlan: '',
         idGym: idGym,
@@ -158,19 +159,36 @@ const EditClientPage = () => {
 
     return (
         <div>
-           
-            <form onSubmit={handleSubmit} className="shadow-lg space-y-4 border p-10 rounded bg-gray-50 my-4">
-            <h2 className="text-xl font-bold mb-4">Editar Cliente</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div>
-                        <div className="justify-content-center relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+          
+        <form onSubmit={handleSubmit} className="shadow-lg space-y-4 border p-10 rounded bg-gray-50 my-10">
+            
+            <button
+                type="button"
+                className=" bg-gray-50 border-transparent hover:border-transparent focus:outline-none focus:ring-0 w-full flex justify-between items-centertext-left"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+
+                <div className="justify-content-center relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                             <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
                             </svg>
                         </div>
-                        <div className="justigy-content-right">
-                            <div className="space-x-2 flex items-center mt-2">
-                                <label className="text-sm font-medium text-gray-700">Sigue formando parte de nosotros</label>
+        <h2 className="text-xl font-bold">Editar Cliente</h2>
+        <svg
+          className={`w-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+                {isOpen && 
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div>
+                        <div className="justify-content-right">
+                            <div className="space-x-2 flex items-center mt-2 text-right">
+                                <label className="text-sm font-medium ">Sigue formando parte de nosotros</label>
                                 <button
                                     type="button"
                                     onClick={() =>
@@ -181,8 +199,8 @@ const EditClientPage = () => {
                                     }`}
                                 >
                                     <span
-                                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                                            client?.isActive ? "translate-x-6" : "translate-x-1"
+                                        className={`inline-block h-5 w-full transform rounded-full bg-white transition-transform ${
+                                            client?.isActive ? "translate-x-1" : "translate-x-5"
                                         }`}
                                     />
                                 </button>
@@ -196,7 +214,7 @@ const EditClientPage = () => {
                             name="name"
                             value={client?.name || ""}
                             onChange={handleInputChange}
-                            className="px-4 py-2 border rounded w-full"
+                            className="px-4 py-2 border border-black rounded w-full"
                         />
                     </div>
                     <div>
@@ -206,7 +224,7 @@ const EditClientPage = () => {
                             name="surname"
                             value={client?.surname || ""}
                             onChange={handleInputChange}
-                            className="px-4 py-2 border rounded w-full"
+                            className="px-4 py-2 border border-black rounded w-full"
                         />
                     </div>
                     <div>
@@ -216,8 +234,17 @@ const EditClientPage = () => {
                             name="email"
                             value={client?.email || ""}
                             onChange={handleInputChange}
-                            className="px-4 py-2 border rounded w-full"
+                            className="px-4 py-2 border border-black rounded w-full"
                         />
+
+                        <div className="flex gap-5 align-center mt-10">
+                            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+                                Guardar cambios
+                            </button>
+                            <Link to={`/${gymName}/clients`} className="px-4 py-2 rounded bg-gray-500 hover:bg-gray-600 text-white">
+                            Cancelar
+                        </Link>
+                        </div>
                     </div>
                     <div>
                         <label className="block">Número de Teléfono</label>
@@ -226,44 +253,40 @@ const EditClientPage = () => {
                             name="phoneNumber"
                             value={client?.phoneNumber || ""}
                             onChange={handleInputChange}
-                            className="px-4 py-2 border rounded w-full"
+                            className="px-4 py-2 border border-black rounded w-full"
                         />
+                    <div className="flex align-center mt-10">
+                        
                     </div>
-                    <div className="bg-white shadow-lg rounded-2xl p-6 border hover:shadow-xl transition-shadow cursor-pointer">
-    {/* ... otros campos del formulario */}
 
-    <h3 className="block text-bold pb-4">Plan Actual</h3>
-    <div className="px-4 py-2 border rounded w-full bg-gray-100">
+                    </div>
+                    <div className="bg-neutral-800 shadow-lgs rounded-2xl p-6 border hover:shadow-xl transition-shadow cursor-pointer">
+                        {/* ... otros campos del formulario */}
 
-        {
-            inscription ? (
-                inscription.plan ? (
-                    <>
-                        <p><strong>{inscription.plan.name}</strong></p>
-                        <p>{inscription.plan.description}</p>
-                        <p> {inscription.plan.price}€/{inscription.plan.period}</p>
-                        <p>{new Date(inscription.startDate).toLocaleDateString()} - {new Date(inscription.endDate).toLocaleDateString()}</p>
+                        <h2 className="block text-lg text-white pb-4">Plan Contratado Actual</h2>
+                        <div className="px-4 py-2 bg-neutral-900 text-white rounded w-full ">
 
-                    </>
-                ) : (
-                    <p>Sin plan contratado</p>
-                )
-            ) : (
-                <p>Cargando inscripción...</p>
-            )
-        }
-    </div>
-</div>
- 
-                </div>
-                <div className="flex gap-2">
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-                        Guardar cambios
-                    </button>
-                    <Link to={`/${gymName}/clients`} className="px-4 py-2 rounded bg-gray-500 hover:bg-gray-600 text-white">
-                        Cancelar
-                    </Link>
-                </div>
+                            {
+                                inscription ? (
+                                    inscription.plan ? (
+                                        <>
+                                            <p><strong>{inscription.plan.name}</strong></p>
+                                            <p>{inscription.plan.description}</p>
+                                            <p> {inscription.plan.price}€/{inscription.plan.period}</p>
+                                            <p>{new Date(inscription.startDate).toLocaleDateString()} - {new Date(inscription.endDate).toLocaleDateString()}</p>
+
+                                        </>
+                                    ) : (
+                                        <p>Sin plan contratado</p>
+                                    )
+                                ) : (
+                                    <p>Cargando inscripción...</p>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>}
+                
             </form>
 
             
@@ -271,7 +294,7 @@ const EditClientPage = () => {
             <h2 className="text-xl font-bold mb-4">Crear nueva inscripción</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Planes a la izquierda */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 mr-10">
                     {paymentPlans.map((plan) => (
                         <div
                         key={plan.idGymCustomPaymentPlan}
@@ -290,28 +313,31 @@ const EditClientPage = () => {
                     </div>
 
                     {/* Inputs a la derecha */}
-                    <div className="space-y-4">
-                    <div>
-                        <label>Fecha de inicio</label>
-                        <input
-                        type="date"
-                        name="startDate"
-                        value={inscription.startDate}
-                        onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
-                        />
-                    </div>
+                    <div className="space-y-5 text-left">
+                    
+                    <div className="flex gap-5 align-center">
+                        <div>
+                            <label>Fecha de inicio</label>
+                            <input
+                            type="date"
+                            name="startDate"
+                            value={inscription.startDate}
+                            onChange={handleInscriptionChange}
+                            className="px-4 py-2 border rounded border-black w-full"
+                            />
+                        </div>
 
-                    <div>
-                        <label>Fecha de finalización</label>
-                        <input
-                        type="date"
-                        name="endDate"
-                        value={inscription.endDate}
-                        onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
-                        disabled
-                        />
+                        <div>
+                            <label>Fecha de finalización</label>
+                            <input
+                            type="date"
+                            name="endDate"
+                            value={inscription.endDate}
+                            onChange={handleInscriptionChange}
+                            className="px-4 py-2 border rounded border-black w-full"
+                            disabled
+                            />
+                        </div>
                     </div>
 
                     <div>
@@ -321,7 +347,7 @@ const EditClientPage = () => {
                         name="payment"
                         value={inscription.payment}
                         onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
+                        className="px-4 py-2 border rounded border-black w-full"
                         />
                     </div>
 
@@ -332,35 +358,37 @@ const EditClientPage = () => {
                         name="cost"
                         value={inscription.cost}
                         onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
+                        className="px-4 py-2 border rounded border-black w-full"
                         disabled
                         />
                     </div>
 
-                    <div>
-                        <label>Devolver(€)</label>
-                        <input
-                        type="number"
-                        name="refund"
-                        value={inscription.payment - inscription.cost}
-                        onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
-                        />
-                    </div>
+                    <div className="flex gap-5 align-center">
+                        <div>
+                            <label>Devolver(€)</label>
+                            <input
+                            type="number"
+                            name="refund"
+                            value={inscription.payment - inscription.cost}
+                            onChange={handleInscriptionChange}
+                            className="px-4 py-2 border rounded border-black w-full"
+                            />
+                        </div>
 
-                    <div>
-                        <label>Forma de pago</label>
-                        <select
-                        name="paymentMethod"
-                        value={inscription.paymentMethod}
-                        onChange={handleInscriptionChange}
-                        className="px-4 py-2 border rounded w-full"
-                        >
-                        <option value="null">Seleccione un método</option>
-                        <option value="cash">Efectivo</option>
-                        <option value="visa">Visa</option>
-                        <option value="other">Otro</option>
-                        </select>
+                        <div>
+                            <label>Forma de pago</label>
+                            <select
+                            name="paymentMethod"
+                            value={inscription.paymentMethod}
+                            onChange={handleInscriptionChange}
+                            className="px-4 py-2 border rounded border-black w-full"
+                            >
+                            <option value="null">Seleccione un método</option>
+                            <option value="cash">Efectivo</option>
+                            <option value="visa">Visa</option>
+                            <option value="other">Otro</option>
+                            </select>
+                        </div>
                     </div>
 
                     <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">

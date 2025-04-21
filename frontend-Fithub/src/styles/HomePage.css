@@ -1,69 +1,110 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+/* styles.css */
+
+.hero {
+  background-color: rgb(250, 250, 250);
+  padding: 5rem 1rem;
+  text-align: center;
+  font-family: sans-serif;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
-.tit-secondary{
-    color: #d4c32b;
-    margin-bottom: 2em;
+.hero-title {
+  font-size: 2.5rem;
+  color: #1e293b;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.subtit{
-    margin-bottom: 2em;;
+.hero-rotator {
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgb(230, 49, 49);
+  margin-bottom: 1.5rem;
 }
 
-.info{
-    margin-top: 8em;
-    margin-bottom: 4em;
-    display: flex;
-    justify-content: space-between;
+.hero-text {
+  font-size: 1.125rem;
+  color: #595d63;
+  margin-bottom: 2rem;
 }
 
-.functions{
-    display: flex;
-    justify-content: space-between;
-
-    .title{
-        font-size: x-large;
-        font-weight: bolder;
-    }
-
-    .list{
-        list-style: none;
-    }
+.hero-button {
+  background-color: #000000;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s;
 }
 
-.info-card{
-    margin-top: 3em;
-
-    .tit{
-        margin-bottom: 3em;
-    }
+.hero-button:hover {
+  background-color: rgb(230, 49, 49);
+  color: black;
 }
 
-.card{
-    border: 1pt solid black;
-    box-shadow: 12px;
-    border-radius: 15px;
+.image-banner {
+  max-width: 80rem;
+  margin: 0 auto 4rem;
+  height: 24rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  display: block;
+  width: 100%;
 }
 
-.card.plan{
-    width: 400px;
-    height: 30em;
+.stats-section {
+  background-color: #f9fafb;
+  padding: 3rem 1rem;
 }
 
-.GroupCardInfo{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2em;
-    justify-content: space-between;
+.stat-box {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-.payment-plan{
-    margin-top: 5em;
-    display: flex;
-    gap: 4em;
-    justify-content: space-between;
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: rgb(205, 120, 41);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: rgb(0, 0, 0);
+}
+
+.benefits-section {
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.benefits-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: rgb(230, 49, 49);
+  margin-bottom: 2rem;
+}
+
+.benefits-list {
+  font-size: 1.125rem;
+  color: #334155;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 36rem;
+}
+
+.benefits-list li {
+  margin-bottom: 1.5rem;
+  transition: color 0.3s;
+}
+
+.benefits-list li:hover {
+  color: rgb(230, 49, 49);
 }

@@ -52,17 +52,17 @@ const TaskCalendar = () => {
   const getBackgroundColor = (levelImportant) => {
     switch (levelImportant) {
       case 1:
-        return '#007aff';  // Baja
+        return 'rgba(0, 159, 255, 0.5)';  // Baja
       case 2:
-        return 'yellow';      // Media
+        return 'rgba(255, 236, 130, 0.59)';      // Media
       case 3:
-        return 'orange';      // Alta
+        return 'rgba(236, 141, 0, 0.5)';      // Alta
       case 4:
-        return 'red';         // Muy Alta
+        return 'rgba(239, 60, 60, 0.76)';         // Muy Alta
       case 5:
-        return 'darkred';     // Crítica
+        return 'rgba(168, 16, 16, 0.79)';     // Crítica
       default:
-        return 'gray';        // Por defecto
+        return 'rgb(210, 210, 210)';        // Por defecto
     }
   };
 
@@ -157,17 +157,19 @@ const TaskCalendar = () => {
           // Cambiar el color según el nivel de importancia
           const backgroundColor = getBackgroundColor(event.levelImportant);
           return {
-            className: `rbc-event event-level-${event.levelImportant}`, // Clase dinámica
+            className: `rbc-event`, // Clase dinámica
             style: { backgroundColor,
               color: 'white',
               borderRadius: '5px',
               padding: '10px',
-              textAlign: 'center',
+              textAlign: 'left',
               fontSize: '0.8em',
               cursor: 'pointer',
+              minHeight: '30px',
+              maxWidth: '200px',
               boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
+              whiteSpace: 'normal', // <- permite múltiples líneas
+              overflow: 'hidden',   // <- evita cortar el contenido
              }, // Opcionalmente también puedes agregar estilo directo
           };
         }}
