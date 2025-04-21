@@ -41,7 +41,7 @@ namespace ApiFithub.Controllers
                 // Crea un nuevo usuario (gimnasio)
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.GymName,
                     Email = model.Email,
                     // Aquí puedes agregar más campos según tu modelo de ApplicationUser
                 };

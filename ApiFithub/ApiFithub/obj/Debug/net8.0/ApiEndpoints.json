@@ -363,6 +363,58 @@
     ]
   },
   {
+    "ContainingType": "ApiFithub.Controllers.DashboardController",
+    "Method": "GetCashFlow",
+    "RelativePath": "api/Dashboard/cashflow",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idGym",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "range",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.DashboardController",
+    "Method": "GetSummary",
+    "RelativePath": "api/Dashboard/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "range",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idGym",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ApiFithub.Controllers.GymController",
     "Method": "GetAllGyms",
     "RelativePath": "api/Gym",
