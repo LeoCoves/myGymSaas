@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiFithub", "ApiFithub\ApiFithub.csproj", "{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiFithub.Tests", "ApiFithub.Tests\ApiFithub.Tests.csproj", "{6BB3E24D-B30F-433C-B79C-262CC791222A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB3E24D-B30F-433C-B79C-262CC791222A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB3E24D-B30F-433C-B79C-262CC791222A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB3E24D-B30F-433C-B79C-262CC791222A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB3E24D-B30F-433C-B79C-262CC791222A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

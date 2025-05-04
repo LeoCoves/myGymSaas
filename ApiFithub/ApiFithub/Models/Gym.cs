@@ -29,12 +29,15 @@ namespace ApiFithub.Models
         // Plan contratado con el administrador
         public int? IdPaymentPlan { get; set; }
         public PaymentPlan? PaymentPlan { get; set; }
+        public ICollection<Client> Clients { get; set; }
 
         // Planes personalizados creados por el gimnasio para sus clientes
         public ICollection<GymCustomPaymentPlan> GymCustomPaymentPlans { get; set; }
         public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<ClassTemplate> ClassTemplates { get; set; }
         public ICollection<TaskItem> Tasks { get; set; }
+        // Relación con CashCounts
+        public ICollection<CashCount> CashCounts { get; set; }
 
     }
 }

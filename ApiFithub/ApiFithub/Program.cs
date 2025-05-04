@@ -7,95 +7,82 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers().AddJsonOptions(options =>
+public class Program
 {
-    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-});
-
-
-
-var connectionString = builder.Configuration.GetConnectionString("ApiFithub");
-builder.Services.AddDbContext<ApiFithubContexto>(options =>
-    options.UseSqlServer(connectionString));
-
-// Configurar Identity
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApiFithubContexto>()
-    .AddDefaultTokenProviders();
-
-// Configuración de autenticación JWT
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+    public static async Task Main(string[] args)
     {
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddControllers().AddJsonOptions(options =>
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
-
-builder.Services.AddAuthorization();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// Configurar Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    // Aquí podemos personalizar la descripción de los modelos.
-    c.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time" });
-});
-
-var MyAllowSpecificOrigins = "AllowAll";
-
-
-
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173") // Permite el frontend
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
         });
-});
 
+        var connectionString = builder.Configuration.GetConnectionString("ApiFithub");
+        builder.Services.AddDbContext<ApiFithubContexto>(options =>
+            options.UseSqlServer(connectionString));
 
-var app = builder.Build();
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApiFithubContexto>()
+            .AddDefaultTokenProviders();
 
-app.UseCors(MyAllowSpecificOrigins); // Habilita CORS
-app.UseDeveloperExceptionPage();
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        builder.Services.AddAuthorization();
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time" });
+        });
+
+        var MyAllowSpecificOrigins = "AllowAll";
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                policy =>
+                {
+                    policy.WithOrigins("http://localhost:5173")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+        });
+
+        var app = builder.Build();
+
+        app.UseCors(MyAllowSpecificOrigins);
+        app.UseDeveloperExceptionPage();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            await SeedData.InitializeAsync(services, userManager, roleManager);
+        }
+
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        app.MapControllers();
+        app.Run();
+    }
 }
-
-// Inicialización de datos (SeedData)
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-    // Llamamos al método de inicialización de datos
-    await SeedData.InitializeAsync(services, userManager, roleManager);
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

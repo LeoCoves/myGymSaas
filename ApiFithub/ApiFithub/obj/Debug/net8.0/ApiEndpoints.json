@@ -32,6 +32,115 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ApiFithub.Controllers.CashCountController",
+    "Method": "Create",
+    "RelativePath": "api/CashCount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ApiFithub.Models.DTOs.CashCountDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.CashCount",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.CashCountController",
+    "Method": "GetAll",
+    "RelativePath": "api/CashCount/{idGym}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idGym",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.CashCount, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.CashCountController",
+    "Method": "Get",
+    "RelativePath": "api/CashCount/{idGym}/{idCashCount}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idGym",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idCashCount",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiFithub.Models.CashCount",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiFithub.Controllers.CashCountController",
+    "Method": "GetInscriptionsToday",
+    "RelativePath": "api/CashCount/{idGym}/inscriptions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idGym",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiFithub.Models.Inscription, ApiFithub, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ApiFithub.Controllers.ClassController",
     "Method": "GetClassSessionById",
     "RelativePath": "api/Class/session/{sessionId}",

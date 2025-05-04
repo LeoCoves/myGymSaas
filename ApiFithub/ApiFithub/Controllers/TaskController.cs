@@ -24,11 +24,6 @@ namespace ApiFithub.Controllers
                 .Where(s => s.IdGym == gymId)
                 .ToListAsync();
 
-            if (tasks == null || tasks.Count == 0)
-            {
-                return NotFound("No se encontraron tareas para este gimnasio.");
-            }
-
             return Ok(tasks);
         }
 

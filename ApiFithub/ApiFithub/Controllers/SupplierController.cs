@@ -27,11 +27,6 @@ namespace ApiFithub.Controllers
                 .Where(s => s.IdGym == gymId)
                 .ToListAsync();
 
-            if (suppliers == null || suppliers.Count == 0)
-            {
-                return NotFound("No se encontraron proveedores para este gimnasio.");
-            }
-
             return Ok(suppliers);
         }
 

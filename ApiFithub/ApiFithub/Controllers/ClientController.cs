@@ -3,6 +3,7 @@ using ApiFithub.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Net;
 
 namespace ApiFithub.Controllers
 {
@@ -20,21 +21,9 @@ namespace ApiFithub.Controllers
         [HttpGet("gym/{idGym}")]
         public async Task<ActionResult<IEnumerable<Client>>> GetClientsByGym(int idGym)
         {
-            var gymExists = await _context.Gyms.AnyAsync(g => g.IdGym == idGym);
-            if (!gymExists)
-            {
-                return NotFound("Gimnasio no encontrado.");
-            }
-
             var clients = await _context.Clients
-                .Where(c => c.IdGym == idGym)
-                .Include(c => c.GymCustomPaymentPlans)  // Relacionamos el plan de pago
-                .ToListAsync();
-
-            if (clients.Count == 0)
-            {
-                return NotFound("No se encontraron clientes para este gimnasio.");
-            }
+               .Where(c => c.IdGym == idGym)
+               .ToListAsync();
 
             return Ok(clients);
         }
@@ -65,21 +54,20 @@ namespace ApiFithub.Controllers
                 return NotFound($"El gimnasio con ID {clientDto.IdGym} no existe.");
             }
 
-            var newClient = new Client
+            var client = new Client
             {
-                IdGym = clientDto.IdGym,
                 Name = clientDto.Name,
                 Surname = clientDto.Surname,
                 Email = clientDto.Email,
                 PhoneNumber = clientDto.PhoneNumber,
                 IsActive = clientDto.IsActive,
-                FirstDayInscription = DateTime.UtcNow
+                IdGym = clientDto.IdGym
             };
 
-            _context.Clients.Add(newClient);
+            _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetClientById), new { id = newClient.IdClient }, newClient);
+            return CreatedAtAction(nameof(GetClientById), new { id = client.IdClient }, client);
         }
 
         [HttpGet("{idClient}/inscription")]
@@ -150,7 +138,8 @@ namespace ApiFithub.Controllers
 
             // Calculamos la fecha de finalización del plan
             var paymentPlan = await _context.GymCustomPaymentPlans.FindAsync(inscriptionDto.IdGymCustomPaymentPlan);
-    
+
+            var payment = inscriptionDto.Payment - (inscriptionDto.Refund ?? 0);
 
             // Crear una nueva inscripción, sin modificar la anterior
             var newInscription = new Inscription
@@ -158,7 +147,7 @@ namespace ApiFithub.Controllers
                 IdClient = clientId,
                 IdGymCustomPaymentPlan = inscriptionDto.IdGymCustomPaymentPlan,
                 IdGym = inscriptionDto.IdGym,
-                Payment = inscriptionDto.Payment,
+                Payment = payment,
                 Cost = inscriptionDto.Cost,
                 Refund = inscriptionDto.Refund,
                 PaymentMethod = inscriptionDto.PaymentMethod,

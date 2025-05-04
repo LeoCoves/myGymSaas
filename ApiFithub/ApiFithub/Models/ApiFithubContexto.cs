@@ -18,6 +18,7 @@ namespace ApiFithub.Models
         public DbSet<GymPaymentPlan> GymPaymentPlans { get; set; }
         public DbSet<GymCustomPaymentPlan> GymCustomPaymentPlans { get; set; }
         public DbSet<Inscription> Inscriptions { get; set; }
+        public DbSet<CashCount> CashCounts { get; set; }
         public DbSet<MessageAdminGym> MessageAdminGyms { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
@@ -53,6 +54,12 @@ namespace ApiFithub.Models
                 .WithMany()  // No es necesario que un plan tenga muchas inscripciones
                 .HasForeignKey(i => i.IdGymCustomPaymentPlan)
                 .OnDelete(DeleteBehavior.Restrict); // Evita la eliminación en cascada
+
+            modelBuilder.Entity<CashCount>()
+                .HasOne(c => c.Gym)
+                .WithMany(g => g.CashCounts)
+                .HasForeignKey(c => c.IdGym);
+
 
             // Relación entre Client y ClassEnrollments (Uno a muchos)
             modelBuilder.Entity<ClassEnrollment>()

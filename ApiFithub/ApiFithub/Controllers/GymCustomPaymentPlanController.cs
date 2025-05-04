@@ -24,12 +24,6 @@ namespace ApiFithub.Controllers
                 .Where(p => p.IdGym == idGym && p.IdGym != null)  // Asegurando que IdGym no sea null
                 .ToListAsync();
 
-
-            if (plans.Count == 0)
-            {
-                return NotFound("No se encontraron planes de pago para este gimnasio.");
-            }
-
             return Ok(plans);
         }
 

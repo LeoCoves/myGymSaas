@@ -3,6 +3,90 @@
   "WorkspaceRootPath": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\cashcountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\cashcountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\cashcount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\cashcount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BB3E24D-B30F-433C-B79C-262CC791222A}|ApiFithub.Tests\\ApiFithub.Tests.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub.tests\\integration\\clientintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BB3E24D-B30F-433C-B79C-262CC791222A}|ApiFithub.Tests\\ApiFithub.Tests.csproj|solutionrelative:apifithub.tests\\integration\\clientintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BB3E24D-B30F-433C-B79C-262CC791222A}|ApiFithub.Tests\\ApiFithub.Tests.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub.tests\\controllers\\clientcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BB3E24D-B30F-433C-B79C-262CC791222A}|ApiFithub.Tests\\ApiFithub.Tests.csproj|solutionrelative:apifithub.tests\\controllers\\clientcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\inscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\inscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\gymcustompaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\gymcustompaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\classsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\classsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\classtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\classtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\gympaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\gympaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\paymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\paymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\dtos\\cashcountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\dtos\\cashcountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\apifithubcontexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\apifithubcontexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\gymcustompaymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\gymcustompaymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250423192437_SetCashCount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiFithub\\Migrations\\20250423192437_SetCashCount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,28 +95,12 @@
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\gymcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\gymcustompaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\gymcustompaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\gymcustompaymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\gymcustompaymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\gympaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\gympaymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\migrations\\apifithubcontextomodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,14 +113,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\dtos\\gymdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\dtos\\gymdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\gym.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\gym.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\apifithubcontexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\apifithubcontexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413130201_ClientsAndPlansModified.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,10 +147,6 @@
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\dtos\\classsessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\classsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\classsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -107,28 +163,12 @@
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\classenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\controllers\\paymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\controllers\\paymentplancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\models\\paymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\models\\paymentplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -172,6 +212,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\migrations\\20250413134909_clientsandplansmodified.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\migrations\\20250413134909_clientsandplansmodified.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|c:\\users\\lcove\\desktop\\repositorios\\mygymsaas\\apifithub\\apifithub\\migrations\\20250423201854_setcashcount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91E188CB-D3E6-4AC4-A937-286EB7F31CAB}|ApiFithub\\ApiFithub.csproj|solutionrelative:apifithub\\migrations\\20250423201854_setcashcount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -181,11 +225,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 373,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 22,
               "Title": "GymController.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\GymController.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Controllers\\GymController.cs",
@@ -199,58 +243,279 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 17,
               "Title": "GymCustomPaymentPlanController.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\GymCustomPaymentPlanController.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Controllers\\GymCustomPaymentPlanController.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\GymCustomPaymentPlanController.cs",
               "RelativeToolTip": "ApiFithub\\Controllers\\GymCustomPaymentPlanController.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAowGsAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAuwBgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T09:07:49.343Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\DashboardController.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "ApiFithub\\Controllers\\DashboardController.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAYwGoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T10:34:20.987Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "CashCount.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\CashCount.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\CashCount.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\CashCount.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\CashCount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T18:35:30.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CashCountController.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\CashCountController.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\CashCountController.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\CashCountController.cs",
+              "RelativeToolTip": "ApiFithub\\Controllers\\CashCountController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAADwv0AAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:13:37.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ClientController.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\ClientController.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Controllers\\ClientController.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\ClientController.cs",
               "RelativeToolTip": "ApiFithub\\Controllers\\ClientController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwEUAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T11:43:50.3Z",
+              "WhenOpened": "2025-04-27T19:16:21.469Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "20250413174048_SetRefundAndPayMethod.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
-              "RelativeToolTip": "ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ClientIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub.Tests\\Integration\\ClientIntegrationTests.cs",
+              "RelativeDocumentMoniker": "ApiFithub.Tests\\Integration\\ClientIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub.Tests\\Integration\\ClientIntegrationTests.cs",
+              "RelativeToolTip": "ApiFithub.Tests\\Integration\\ClientIntegrationTests.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBcAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T17:40:48.742Z"
+              "WhenOpened": "2025-05-04T14:51:20.413Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "ClientControllerTests.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub.Tests\\Controllers\\ClientControllerTests.cs",
+              "RelativeDocumentMoniker": "ApiFithub.Tests\\Controllers\\ClientControllerTests.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub.Tests\\Controllers\\ClientControllerTests.cs",
+              "RelativeToolTip": "ApiFithub.Tests\\Controllers\\ClientControllerTests.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAYwFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T15:25:00.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Inscription.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Inscription.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\Inscription.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Inscription.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\Inscription.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAswCYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:23:03.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GymCustomPaymentPlan.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymCustomPaymentPlan.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\GymCustomPaymentPlan.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymCustomPaymentPlan.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\GymCustomPaymentPlan.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAIwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T12:03:52.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\SeedData.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\SeedData.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\SeedData.cs",
+              "RelativeToolTip": "ApiFithub\\SeedData.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCEAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T22:08:30.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Client.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\Client.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Client.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\Client.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwCkAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T18:47:00.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClassSession.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassSession.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\ClassSession.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassSession.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\ClassSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAwAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T19:00:42.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TaskItem.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\TaskItem.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\TaskItem.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\TaskItem.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\TaskItem.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T16:30:33.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClassTemplate.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassTemplate.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\ClassTemplate.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassTemplate.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\ClassTemplate.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T18:30:31.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Supplier.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Supplier.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\Supplier.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Supplier.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\Supplier.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T18:29:04.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GymPaymentPlan.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymPaymentPlan.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\GymPaymentPlan.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymPaymentPlan.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\GymPaymentPlan.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T12:55:42.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PaymentPlan.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\PaymentPlan.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\PaymentPlan.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\PaymentPlan.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\PaymentPlan.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA5wBwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T14:50:45.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CashCountDto.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\CashCountDto.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\DTOs\\CashCountDto.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\CashCountDto.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\DTOs\\CashCountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T21:17:51.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "20250423201854_SetCashCount.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250423201854_SetCashCount.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250423201854_SetCashCount.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250423201854_SetCashCount.cs",
+              "RelativeToolTip": "ApiFithub\\Migrations\\20250423201854_SetCashCount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T20:18:54.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ApiFithubContexto.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ApiFithubContexto.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Models\\ApiFithubContexto.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ApiFithubContexto.cs",
+              "RelativeToolTip": "ApiFithub\\Models\\ApiFithubContexto.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAADwvzwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T11:34:26.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "20250423192437_SetCashCount.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250423192437_SetCashCount.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250423192437_SetCashCount.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250423192437_SetCashCount.cs",
+              "RelativeToolTip": "ApiFithub\\Migrations\\20250423192437_SetCashCount.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:24:38.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TaskController.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\TaskController.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\TaskController.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\TaskController.cs",
+              "RelativeToolTip": "ApiFithub\\Controllers\\TaskController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:58:45.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Controllers\\AuthController.cs",
@@ -263,43 +528,70 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GymCustomPaymentPlan.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymCustomPaymentPlan.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\GymCustomPaymentPlan.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymCustomPaymentPlan.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\GymCustomPaymentPlan.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAswBkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 50,
+              "Title": "20250413174048_SetRefundAndPayMethod.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
+              "RelativeToolTip": "ApiFithub\\Migrations\\20250413174048_SetRefundAndPayMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T12:03:52.599Z"
+              "WhenOpened": "2025-04-13T17:40:48.742Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 20,
+              "Title": "SupplierController.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\SupplierController.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\SupplierController.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\SupplierController.cs",
+              "RelativeToolTip": "ApiFithub\\Controllers\\SupplierController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T10:03:18.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "ApiFithub\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T10:34:20.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
               "Title": "20250413141612_RemoveUniqueIndexFromIdClient.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413141612_RemoveUniqueIndexFromIdClient.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413141612_RemoveUniqueIndexFromIdClient.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413141612_RemoveUniqueIndexFromIdClient.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413141612_RemoveUniqueIndexFromIdClient.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBZwBUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T14:16:12.371Z"
+              "WhenOpened": "2025-04-13T14:16:12.371Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 24,
               "Title": "20250413141527_RemoveUniqueIndexFromIdClient.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413141527_RemoveUniqueIndexFromIdClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T14:15:28.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 52,
               "Title": "20250413134909_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413134909_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413134909_ClientsAndPlansModified.cs",
@@ -307,23 +599,12 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413134909_ClientsAndPlansModified.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:49:09.394Z"
+              "WhenOpened": "2025-04-13T13:49:09.394Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GymPaymentPlan.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymPaymentPlan.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\GymPaymentPlan.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\GymPaymentPlan.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\GymPaymentPlan.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T12:55:42.26Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 25,
               "Title": "ApiFithubContextoModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\ApiFithubContextoModelSnapshot.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\ApiFithubContextoModelSnapshot.cs",
@@ -331,11 +612,12 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\ApiFithubContextoModelSnapshot.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:15:06.649Z"
+              "WhenOpened": "2025-04-13T13:15:06.649Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 26,
               "Title": "GymCustomPaymentPlanDto.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\GymCustomPaymentPlanDto.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Models\\DTOs\\GymCustomPaymentPlanDto.cs",
@@ -343,23 +625,12 @@
               "RelativeToolTip": "ApiFithub\\Models\\DTOs\\GymCustomPaymentPlanDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T12:34:50.243Z"
+              "WhenOpened": "2025-04-13T12:34:50.243Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Gym.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Gym.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\Gym.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\Gym.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\Gym.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAwwCAAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T19:30:23.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 27,
               "Title": "GymDto.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\GymDto.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Models\\DTOs\\GymDto.cs",
@@ -367,95 +638,78 @@
               "RelativeToolTip": "ApiFithub\\Models\\DTOs\\GymDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:13:40.204Z"
+              "WhenOpened": "2025-04-13T13:13:40.204Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ApiFithubContexto.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ApiFithubContexto.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\ApiFithubContexto.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ApiFithubContexto.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\ApiFithubContexto.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAA6wCwAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T11:34:26.355Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 28,
               "Title": "20250413130201_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413130201_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413130201_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413130201_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413130201_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T13:02:01.544Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 29,
               "Title": "20250413125934_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413125934_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413125934_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413125934_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413125934_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T12:59:35.205Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 30,
               "Title": "20250413120510_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413120510_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413120510_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413120510_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413120510_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T12:05:11.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "20250413113807_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113807_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413113807_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113807_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413113807_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T11:38:07.921Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "20250413113535_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113535_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413113535_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113535_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413113535_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T11:35:35.825Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "20250413113137_ClientsAndPlansModified.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113137_ClientsAndPlansModified.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250413113137_ClientsAndPlansModified.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250413113137_ClientsAndPlansModified.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250413113137_ClientsAndPlansModified.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T11:31:37.898Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "ClassTemplateDto.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\ClassTemplateDto.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Models\\DTOs\\ClassTemplateDto.cs",
@@ -463,11 +717,12 @@
               "RelativeToolTip": "ApiFithub\\Models\\DTOs\\ClassTemplateDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T20:36:50.334Z"
+              "WhenOpened": "2025-04-10T20:36:50.334Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "ClassSessionDto.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\DTOs\\ClassSessionDto.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Models\\DTOs\\ClassSessionDto.cs",
@@ -475,11 +730,12 @@
               "RelativeToolTip": "ApiFithub\\Models\\DTOs\\ClassSessionDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T12:53:46.196Z"
+              "WhenOpened": "2025-04-05T12:53:46.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 48,
               "Title": "20250405130415_SetTimeSpan.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250405130415_SetTimeSpan.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250405130415_SetTimeSpan.cs",
@@ -487,71 +743,58 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250405130415_SetTimeSpan.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAQwBUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T13:04:15.264Z"
+              "WhenOpened": "2025-04-05T13:04:15.264Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ClassSession.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassSession.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\ClassSession.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassSession.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\ClassSession.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T19:00:42.886Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 36,
               "Title": "20250405125435_SetTimeSpan.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250405125435_SetTimeSpan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-05T12:54:35.357Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 49,
               "Title": "20250402210408_SetClassesDetails.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402210408_SetClassesDetails.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250402210408_SetClassesDetails.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402210408_SetClassesDetails.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250402210408_SetClassesDetails.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBoAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:04:08.233Z"
+              "WhenOpened": "2025-04-02T21:04:08.233Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 37,
               "Title": "20250402205116_SetClassesDetails.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402205116_SetClassesDetails.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250402205116_SetClassesDetails.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402205116_SetClassesDetails.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250402205116_SetClassesDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-02T20:51:17.002Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 38,
               "Title": "20250402192648_SetClassesDetails.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402192648_SetClassesDetails.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250402192648_SetClassesDetails.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250402192648_SetClassesDetails.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250402192648_SetClassesDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-02T19:26:49.103Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 39,
               "Title": "ClassEnrollment.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\ClassEnrollment.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Models\\ClassEnrollment.cs",
@@ -559,11 +802,12 @@
               "RelativeToolTip": "ApiFithub\\Models\\ClassEnrollment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T19:04:04.909Z"
+              "WhenOpened": "2025-04-02T19:04:04.909Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 47,
               "Title": "20250401191219_SetTitleTask.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250401191219_SetTitleTask.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250401191219_SetTitleTask.cs",
@@ -571,47 +815,23 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250401191219_SetTitleTask.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T19:12:19.397Z"
+              "WhenOpened": "2025-04-01T19:12:19.397Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "TaskItem.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\TaskItem.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\TaskItem.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\TaskItem.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\TaskItem.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwA8AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T16:30:33.038Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 40,
               "Title": "20250401190548_SetTitleStatusTask.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs",
               "RelativeToolTip": "ApiFithub\\Migrations\\20250401190548_SetTitleStatusTask.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T19:05:48.933Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Program.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Program.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Program.cs",
-              "RelativeToolTip": "ApiFithub\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADAAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T10:52:05.107Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 46,
               "Title": "20250330164405_SetDateTimeTasks.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250330164405_SetDateTimeTasks.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250330164405_SetDateTimeTasks.cs",
@@ -619,35 +839,25 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250330164405_SetDateTimeTasks.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T16:44:05.223Z"
+              "WhenOpened": "2025-03-30T16:44:05.223Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 41,
               "Title": "PaymentPlanController.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\PaymentPlanController.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Controllers\\PaymentPlanController.cs",
               "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\PaymentPlanController.cs",
               "RelativeToolTip": "ApiFithub\\Controllers\\PaymentPlanController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAA0wDsAAABPAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAIwDsAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T09:57:49.263Z"
+              "WhenOpened": "2025-03-17T09:57:49.263Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "SupplierController.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\SupplierController.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Controllers\\SupplierController.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Controllers\\SupplierController.cs",
-              "RelativeToolTip": "ApiFithub\\Controllers\\SupplierController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA7wEAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T10:03:18.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 44,
               "Title": "20250319130823_EditCurrancyToPeriod.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250319130823_EditCurrancyToPeriod.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250319130823_EditCurrancyToPeriod.cs",
@@ -655,23 +865,12 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250319130823_EditCurrancyToPeriod.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T13:08:23.659Z"
+              "WhenOpened": "2025-03-19T13:08:23.659Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "PaymentPlan.cs",
-              "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\PaymentPlan.cs",
-              "RelativeDocumentMoniker": "ApiFithub\\Models\\PaymentPlan.cs",
-              "ToolTip": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Models\\PaymentPlan.cs",
-              "RelativeToolTip": "ApiFithub\\Models\\PaymentPlan.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T14:50:45.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 45,
               "Title": "20250319124701_MakeFeaturesNullable.cs",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\Migrations\\20250319124701_MakeFeaturesNullable.cs",
               "RelativeDocumentMoniker": "ApiFithub\\Migrations\\20250319124701_MakeFeaturesNullable.cs",
@@ -679,11 +878,12 @@
               "RelativeToolTip": "ApiFithub\\Migrations\\20250319124701_MakeFeaturesNullable.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T12:47:01.748Z"
+              "WhenOpened": "2025-03-19T12:47:01.748Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 42,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\lcove\\Desktop\\repositorios\\myGymSaas\\ApiFithub\\ApiFithub\\appsettings.json",
               "RelativeDocumentMoniker": "ApiFithub\\appsettings.json",
@@ -691,11 +891,12 @@
               "RelativeToolTip": "ApiFithub\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-19T12:37:03.77Z"
+              "WhenOpened": "2025-03-19T12:37:03.77Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 43,
               "Title": "dbo.AspNetUsers.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQL15/ApiFithubBD/True/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQL15/ApiFithubBD/True/SqlTable/dbo.AspNetUsers.sql",

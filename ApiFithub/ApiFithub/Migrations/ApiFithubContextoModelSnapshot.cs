@@ -22,6 +22,39 @@ namespace ApiFithub.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ApiFithub.Models.CashCount", b =>
+                {
+                    b.Property<int>("IdCashCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCashCount"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("IVA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("IdGym")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("OtherTaxes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdCashCount");
+
+                    b.HasIndex("IdGym");
+
+                    b.ToTable("CashCounts");
+                });
+
             modelBuilder.Entity("ApiFithub.Models.ClassEnrollment", b =>
                 {
                     b.Property<int>("IdEnrollment")
@@ -298,6 +331,9 @@ namespace ApiFithub.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdInscription"));
 
+                    b.Property<int?>("CashCountIdCashCount")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Cost")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
@@ -328,6 +364,8 @@ namespace ApiFithub.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdInscription");
+
+                    b.HasIndex("CashCountIdCashCount");
 
                     b.HasIndex("IdClient")
                         .IsUnique();
@@ -682,6 +720,17 @@ namespace ApiFithub.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ApiFithub.Models.CashCount", b =>
+                {
+                    b.HasOne("ApiFithub.Models.Gym", "Gym")
+                        .WithMany("CashCounts")
+                        .HasForeignKey("IdGym")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gym");
+                });
+
             modelBuilder.Entity("ApiFithub.Models.ClassEnrollment", b =>
                 {
                     b.HasOne("ApiFithub.Models.ClassSession", "ClassSession")
@@ -795,6 +844,10 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Inscription", b =>
                 {
+                    b.HasOne("ApiFithub.Models.CashCount", null)
+                        .WithMany("Inscriptions")
+                        .HasForeignKey("CashCountIdCashCount");
+
                     b.HasOne("ApiFithub.Models.Client", "Client")
                         .WithOne("Inscription")
                         .HasForeignKey("ApiFithub.Models.Inscription", "IdClient")
@@ -912,6 +965,11 @@ namespace ApiFithub.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ApiFithub.Models.CashCount", b =>
+                {
+                    b.Navigation("Inscriptions");
+                });
+
             modelBuilder.Entity("ApiFithub.Models.ClassSession", b =>
                 {
                     b.Navigation("Clients");
@@ -931,6 +989,8 @@ namespace ApiFithub.Migrations
 
             modelBuilder.Entity("ApiFithub.Models.Gym", b =>
                 {
+                    b.Navigation("CashCounts");
+
                     b.Navigation("ClassTemplates");
 
                     b.Navigation("GymCustomPaymentPlans");
