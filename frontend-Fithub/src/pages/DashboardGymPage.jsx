@@ -127,7 +127,7 @@ const DashboardGym = () => {
 
                 {/* Total Ingresos */}
                 <div className="bg-white shadow-lg text-left rounded p-5">
-                    <p className="font-bold pb-3">Ingresos Totales</p>
+                    <p className="font-bold pb-3">Facturación</p>
                     <p className="text-xl font-bold">{summaryData.total.toFixed(2)} €</p>
                     <p className="text-sm text-gray-500">+ 10% last month</p>
                 </div>
@@ -172,7 +172,6 @@ const DashboardGym = () => {
                     {cashFlowData.length > 0 ? (
                         <ResponsiveContainer width="100%" height={220}>
                             <ComposedChart data={cashFlowData}>
-                                <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="date"
                                     tickFormatter={(str) => {
@@ -204,7 +203,6 @@ const DashboardGym = () => {
                         {cashFlowData.length > 0 ? (
                             <ResponsiveContainer width="100%" height={220}>
                                 <LineChart data={cashFlowData}>
-                                    <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis
                                         dataKey="date"
                                         tickFormatter={(str) => {
@@ -224,60 +222,54 @@ const DashboardGym = () => {
                             <p className="text-sm text-gray-500">No hay datos para mostrar la evolución.</p>
                         )}
                     </div>
-
-
             </section>
 
-            
-
-
-
-{/* Clientes Entrenando */}
-<div className="bg-white shadow-lg rounded p-2">
-  {clients.length > 0 ? (
-    <>
-      <h2 className="text-xl font-semibold my-4">Clientes Entrenando</h2>
-      <table className="text-sm border border-gray-200 rounded-lg overflow-hidden w-full">
-        <thead className="bg-gray-100 text-left">
-          <tr>
-            <th className="py-2 px-2">Avatar</th>
-            <th className="px-2 py-2">Nombre</th>
-            <th className="px-2 py-2">Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clients.slice(0, 9).map((client) => (
-            <tr key={client.idClient} className="border-t hover:bg-gray-200 rounded">
-              <td className="px-2 py-2">
-                <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full">
-                  <span className="font-medium text-gray-600">
-                    {client.name.substring(0, 1)}
-                    {client.surname.substring(0, 1)}
-                  </span>
-                </div>
-              </td>
-              <td className="px-2 py-2 text-left">
-                <strong>
-                  {client.name} {client.surname}
-                </strong>
-              </td>
-              <td className="px-2 py-2">
-                <Link to={`/${idGym}/client/${client.idClient}/edit`} className="text-center">
-                  <svg className="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                      d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8" />
-                  </svg>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
-  ) : (
-    <h2 className="text-xl font-semibold mb-4">👥 No hay clientes registrados</h2>
-  )}
-</div>
+            {/* Clientes Entrenando */}
+            <div className="bg-white shadow-lg rounded p-2">
+              {clients.length > 0 ? (
+                <>
+                  <h2 className="text-xl font-semibold my-4">Clientes Entrenando</h2>
+                  <table className="text-sm border border-gray-200 rounded-lg overflow-hidden w-full">
+                    <thead className="bg-gray-100 text-left">
+                      <tr>
+                        <th className="py-2 px-2">Avatar</th>
+                        <th className="px-2 py-2">Nombre</th>
+                        <th className="px-2 py-2">Editar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {clients.slice(0, 9).map((client) => (
+                        <tr key={client.idClient} className="border-t hover:bg-gray-200 rounded">
+                          <td className="px-2 py-2">
+                            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full">
+                              <span className="font-medium text-gray-600">
+                                {client.name.substring(0, 1)}
+                                {client.surname.substring(0, 1)}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="px-2 py-2 text-left">
+                            <strong>
+                              {client.name} {client.surname}
+                            </strong>
+                          </td>
+                          <td className="px-2 py-2">
+                            <Link to={`/${idGym}/client/${client.idClient}/edit`} className="text-center">
+                              <svg className="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                  d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8" />
+                              </svg>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : (
+                <h2 className="text-xl font-semibold mb-4">👥 No hay clientes registrados</h2>
+              )}
+            </div>
 
 
         </div>

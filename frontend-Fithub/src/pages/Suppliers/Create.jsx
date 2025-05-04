@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createSupplier } from "../../services/suppliers.js";
 import { useAuth } from "../../contexts/AuthContext.jsx";
+import { Link } from "react-router-dom";
 
 const CreateSupplierPage = () => {
     const { idGym, gymName } = useAuth();
@@ -41,11 +42,11 @@ const CreateSupplierPage = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="mt-5 p-6 shadow-lg rounded-lg bg-white">
       <h2 className="text-2xl font-bold mb-4">Crear Proveedor</h2>
       {error && <p className="text-red-500">{error}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="text-left space-y-4">
         <div>
           <label className="block">Nombre</label>
           <input
@@ -90,6 +91,9 @@ const CreateSupplierPage = () => {
           >
             {loading ? "Creando..." : "Crear Proveedor"}
           </button>
+          <Link to={`/${gymName}/suppliers`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700  hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Cancelar
+          </Link>
         </div>
       </form>
     </div>

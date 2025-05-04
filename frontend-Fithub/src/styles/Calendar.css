@@ -14,7 +14,7 @@ html, body {
   display: flex;
   flex-direction: column;
   height: 80vh; /* Esto hace que el contenedor ocupe toda la altura de la pantalla */
-  background-color: #fff;
+  background-color: rgb(250, 250, 250);
   padding: 0 10px; /* Para agregar algo de espacio en los lados */
   border-radius: 15px;
 }
@@ -22,7 +22,7 @@ html, body {
 /* Estilo general del calendario */
 .rbc-calendar {
   font-family: 'Roboto', sans-serif;
-  background-color: #ffffff; /* Fondo blanco puro */
+  background-color: rgb(250, 250, 250);
   height: 90%;
   padding: 10px;
   overflow: hidden;

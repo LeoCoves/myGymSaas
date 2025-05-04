@@ -10,6 +10,7 @@ import GymPage from './pages/GymPage.jsx';
 import AdminPage from './pages/AdminPage.jsx';
 
 //Administrador
+import DashboardAdminPage from './pages/DashboardAdminPage.jsx';
 import GymsPage from './pages/Gyms/Index.jsx';
 import GymDetailPage from './pages/Gyms/Detail.jsx';
 import GymEditPage from './pages/Gyms/Edit.jsx';
@@ -25,6 +26,9 @@ import ChatApp from './pages/ChatPage.jsx';
 
 //Gimnasio
 import DashboardGym from './pages/DashboardGymPage.jsx';
+
+//Arqueo Caja
+import CashCountPage from './pages/CashCountPage.jsx';
   //Clients
 import ClientsPage from './pages/Clients/Index.jsx';
 import CreateClientPage from './pages/Clients/Create.jsx';
@@ -72,7 +76,7 @@ function App() {
         {/* Rutas protegidas para Admin */}
         <Route path="/admin" element={<ProtectedRoute requiredRole="Admin"><AdminPage /></ProtectedRoute>}>
           <Route index element={<Navigate to="dashboard" />} />
-          <Route index path="dashboard" element={<DashboardGym />} />
+          <Route index path="dashboard" element={<DashboardAdminPage/>} />
           
           {/* Rutas para gimnasios */}
           <Route path="gyms" element={<GymsPage />} />
@@ -95,6 +99,7 @@ function App() {
           <Route index element={<Navigate to="dashboard" />} />
           <Route index path="dashboard" element={<DashboardGym />} />
 
+          <Route path="cashCount" element={<CashCountPage />} />
 
           <Route index path="clients" element={<ClientsPage />}/>
           <Route path="client/create" element={<CreateClientPage />} />

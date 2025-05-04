@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPlan } from "../../services/paymentPlans.js";
+import { Link } from "react-router-dom";
 
 const CreatePaymentPlan = () => {
     const navigate = useNavigate();
@@ -222,6 +223,9 @@ const CreatePaymentPlan = () => {
                     >
                         {loading ? "Creando..." : "Crear Plan"}
                     </button>
+                    <Link to={`/admin/plans`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Cancelar
+                    </Link>
                 </div>
             </form>
         </div>

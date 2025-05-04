@@ -133,7 +133,7 @@ const EditGymPaymentPlan = () => {
             
             {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="text-left space-y-6">
                 {/* Nombre del Plan */}
                 <div>
                     <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Nombre del Plan</label>
@@ -179,22 +179,6 @@ const EditGymPaymentPlan = () => {
                     />
                 </div>
 
-
-
-                {/* Tipo de Plan (isBasic) */}
-                <div>
-                    <label htmlFor="IsBasic" className="block text-sm font-medium text-gray-700">Es Plan Básico</label>
-                    <input 
-                        type="checkbox" 
-                        id="IsBasic" 
-                        name="IsBasic" 
-                        checked={planData.IsBasic} 
-                        onChange={handleChange} 
-                        className="mt-1"
-                    />
-                </div>
-
-
                 {/* Features */}
                 <div>
                     <label htmlFor="Features" className="block text-sm font-medium text-gray-700">Características</label>
@@ -217,12 +201,24 @@ const EditGymPaymentPlan = () => {
                     </div>
                     <ul className="mt-2">
                         {(planData.Features || []).map((feature, index) => (  // Aseguramos que Features sea un array
-                            <li key={index} className="flex justify-between text-gray-600 border-gray-300 border-b py-2">
-                                <span>{feature}</span>
+                            <li key={index} className="flex align-self-center text-gray-600 border-gray-300 border-b py-2">
+                                <svg
+                                    className="h-6 w-5 text-orange-600"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                                    {feature}
                                 <button
                                     type="button"
                                     onClick={() => handleRemoveFeature(feature)} 
-                                    className="text-red-500 hover:text-red-700"
+                                    className="text-red-500 hover:text-red-700 align-self-center"
                                 >
                                     Eliminar
                                 </button>
@@ -273,7 +269,7 @@ const EditGymPaymentPlan = () => {
                     >
                         {loading ? "Actualizando..." : "Actualizar Plan"}
                     </button>
-                    <Link to={`/${gymName}/plans`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <Link to={`/${gymName}/plans`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
                         Cancelar
                     </Link>
                 </div>

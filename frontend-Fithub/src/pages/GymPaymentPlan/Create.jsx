@@ -97,7 +97,7 @@ const CreateGymPaymentPlan = () => {
 
             {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="text-left space-y-6">
                 {/* Nombre del Plan */}
                 <div>
                     <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Nombre del Plan</label>
@@ -158,14 +158,28 @@ const CreateGymPaymentPlan = () => {
                         <button
                             type="button"
                             onClick={handleAddFeature}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                            className="px-4 py-2 rounded bg-neutral-900 text-white hover:bg-neutral-950"
                         >
                             Añadir
                         </button>
                     </div>
                     <ul className="mt-2">
                         {planData.Features.map((feature, index) => (
-                            <li key={index} className="text-gray-600">{feature}</li>
+                            <li key={index} className="flex text-gray-600">
+                                <svg
+                                    className="h-6 w-5 text-orange-600"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                                        clipRule="evenodd"
+                                    />
+                                    </svg>
+                                {feature}
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -213,7 +227,7 @@ const CreateGymPaymentPlan = () => {
                     >
                         {loading ? "Creando..." : "Crear Plan"}
                     </button>
-                    <Link to={`${gymName}/plans`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <Link to={`/${gymName}/plans`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700  hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
                         Cancelar
                     </Link>
                 </div>

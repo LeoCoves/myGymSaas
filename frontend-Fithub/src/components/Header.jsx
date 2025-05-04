@@ -30,7 +30,7 @@ const Header = () => {
             <>
               {location.pathname === "/" ? (
                 role === "Admin" ? (
-                  <li><Link to="/admin" className="text-gray-700 hover:text-orange-500 transition duration-300">Admin</Link></li>
+                  <li><Link to="/admin" className="bg-neutral-950 hover:bg-neutral-900 transition duration-300 p-3 rounded-md text-white hover:text-white text-md mx-3">Dashboard</Link></li>
                 ) : (
                   <li><Link to={`/${gymName}`} className="bg-neutral-950 hover:bg-neutral-900 transition duration-300 p-3 rounded-md text-white hover:text-white text-md mx-3">Dashboard</Link></li>
                 )

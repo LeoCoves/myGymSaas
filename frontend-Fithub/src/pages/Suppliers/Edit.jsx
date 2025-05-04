@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSupplierById, updateSupplier } from "../../services/suppliers.js";
 import { useAuth } from "../../contexts/AuthContext.jsx";
+import { Link } from "react-router-dom";
 
 const UpdateSupplierPage = () => {
   const { idGym, gymName } = useAuth();
@@ -55,13 +56,13 @@ const UpdateSupplierPage = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="mt-5 p-6 shadow-lg rounded-lg bg-white">
       <h2 className="text-2xl font-bold mb-4">Actualizar Proveedor</h2>
       {error && <p className="text-red-500">{error}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="text-left space-y-4">
         <div>
-          <label className="block">Nombre</label>
+          <label className="block py-2">Nombre</label>
           <input
             type="text"
             name="name"
@@ -73,7 +74,7 @@ const UpdateSupplierPage = () => {
         </div>
 
         <div>
-          <label className="block">Correo Electrónico</label>
+          <label className="block py-2">Correo Electrónico</label>
           <input
             type="email"
             name="email"
@@ -85,7 +86,7 @@ const UpdateSupplierPage = () => {
         </div>
 
         <div>
-          <label className="block">Número de Teléfono</label>
+          <label className="block py-2">Número de Teléfono</label>
           <input
             type="tel"
             name="numberPhone"
@@ -104,6 +105,9 @@ const UpdateSupplierPage = () => {
           >
             {loading ? "Actualizando..." : "Actualizar Proveedor"}
           </button>
+          <Link to={`/${gymName}/suppliers`} className="ml-4 py-3 px-4 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700  hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Cancelar
+          </Link>
         </div>
       </form>
     </div>

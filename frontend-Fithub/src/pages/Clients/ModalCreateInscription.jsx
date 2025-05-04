@@ -92,7 +92,7 @@ const CreateInscriptionModal = ({ client, idGym, onClose, onInscriptionCreated }
                         <input type="date" name="endDate" value={inscription.endDate} disabled className="w-full px-4 py-2 border rounded" />
                         <input type="number" name="payment" value={inscription.payment} onChange={handleChange} placeholder="Pago (€)" className="w-full px-4 py-2 border rounded" />
                         <input type="number" name="cost" value={inscription.cost} disabled className="w-full px-4 py-2 border rounded" />
-                        <input type="number" name="refund" value={inscription.payment - inscription.cost} onChange={handleChange} placeholder="Devolver (€)" className="w-full px-4 py-2 border rounded" />
+                        <input type="number" name="refund" value={(inscription.payment - inscription.cost).toFixed(2)} onChange={handleChange} placeholder="Devolver (€)" className="w-full px-4 py-2 border rounded" />
                         <select name="paymentMethod" value={inscription.paymentMethod} onChange={handleChange} className="w-full px-4 py-2 border rounded">
                             <option value="">Selecciona forma de pago</option>
                             <option value="cash">Efectivo</option>

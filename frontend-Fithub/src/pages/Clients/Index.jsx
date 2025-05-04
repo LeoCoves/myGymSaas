@@ -194,12 +194,6 @@ const ClientsPage = () => {
                           Editar
                         </Link>
 
-                        {/* <Link
-                          className="px-3 py-1 rounded bg-yellow-500 hover:bg-yellow-600 text-white text-xs"
-                          to={`/${gymName}/client/${client.idClient}`}
-                        >
-                          Ver
-                        </Link> */}
                       </td>
                     </tr>
                   );
@@ -214,13 +208,19 @@ const ClientsPage = () => {
             breakLabel={"..."}
             pageCount={pageCount}
             onPageChange={handlePageClick}
-            containerClassName={"flex justify-center mt-6 space-x-2"}
-            pageClassName={"px-3 py-1 border rounded hover:bg-gray-200"}
-            activeClassName={"bg-gray-300 text-white"}
-            previousClassName={"px-3 py-1 border rounded hover:bg-gray-200"}
-            nextClassName={"px-3 py-1 border rounded hover:bg-gray-200"}
-            disabledClassName={"opacity-50 cursor-not-allowed"}
+            containerClassName="flex justify-center mt-6 space-x-2"
+            pageClassName="border border-black rounded"
+            pageLinkClassName="px-3 py-1 text-black hover:bg-gray-200 block"
+            activeClassName="bg-red-600"
+            activeLinkClassName="text-white"
+            previousClassName="border border-black rounded"
+            previousLinkClassName="px-3 py-1 text-black hover:bg-gray-200 block"
+            nextClassName="border border-black rounded"
+            nextLinkClassName="px-3 py-1 text-black hover:bg-gray-200 block"
+            disabledClassName="cursor-not-allowed opacity-50"
           />
+
+
         </>
       )}
     </div>

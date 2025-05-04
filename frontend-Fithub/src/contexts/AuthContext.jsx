@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   
       // Redirigir según el rol
       setTimeout(() => {
-        if (data.Role === "Admin") {
+        if (data.role === "Admin") {
           navigate("/admin");
         } else if (data.gymName) {
           navigate(`/${data.gymName}`);

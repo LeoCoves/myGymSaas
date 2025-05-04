@@ -9,7 +9,7 @@ const EditClientPage = () => {
     const { idClient } = useParams();
     const navigate = useNavigate();
     const { gymName, idGym } = useAuth();
-
+    const [formError, setFormError] = useState("");
     const [client, setClient] = useState(null);
     const [paymentPlans, setPaymentPlans] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -131,6 +131,18 @@ const EditClientPage = () => {
 
     const handleInscriptionSubmit = async (e) => {
         e.preventDefault();
+
+        if (!inscription?.idGymCustomPaymentPlan) {
+            setFormError("Debes seleccionar un plan antes de continuar.");
+            return;
+          }
+
+        if (parseFloat(inscription.payment) < parseFloat(inscription.cost)) {
+            setFormError("El pago no puede ser menor que el costo del plan.");
+            return;
+          }
+        
+          setFormError(""); // Limpiar errores si todo está bien
         try {
             const data = {
                 ...inscription,
@@ -147,7 +159,7 @@ const EditClientPage = () => {
             // 🔁 Recargar inscripción actualizada
             const updatedInscription = await getInscriptionByClient(idClient);
             setInscription(updatedInscription);
-            console.log("Inscripción creada correctamente:", updatedInscription);
+            navigate(`/${gymName}/clients`);
         } catch (err) {
             alert("Error al crear la inscripción");
             console.error(err);
@@ -172,8 +184,9 @@ const EditClientPage = () => {
                             <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
                             </svg>
-                        </div>
-        <h2 className="text-xl font-bold">Editar Cliente</h2>
+                </div>
+
+        <h2 className="text-xl font-bold">Editar Cliente {client.name}</h2>
         <svg
           className={`w-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
@@ -185,27 +198,12 @@ const EditClientPage = () => {
       </button>
                 {isOpen && 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div>
-                        <div className="justify-content-right">
-                            <div className="space-x-2 flex items-center mt-2 text-right">
-                                <label className="text-sm font-medium ">Sigue formando parte de nosotros</label>
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setClient((prev) => ({ ...prev, isActive: !prev.isActive }))
-                                    }
-                                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                                        client?.isActive ? "bg-green-500" : "bg-red-500"
-                                    }`}
-                                >
-                                    <span
-                                        className={`inline-block h-5 w-full transform rounded-full bg-white transition-transform ${
-                                            client?.isActive ? "translate-x-1" : "translate-x-5"
-                                        }`}
-                                    />
-                                </button>
-                            </div>
-                        </div>
+                   
+                    <div className="mt-2 flex items-center gap-x-3">
+                        <svg className="size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
+                        <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
+                        </svg>
+                        <button type="button" className="rounded-md w-full bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50">Change</button>
                     </div>
                     <div>
                         <label className="block">Nombre</label>
@@ -236,15 +234,6 @@ const EditClientPage = () => {
                             onChange={handleInputChange}
                             className="px-4 py-2 border border-black rounded w-full"
                         />
-
-                        <div className="flex gap-5 align-center mt-10">
-                            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-                                Guardar cambios
-                            </button>
-                            <Link to={`/${gymName}/clients`} className="px-4 py-2 rounded bg-gray-500 hover:bg-gray-600 text-white">
-                            Cancelar
-                        </Link>
-                        </div>
                     </div>
                     <div>
                         <label className="block">Número de Teléfono</label>
@@ -256,34 +245,51 @@ const EditClientPage = () => {
                             className="px-4 py-2 border border-black rounded w-full"
                         />
                     <div className="flex align-center mt-10">
-                        
+                    <div className="flex gap-5 align-center mt-10">
+                            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+                                Guardar cambios
+                            </button>
+                            <Link to={`/${gymName}/clients`} className="px-4 py-2 rounded bg-gray-500 hover:bg-gray-600 hover:text-white">
+                            Cancelar
+                        </Link>
+                        </div>
                     </div>
 
                     </div>
-                    <div className="bg-neutral-800 shadow-lgs rounded-2xl p-6 border hover:shadow-xl transition-shadow cursor-pointer">
+                    <div className="grid-col-2 shadow-lgs rounded-2xl p-6 border hover:shadow-xl transition-shadow cursor-pointer">
                         {/* ... otros campos del formulario */}
 
-                        <h2 className="block text-lg text-white pb-4">Plan Contratado Actual</h2>
-                        <div className="px-4 py-2 bg-neutral-900 text-white rounded w-full ">
-
-                            {
-                                inscription ? (
-                                    inscription.plan ? (
-                                        <>
-                                            <p><strong>{inscription.plan.name}</strong></p>
-                                            <p>{inscription.plan.description}</p>
-                                            <p> {inscription.plan.price}€/{inscription.plan.period}</p>
-                                            <p>{new Date(inscription.startDate).toLocaleDateString()} - {new Date(inscription.endDate).toLocaleDateString()}</p>
-
-                                        </>
-                                    ) : (
-                                        <p>Sin plan contratado</p>
-                                    )
-                                ) : (
-                                    <p>Cargando inscripción...</p>
-                                )
-                            }
+                        <h2 className="block text-lg text-black pb-4">Plan Contratado Actual</h2>
+                        <div className="rounded-3xl bg-white shadow-2xl ring-1 ring-gray-200 p-8 text-gray-900 w-full">
+                    {inscription ? (
+                        inscription.plan ? (
+                        <div className="flex flex-col lg:flex-row justify-between gap-8">
+                            {/* Columna izquierda: info del plan */}
+                            <div className="flex-1">
+                            <h3 className="text-base font-semibold text-red-600">
+                                {inscription.plan.name}
+                            </h3>
+                            <p className="mt-4 text-gray-600">{inscription.plan.description}</p>
+                            <p className="mt-4 flex items-baseline gap-x-2">
+                                <span className="text-4xl font-semibold tracking-tight text-gray-900">
+                                {inscription.plan.price}€
+                                </span>
+                                <span className="text-base text-gray-500">/{inscription.plan.period}</span>
+                            </p>
+                            <p className="mt-4 text-sm text-gray-500">
+                                {new Date(inscription.startDate).toLocaleDateString()} -{" "}
+                                {new Date(inscription.endDate).toLocaleDateString()}
+                            </p>
+                            </div>
                         </div>
+                        ) : (
+                        <p className="text-gray-500">Sin plan contratado</p>
+                        )
+                    ) : (
+                        <p className="text-gray-500">Cargando inscripción...</p>
+                    )}
+                    </div>
+
                     </div>
                 </div>}
                 
@@ -369,7 +375,7 @@ const EditClientPage = () => {
                             <input
                             type="number"
                             name="refund"
-                            value={inscription.payment - inscription.cost}
+                            value={(inscription.payment - inscription.cost).toFixed(2)}
                             onChange={handleInscriptionChange}
                             className="px-4 py-2 border rounded border-black w-full"
                             />
@@ -390,6 +396,12 @@ const EditClientPage = () => {
                             </select>
                         </div>
                     </div>
+
+                    {formError && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+                        {formError}
+                        </div>
+                    )}
 
                     <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
                         Crear Inscripción
